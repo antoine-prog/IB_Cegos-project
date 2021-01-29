@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace apiFilRougeIB.Utils
+namespace apiFilRougeIb.Utils
 {
     public class ConnectionSql
     {
@@ -13,7 +13,7 @@ namespace apiFilRougeIB.Utils
         private static string server = "localhost";
         private static string user = "root";
         private static string password = "root";
-        private static string db = "ibFilRouge";
+        private static string db = "ibfilrouge";
         private static string port = "3306";
 
         private ConnectionSql() { }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace apiFilRougeIB.Utils
+namespace apiFilRougeIb.Utils
 {
     public class QueryBuilder
     {
@@ -103,6 +103,12 @@ namespace apiFilRougeIB.Utils
             return request.Append($"DELETE FROM {table} where id = {id}").ToString();
         }
         //Si l'id des tables sont différentes, plusieurs méthodes 'Delete' sont a définir avec "where id" à changer
+
+        internal string DeleteTheme(string table, long id)
+        {
+            request.Clear();
+            return request.Append($"DELETE FROM {table} where idTheme = {id}").ToString();
+        }
 
 
         internal string Get()
