@@ -110,6 +110,12 @@ namespace apiFilRougeIb.Utils
             return request.Append($"DELETE FROM {table} where idTheme = {id}").ToString();
         }
 
+        internal string DeleteUser(string table, long id)
+        {
+            request.Clear();
+            return request.Append($"DELETE FROM {table} where idUser = {id}").ToString();
+        }
+
 
         internal string Get()
         {
