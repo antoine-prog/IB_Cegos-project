@@ -1,4 +1,5 @@
-﻿using System;
+﻿using apiFilRougeIb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace apiFilRougeIb.Services
         /// <returns>Models.Todo</returns>
         internal Dto.FindAll.FindAllSolutionsDto GetSolution(long id)
         {
-            Models.Solution solution = this._solutionRepository.Find(id);
+            Solution solution = this._solutionRepository.Find(id);
             Dto.FindAll.FindAllSolutionsDto solutionDto = TransformModelToDto(solution);
             return solutionDto;
         }
@@ -77,15 +78,15 @@ namespace apiFilRougeIb.Services
         }
         private Dto.FindAll.FindAllSolutionsDto TransformModelToDto(Models.Solution solution)
         {
-            return new Dto.FindAll.FindAllSolutionsDto(solution.Solution_, solution.Question_idquestion ,solution.IdSolution);
+            return new Dto.FindAll.FindAllSolutionsDto(solution.solution, solution.Question_idQuestion ,solution.IdSolution);
         }
         private Models.Solution TransformDtoToModel(Dto.Create.CreateSolutionDto solution)
         {
-            return new Models.Solution(solution.Solution,solution.Question_idquestion);
+            return new Models.Solution(solution.Solution,solution.Question_idQuestion);
         }
         private Dto.AfterCreate.AfterCreateSolutionDto TransformModelToAfterCreateDto(Models.Solution solution, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateSolutionDto(solution.Solution_, solution.Question_idquestion, isCreated, solution.IdSolution);
+            return new Dto.AfterCreate.AfterCreateSolutionDto(solution.solution, solution.Question_idQuestion, isCreated, solution.IdSolution);
         }
     }
 }

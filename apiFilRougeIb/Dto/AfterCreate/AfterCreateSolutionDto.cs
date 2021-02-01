@@ -16,7 +16,7 @@ namespace apiFilRougeIb.Dto.AfterCreate
             this.IdSolution = IdSolution;
             this.Solution = solution;
             this.Question_idquestion = id_question;
-            this.IsCreated = IsCreated;
+            this.IsCreated = isCreated;
         }
 
     }
