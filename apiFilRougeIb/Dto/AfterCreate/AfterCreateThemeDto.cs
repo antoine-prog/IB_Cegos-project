@@ -18,8 +18,5 @@ namespace apiFilRougeIb.Dto.AfterCreate
             this.IsCreated = isCreated;
         }
 
-
-
-
     }
 }

@@ -36,9 +36,9 @@ namespace apiFilRougeIb.Controllers
 
         // POST api/<SolutionsController>
         [HttpPost]
-        public Dto.AfterCreate.AfterCreateSolutionDto Post([FromBody] Dto.Create.CreateSolutionDto theme)
+        public Dto.AfterCreate.AfterCreateSolutionDto Post([FromBody] Dto.Create.CreateSolutionDto solution)
         {
-            return SolutionServices.PostSolution(theme);
+            return SolutionServices.PostSolution(solution);
         }
 
         // PUT api/<SolutionsController>/5

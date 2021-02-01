@@ -71,7 +71,7 @@ namespace apiFilRougeIb.Utils
                 {
                     request.Append($"'{obj[key]}',");
                 }
-                else if (obj[key] is int || obj[key] is bool)
+                else if (obj[key] is int || obj[key] is bool || obj[key] is long)
                 {
                     request.Append($"{obj[key]},");
                 }
@@ -100,7 +100,7 @@ namespace apiFilRougeIb.Utils
         internal string Delete(string table, long id)
         {
             request.Clear();
-            return request.Append($"DELETE FROM {table} where id = {id}").ToString();
+            return request.Append($"DELETE FROM {table} where id{table} = {id}").ToString();
         }
         //Si l'id des tables sont différentes, plusieurs méthodes 'Delete' sont a définir avec "where id" à changer
 
@@ -152,7 +152,7 @@ namespace apiFilRougeIb.Utils
                 {
                     request.Append($"{key} = '{obj[key]}',");
                 }
-                else if (obj[key] is int || obj[key] is bool)
+                else if (obj[key] is int || obj[key] is bool || obj[key] is long)
                 {
                     request.Append($"{key} = {obj[key]},");
                 }

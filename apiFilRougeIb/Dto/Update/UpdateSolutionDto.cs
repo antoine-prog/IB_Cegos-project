@@ -9,10 +9,10 @@ namespace apiFilRougeIb.Dto.Update
     {
         public string Solution { get; set; }
         public long Question_idquestion { get; set; }
-        public UpdateSolutionDto(string solution,long id_question)
+        public UpdateSolutionDto(string solution,long question_idquestion)
         {
             this.Solution = solution;
-            this.Question_idquestion =id_question;
+            this.Question_idquestion =question_idquestion;
         }
 
 

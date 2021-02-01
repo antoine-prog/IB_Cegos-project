@@ -48,6 +48,7 @@ namespace apiFilRougeIb.Repositories
             this.OpenConnection();
             string request = _queryBuilder.Delete("solution", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            Console.WriteLine(request);
             int result = cmd.ExecuteNonQuery();
             connectionSql.Close();
             return result;
@@ -67,7 +68,8 @@ namespace apiFilRougeIb.Repositories
             while (rdr.Read())
             {
                 solution.IdSolution = rdr.GetInt64(0);
-                solution.Solution_ = rdr.GetString(1);
+                solution.solution = rdr.GetString(1);
+                solution.Question_idQuestion = rdr.GetInt64(2);
             }
             this.CloseConnection(rdr);
             return solution;
@@ -88,8 +90,8 @@ namespace apiFilRougeIb.Repositories
             {
                 Models.Solution solution = new Models.Solution();
                 solution.IdSolution = rdr.GetInt64(0);
-                solution.Solution_ = rdr.GetString(1);
-                solution.Question_idquestion = rdr.GetInt64(2);
+                solution.solution = rdr.GetString(1);
+                solution.Question_idQuestion = rdr.GetInt64(2);
                 listSolutions.Add(solution);
             }
             this.CloseConnection(rdr);
