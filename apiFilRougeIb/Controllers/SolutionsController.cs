@@ -8,40 +8,54 @@ using System.Threading.Tasks;
 
 namespace apiFilRougeIb.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class SolutionsController : ControllerBase
     {
+
+        Services.SolutionServices SolutionServices;
+
+        public SolutionsController()
+        {
+            this.SolutionServices = new Services.SolutionServices();
+        }
         // GET: api/<SolutionsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Dto.FindAll.FindAllSolutionsDto> Get()
         {
-            return new string[] { "value1", "value2" };
+            return SolutionServices.GetSolutions();
         }
 
         // GET api/<SolutionsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Dto.FindAll.FindAllSolutionsDto Get(long id)
         {
-            return "value";
+            return SolutionServices.GetSolution(id);
         }
 
         // POST api/<SolutionsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Dto.AfterCreate.AfterCreateSolutionDto Post([FromBody] Dto.Create.CreateSolutionDto theme)
         {
+            return SolutionServices.PostSolution(theme);
         }
 
         // PUT api/<SolutionsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public Dto.AfterCreate.AfterCreateSolutionDto Put(long id, [FromBody] Dto.Create.CreateSolutionDto Solution)
         {
+            return SolutionServices.PutSolution(id, Solution);
         }
 
-        // DELETE api/<SolutionsController>/5
+        // DELETE api/<TodosController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public int Delete(long id)
         {
+            return SolutionServices.Delete(id);
         }
+
+
+
     }
 }
