@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace apiFilRougeIb.Dto.Update
 {
-    public class UpdateThemeDto
+    public class UpdateLevelDto
     {
-        public string Category { get; set; }
-        public UpdateThemeDto(string category)
+        public string Title { get; set; }
+        public UpdateLevelDto(string title)
         {
-            this.Category = category;
+            this.Title = title;
         }
 
 

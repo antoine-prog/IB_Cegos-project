@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace apiFilRougeIb.Dto.Create
 {
-    public class CreateThemeDto
+    public class CreateLevelDto
     {
-        public string Category { get; set; }
-        public CreateThemeDto(string category)
+        public string Title{ get; set; }
+        public CreateLevelDto(string title)
         {
-            this.Category = category;
+            this.Title = title;
         }
 
 

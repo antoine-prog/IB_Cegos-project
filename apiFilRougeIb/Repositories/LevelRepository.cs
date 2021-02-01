@@ -7,38 +7,38 @@ using System.Threading.Tasks;
 
 namespace apiFilRougeIb.Repositories
 {
-    public class ThemeRepository : AbstractRepository<Models.Theme>
+    public class LevelRepository : AbstractRepository<Models.Level>
     {
 
         private Utils.QueryBuilder _queryBuilder;
 
-        public ThemeRepository(Utils.QueryBuilder queryBuilder)
+        public LevelRepository(Utils.QueryBuilder queryBuilder)
         {
             this._queryBuilder = queryBuilder;
         }
 
-        public override Models.Theme Create(Models.Theme obj)
+        public override Models.Level Create(Models.Level obj)
         {
             this.OpenConnection();
-            Dictionary<string, dynamic> themeDictionnary = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> levelDictionnary = new Dictionary<string, dynamic>();
 
             foreach (PropertyInfo pr in obj.GetType().GetProperties())
             {
-                if (pr.Name.ToLower() != "idtheme")
+                if (pr.Name.ToLower() != "idlevel")
                 {
-                    themeDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
+                    levelDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
                 }
             }
             string request = _queryBuilder
-                .Insert("theme")
-                .Values(themeDictionnary);
+                .Insert("level")
+                .Values(levelDictionnary);
 
             Console.WriteLine(request);
 
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             cmd.ExecuteNonQuery();
-            long idTheme = cmd.LastInsertedId;
-            obj.IdTheme = idTheme;
+            long idLevel = cmd.LastInsertedId;
+            obj.IdLevel = idLevel;
             connectionSql.Close();
             return obj;
         }
@@ -46,71 +46,71 @@ namespace apiFilRougeIb.Repositories
         public override int Delete(long id)
         {
             this.OpenConnection();
-            string request = _queryBuilder.DeleteTheme("theme", id);
+            string request = _queryBuilder.DeleteLevel("level", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             int result = cmd.ExecuteNonQuery();
             connectionSql.Close();
             return result;
         }
 
-        public override Models.Theme Find(long id)
+        public override Models.Level Find(long id)
         {
             this.OpenConnection();
             string request = _queryBuilder
                 .Select()
-                .From("theme")
-                .Where("idTheme", id, "=")
+                .From("level")
+                .Where("idLevel", id, "=")
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            Models.Theme theme = new Models.Theme();
+            Models.Level level = new Models.Level();
             while (rdr.Read())
             {
-                theme.IdTheme = rdr.GetInt64(0);
-                theme.Category = rdr.GetString(1);
+                level.IdLevel = rdr.GetInt64(0);
+                level.Title = rdr.GetString(1);
             }
             this.CloseConnection(rdr);
-            return theme;
+            return level;
         }
 
-        public override List<Models.Theme> FindAll()
+        public override List<Models.Level> FindAll()
         {
             this.OpenConnection();
             string request = _queryBuilder
                 .Select()
-                .From("theme")
+                .From("level")
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Models.Theme> listThemes = new List<Models.Theme>();
+            List<Models.Level> listLevel = new List<Models.Level>();
 
             while (rdr.Read())
             {
-                Models.Theme theme = new Models.Theme();
-                theme.IdTheme = rdr.GetInt64(0);
-                theme.Category = rdr.GetString(1);
-                listThemes.Add(theme);
+                Models.Level level = new Models.Level();
+                level.IdLevel = rdr.GetInt64(0);
+                level.Title = rdr.GetString(1);
+                listLevel.Add(level);
             }
             this.CloseConnection(rdr);
-            return listThemes;
+            return listLevel;
         }
 
-        public override Models.Theme Update(long id, Models.Theme obj)
+        public override Models.Level Update(long id, Models.Level obj)
         {
             this.OpenConnection();
-            Dictionary<string, dynamic> themeDictionnary = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> levelDictionnary = new Dictionary<string, dynamic>();
 
             foreach (PropertyInfo pr in obj.GetType().GetProperties())
             {
-                if (pr.Name.ToLower() != "idtheme" || pr.GetValue(obj) != null)
+                if (pr.Name.ToLower() != "idlevel" || pr.GetValue(obj) != null)
                 {
-                    themeDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
+                    levelDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
                 }
             }
             string request = _queryBuilder
-              .Update("theme")
-              .Set(themeDictionnary)
-              .Where("idTheme", id).Get();
+              .Update("level")
+              .Set(levelDictionnary)
+              .Where("idLevel", id).Get();
 
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             cmd.ExecuteNonQuery();

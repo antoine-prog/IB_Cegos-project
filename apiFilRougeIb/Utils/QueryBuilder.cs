@@ -104,10 +104,10 @@ namespace apiFilRougeIb.Utils
         }
         //Si l'id des tables sont différentes, plusieurs méthodes 'Delete' sont a définir avec "where id" à changer
 
-        internal string DeleteTheme(string table, long id)
+        internal string DeleteLevel(string table, long id)
         {
             request.Clear();
-            return request.Append($"DELETE FROM {table} where idTheme = {id}").ToString();
+            return request.Append($"DELETE FROM {table} where idLevel = {id}").ToString();
         }
 
 
