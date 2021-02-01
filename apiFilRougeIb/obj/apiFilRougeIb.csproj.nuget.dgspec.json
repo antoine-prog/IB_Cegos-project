@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ib\\Desktop\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj": {}
+    "C:\\DEV\\Fil rouge\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ib\\Desktop\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj": {
+    "C:\\DEV\\Fil rouge\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ib\\Desktop\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj",
+        "projectUniqueName": "C:\\DEV\\Fil rouge\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj",
         "projectName": "apiFilRougeIb",
-        "projectPath": "C:\\Users\\ib\\Desktop\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj",
+        "projectPath": "C:\\DEV\\Fil rouge\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj",
         "packagesPath": "C:\\Users\\ib\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ib\\Desktop\\IB_Cegos-project\\apiFilRougeIb\\obj\\",
+        "outputPath": "C:\\DEV\\Fil rouge\\IB_Cegos-project\\apiFilRougeIb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ib\\AppData\\Roaming\\NuGet\\NuGet.Config",

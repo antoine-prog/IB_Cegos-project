@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h4+AAbDRGadsU2/Ti4VtxEU/kvtn1Vobei1bYNHCkot3PbkK4eDVEx+E2A3sL4IxN+4PsKRUlvvCizYMTM9Uww==",
+  "dgSpecHash": "U52vDx+d/rZLSBk5or7UULyXd/BdLvDQLfRZtgo7rht6b9r7Xsu/MOCYqyrnQYwLASaBxVgdZ3zeCYNZvSGZwQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ib\\Desktop\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj",
+  "projectFilePath": "C:\\DEV\\Fil rouge\\IB_Cegos-project\\apiFilRougeIb\\apiFilRougeIb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ib\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\ib\\.nuget\\packages\\google.protobuf\\3.11.4\\google.protobuf.3.11.4.nupkg.sha512",
