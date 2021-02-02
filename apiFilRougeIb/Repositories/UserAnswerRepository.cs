@@ -156,7 +156,25 @@ namespace apiFilRougeIb.Repositories
 
         public override List<UserAnswer> FindAll()
         {
-            throw new NotImplementedException();
+            this.OpenConnection();
+            string request = _queryBuilder
+                .Select()
+                .From("userAnswer")
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            List<Models.UserAnswer> listUserAnswers = new List<Models.UserAnswer>();
+
+            while (rdr.Read())
+            {
+                Models.UserAnswer userAnswer = new Models.UserAnswer();
+                userAnswer.User_IdUser = rdr.GetInt64(0);
+                userAnswer.Answer_IdAnswer= rdr.GetInt64(1);
+                userAnswer.Question_IdQuestion = rdr.GetInt64(2);
+                listUserAnswers.Add(userAnswer);
+            }
+            this.CloseConnection(rdr);
+            return listUserAnswers;
         }
 
         public override int Delete(long id)

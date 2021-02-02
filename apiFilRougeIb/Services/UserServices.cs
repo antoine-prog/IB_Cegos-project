@@ -41,7 +41,20 @@ namespace apiFilRougeIb.Services
             return userjoinleveldto;
         }
 
-
+        internal FindAllUsersDto GetUser(long id, string join)
+        {
+            switch (join)
+            {
+                case "UserAnswers":
+                    Console.WriteLine("Case Souhaité !!!!!");
+                    return GetUserJoinUserAnwsers(id);
+                case "Level":
+                    return GetUserJoinLevel(id);
+                default:
+                    Console.WriteLine("Case Default");
+                    return GetUser(id);
+            }
+        }
         public FindAllUsersDto GetUserJoinUserAnwsers(long id)
         {
             Models.User user = this._userRepository.Find(id);

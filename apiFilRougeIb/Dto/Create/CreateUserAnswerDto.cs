@@ -2,9 +2,9 @@
 {
     internal class CreateUserAnswerDto
     {
-        public CreateUserAnswerDto(long idUser, long answer_IdAnswer, long question_IdQuestion)
+        public CreateUserAnswerDto(long user_idUser, long answer_IdAnswer, long question_IdQuestion)
         {
-            IdUser = idUser;
+            IdUser = user_idUser;
             Answer_IdAnswer = answer_IdAnswer;
             Question_IdQuestion = question_IdQuestion;
         }

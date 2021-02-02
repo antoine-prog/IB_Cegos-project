@@ -34,21 +34,12 @@ namespace apiFilRougeIb.Controllers
         }
 
         [HttpGet("{id}/{join}")]
-        public Dto.FindAll.FindAllUsersDto Get(long id,string join=null)
+        public Dto.FindAll.FindAllUsersDto Get(long id, string join = null)
         {
-            switch (join)
-            {
-                case "UserAnswers":
-                    Console.WriteLine("Case Souhaité !!!!!");
-                    return userServices.GetUserJoinUserAnwsers(id);
-                case "Level":
-                    return userServices.GetUserJoinLevel(id);
-                default:
-                    Console.WriteLine("Case Default");
-                    return userServices.GetUser(id);
-                    
-            }
+            return userServices.GetUser(id, join);
+
         }
+
 
         // POST api/<TodosController>
         [HttpPost]
@@ -74,6 +65,6 @@ namespace apiFilRougeIb.Controllers
 
 
 
-
     }
 }
+
