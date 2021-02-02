@@ -8,7 +8,7 @@ namespace apiFilRougeIb.Models
     public class Answer
     {
         public long? IdAnswer { get; set; }
-        public string Answer_ { get; set; }
+        public string answer { get; set; }
 
         public bool Result { get; set; }
         public Answer() { }
@@ -16,7 +16,7 @@ namespace apiFilRougeIb.Models
         public Answer( string answer_, bool result,long? idAnswer=null)
         {
             IdAnswer = idAnswer;
-            Answer_ = answer_;
+            answer = answer_;
             Result = result;
         }
     }

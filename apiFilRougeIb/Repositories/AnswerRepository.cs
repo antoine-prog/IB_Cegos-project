@@ -67,7 +67,7 @@ namespace apiFilRougeIb.Repositories
             while (rdr.Read())
             {
                 answer.IdAnswer = rdr.GetInt64(0);
-                answer.Answer_ = rdr.GetString(1);
+                answer.answer = rdr.GetString(1);
                 answer.Result = rdr.GetBoolean(2);
             }
             this.CloseConnection(rdr);
@@ -89,7 +89,7 @@ namespace apiFilRougeIb.Repositories
             {
                 Models.Answer answer = new Models.Answer();
                 answer.IdAnswer = rdr.GetInt64(0);
-                answer.Answer_ = rdr.GetString(1);
+                answer.answer = rdr.GetString(1);
                 answer.Result = rdr.GetBoolean(2);
                 listAnswer.Add(answer);
             }

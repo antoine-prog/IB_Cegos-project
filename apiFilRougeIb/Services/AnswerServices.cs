@@ -77,7 +77,7 @@ namespace apiFilRougeIb.Services
         }
         private Dto.FindAll.FindAllAnswersDto TransformModelToDto(Models.Answer answer)
         {
-            return new Dto.FindAll.FindAllAnswersDto(answer.Answer_,answer.Result, answer.IdAnswer);
+            return new Dto.FindAll.FindAllAnswersDto(answer.answer,answer.Result, answer.IdAnswer);
         }
         private Models.Answer TransformDtoToModel(Dto.Create.CreateAnswerDto answer)
         {
@@ -85,7 +85,7 @@ namespace apiFilRougeIb.Services
         }
         private Dto.AfterCreate.AfterCreateAnswerDto TransformModelToAfterCreateDto(Models.Answer answer, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateAnswerDto(answer.Answer_, answer.Result, isCreated, answer.IdAnswer);
+            return new Dto.AfterCreate.AfterCreateAnswerDto(answer.answer, answer.Result, isCreated, answer.IdAnswer);
         }
 
 
