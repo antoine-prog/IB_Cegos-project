@@ -34,9 +34,20 @@ namespace apiFilRougeIb.Controllers
         }
 
         [HttpGet("{id}/{join}")]
-        public Dto.FindAll.FindAllUsersDto Get(long id,string join)
+        public Dto.FindAll.FindAllUsersDto Get(long id,string join=null)
         {
-            return userServices.GetUserJoin(id,join);
+            switch (join)
+            {
+                case "UserAnswers":
+                    Console.WriteLine("Case Souhaité !!!!!");
+                    return userServices.GetUserJoinUserAnwsers(id);
+                case "Level":
+                    return userServices.GetUserJoinLevel(id);
+                default:
+                    Console.WriteLine("Case Default");
+                    return userServices.GetUser(id);
+                    
+            }
         }
 
         // POST api/<TodosController>
