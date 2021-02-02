@@ -7,38 +7,37 @@ using System.Threading.Tasks;
 
 namespace apiFilRougeIb.Repositories
 {
-    public class ThemeRepository : AbstractRepository<Models.Theme>
+    public class QuestionRepository : AbstractRepository<Models.Question>
     {
-
         private Utils.QueryBuilder _queryBuilder;
 
-        public ThemeRepository(Utils.QueryBuilder queryBuilder)
+        public QuestionRepository(Utils.QueryBuilder queryBuilder)
         {
             this._queryBuilder = queryBuilder;
         }
 
-        public override Models.Theme Create(Models.Theme obj)
+        public override Models.Question Create(Models.Question obj)
         {
             this.OpenConnection();
-            Dictionary<string, dynamic> themeDictionnary = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> questionDictionnary = new Dictionary<string, dynamic>();
 
             foreach (PropertyInfo pr in obj.GetType().GetProperties())
             {
-                if (pr.Name.ToLower() != "idtheme")
+                if (pr.Name.ToLower() != "idquestion")
                 {
-                    themeDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
+                    questionDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
                 }
             }
             string request = _queryBuilder
-                .Insert("theme")
-                .Values(themeDictionnary);
+                .Insert("question")
+                .Values(questionDictionnary);
 
             Console.WriteLine(request);
 
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             cmd.ExecuteNonQuery();
-            long idTheme = cmd.LastInsertedId;
-            obj.IdTheme = idTheme;
+            long idQuestion = cmd.LastInsertedId;
+            obj.IdQuestion = idQuestion;
             connectionSql.Close();
             return obj;
         }
@@ -46,79 +45,83 @@ namespace apiFilRougeIb.Repositories
         public override int Delete(long id)
         {
             this.OpenConnection();
-            string request = _queryBuilder.Delete("theme", id);
+            string request = _queryBuilder.Delete("question", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             int result = cmd.ExecuteNonQuery();
             connectionSql.Close();
             return result;
         }
 
-        public override Models.Theme Find(long id)
+        public override Models.Question Find(long id)
         {
             this.OpenConnection();
             string request = _queryBuilder
                 .Select()
-                .From("theme")
-                .Where("idTheme", id, "=")
+                .From("question")
+                .Where("idQuestion", id, "=")
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            Models.Theme theme = new Models.Theme();
+            Models.Question question = new Models.Question();
             while (rdr.Read())
             {
-                theme.IdTheme = rdr.GetInt64(0);
-                theme.Category = rdr.GetString(1);
+                question.IdQuestion = rdr.GetInt64(0);
+                question.Title = rdr.GetString(1);
+                question.Theme_idTheme = rdr.GetInt64(2);
+                question.Level_idLevel = rdr.GetInt64(3);
+              
             }
             this.CloseConnection(rdr);
-            return theme;
+            return question;
         }
 
-        public override List<Models.Theme> FindAll()
+        public override List<Models.Question> FindAll()
         {
             this.OpenConnection();
             string request = _queryBuilder
                 .Select()
-                .From("theme")
+                .From("question")
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Models.Theme> listThemes = new List<Models.Theme>();
+            List<Models.Question> listQuestion = new List<Models.Question>();
 
             while (rdr.Read())
             {
-                Models.Theme theme = new Models.Theme();
-                theme.IdTheme = rdr.GetInt64(0);
-                theme.Category = rdr.GetString(1);
-                listThemes.Add(theme);
+                Models.Question question = new Models.Question();
+                question.IdQuestion = rdr.GetInt64(0);
+                question.Title = rdr.GetString(1);
+                question.Theme_idTheme = rdr.GetInt64(2);
+                question.Level_idLevel = rdr.GetInt64(3);
+                listQuestion.Add(question);
             }
             this.CloseConnection(rdr);
-            return listThemes;
+            return listQuestion;
         }
 
-        public override Models.Theme Update(long id, Models.Theme obj)
+
+        public override Models.Question Update(long id, Models.Question obj)
         {
             this.OpenConnection();
-            Dictionary<string, dynamic> themeDictionnary = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> questionDictionnary = new Dictionary<string, dynamic>();
 
             foreach (PropertyInfo pr in obj.GetType().GetProperties())
             {
-                if (pr.Name.ToLower() != "idtheme" || pr.GetValue(obj) != null)
+                if (pr.Name.ToLower() != "idquestion" || pr.GetValue(obj) != null)
                 {
-                    themeDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
+                    questionDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
                 }
             }
             string request = _queryBuilder
-              .Update("theme")
-              .Set(themeDictionnary)
-              .Where("idTheme", id).Get();
+              .Update("question")
+              .Set(questionDictionnary)
+              .Where("idQuestion", id).Get();
 
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             cmd.ExecuteNonQuery();
             connectionSql.Close();
             return Find(id);
         }
-
-
 
     }
 }
