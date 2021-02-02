@@ -8,8 +8,8 @@ namespace apiFilRougeIb.Dto.FindAll
     public class FindAllUsersJoinLevelsDto : FindAllUsersDto
     {
         public string Level { get; set; }
-        public FindAllUsersJoinLevelsDto(string firstName, string lastName, string username, string adress, string mail, string password, bool isAdmin, bool isCreator, long level_idLevel, long? idUser = null) : 
-            base(firstName, lastName, username, adress, mail, password, isAdmin, isCreator, level_idLevel, idUser)
+        public FindAllUsersJoinLevelsDto(FindAllUsersDto user) : 
+            base(user.FirstName, user.LastName, user.Username, user.Adress, user.Mail, user.Password, user.IsAdmin, user.IsCreator,user. Level_idLevel,user. IdUser)
         {
             this.Level = new Repositories.LevelRepository(new Utils.QueryBuilder()).Find(Level_idLevel).Title;
         }

@@ -31,13 +31,13 @@ namespace apiFilRougeIb.Services
             return usersDto;
         }
 
-        public FindAllUsersJoinLevelsDto GetUserJoin(long id, string[] join)
+        public FindAllUsersDto GetUserJoin(long id, string join)
         {
             Models.User user = this._userRepository.Find(id);
             Dto.FindAll.FindAllUsersDto userDto = TransformModelToDto(user);
 
-            FindAllUsersJoinLevelsDto userjoinleveldto = new FindAllUsersJoinLevelsDto(user.FirstName, user.LastName, user.Username, user.Adress, user.Mail, user.Password, user.IsAdmin, user.IsCreator, user.Level_idLevel, user.IdUser);
-            Console.WriteLine(userjoinleveldto.Level);
+            FindAllUsersDto userjoinleveldto = new FindAllUsersJoinLevelsDto(user.FirstName, user.LastName, user.Username, user.Adress, user.Mail, user.Password, user.IsAdmin, user.IsCreator, user.Level_idLevel, user.IdUser);
+            //Console.WriteLine(userjoinleveldto.Level);
             return userjoinleveldto;
         }
 

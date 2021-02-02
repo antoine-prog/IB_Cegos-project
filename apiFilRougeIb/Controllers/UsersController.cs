@@ -34,7 +34,7 @@ namespace apiFilRougeIb.Controllers
         }
 
         [HttpGet("{id}/{join}")]
-        public Dto.FindAll.FindAllUsersJoinLevelsDto Get(long id, params string[] join)
+        public Dto.FindAll.FindAllUsersDto Get(long id,string join)
         {
             return userServices.GetUserJoin(id,join);
         }
