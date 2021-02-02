@@ -1,4 +1,5 @@
-﻿using System;
+﻿using apiFilRougeIb.Dto.FindAll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,6 +29,16 @@ namespace apiFilRougeIb.Services
                 usersDto.Add(TransformModelToDto(user));
             });
             return usersDto;
+        }
+
+        public FindAllUsersJoinLevelsDto GetUserJoin(long id, string[] join)
+        {
+            Models.User user = this._userRepository.Find(id);
+            Dto.FindAll.FindAllUsersDto userDto = TransformModelToDto(user);
+
+            FindAllUsersJoinLevelsDto userjoinleveldto = new FindAllUsersJoinLevelsDto(user.FirstName, user.LastName, user.Username, user.Adress, user.Mail, user.Password, user.IsAdmin, user.IsCreator, user.Level_idLevel, user.IdUser);
+            Console.WriteLine(userjoinleveldto.Level);
+            return userjoinleveldto;
         }
 
         /// <summary>

@@ -33,6 +33,12 @@ namespace apiFilRougeIb.Controllers
             return userServices.GetUser(id);
         }
 
+        [HttpGet("{id}/{join}")]
+        public Dto.FindAll.FindAllUsersJoinLevelsDto Get(long id, params string[] join)
+        {
+            return userServices.GetUserJoin(id,join);
+        }
+
         // POST api/<TodosController>
         [HttpPost]
         public Dto.AfterCreate.AfterCreateUserDto Post([FromBody] Dto.Create.CreateUserDto user)
