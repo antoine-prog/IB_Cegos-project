@@ -47,16 +47,48 @@ namespace apiFilRougeIb.Services
             return questions;
         }
 
+        public List<FindAllQuestionJoinSolutionDto> GetQuestionJoinSolution(long idQuizz)
+        {
+            Repositories.QuestionRepository qrep = new Repositories.QuestionRepository(new Utils.QueryBuilder());
+            List<FindAllQuestionJoinSolutionDto> questionsolution = new List<FindAllQuestionJoinSolutionDto>();
+            List<Models.Quizz_Has_Question> listquizzquestion =
+                new Repositories.Quizz_Has_QuestionRepository(new Utils.QueryBuilder()).FindQuizz(idQuizz);
+            foreach (Models.Quizz_Has_Question qq in listquizzquestion)
+            {
+                if (qq.quizz_idQuizz == idQuizz)
+                {
+                    FindAllQuestionJoinSolutionDto dto = new FindAllQuestionJoinSolutionDto(qrep.Find(qq.question_idQuestion));
+
+                    questionsolution.Add(dto);
+                }
+            }
+            return questionsolution;
+        }
         internal FindAllQuizzDto GetQuizzJoin(long id, string join)
         {
             switch (join)
             {
                 case "questions":
                     return GetQuizzJoinQuestions(id);
+                case "questions&solution":
+                    return GetQuizzJoinQuestionsJoinSolutions(id);
+                
                 default:
                     return GetQuizz(id);
             }
-            throw new NotImplementedException();
+        }
+
+        private FindAllQuizzDto GetQuizzJoinQuestionsJoinSolutions(long id)
+        {
+            Models.Quizz quizz = this._quizRepository.Find(id);
+            FindAllQuizzDto quizzDto = TransformModelToDto(quizz);
+
+            FindAllQuizzJoinQuestionJoinSolutionDto quizzjoinquestionjoinsolutiondto = new FindAllQuizzJoinQuestionJoinSolutionDto(quizzDto);
+            quizzjoinquestionjoinsolutiondto.listquestionsolution = GetQuestionJoinSolution(id);
+            //quizzjoinquestionjoinsolutiondto.questions = GetQuestions(id);
+            ////Console.WriteLine(quizzjoinleveldto.Level);
+            return quizzjoinquestionjoinsolutiondto;
+            //throw new NotImplementedException();
         }
 
         private FindAllQuizzDto GetQuizzJoinQuestions(long id)
@@ -69,6 +101,7 @@ namespace apiFilRougeIb.Services
             //Console.WriteLine(quizzjoinleveldto.Level);
             return quizzjoinquestiondto;
         }
+
 
 
         /// <summary>
