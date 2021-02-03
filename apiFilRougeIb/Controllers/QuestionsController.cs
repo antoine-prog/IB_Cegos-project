@@ -30,6 +30,12 @@ namespace apiFilRougeIb.Controllers
         {
             return questionServices.GetQuestion(id);
         }
+        [HttpGet("{id}/solution")]
+        public Dto.FindAll.FindAllQuestionsDto Get2(long id)
+        {
+            return questionServices.GetQuestionJoinSolution(id);
+        }
+        
 
         // POST api/<TodosController>
         [HttpPost]

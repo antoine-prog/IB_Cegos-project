@@ -29,6 +29,7 @@ namespace apiFilRougeIb.Services
             return questionsDto;
         }
 
+
         /// <summary>
         ///     Retourne une question
         /// </summary>
@@ -40,6 +41,15 @@ namespace apiFilRougeIb.Services
             Dto.FindAll.FindAllQuestionsDto questionDto = TransformModelToDto(question);
             return questionDto;
         }
+
+        internal Dto.FindAll.FindAllQuestionsDto GetQuestionJoinSolution(long id)
+        {
+            Models.Question question = this._questionRepository.Find(id);
+            Dto.FindAll.FindAllQuestionsDto questionDto = TransformModelToDto(question);
+            Dto.FindAll.FindAllQuestionsDto questionjoinsolutiondto = new Dto.FindAll.FindAllQuestionJoinSolutionDto(question);
+            return questionjoinsolutiondto;
+        }
+
 
         /// <summary>
         ///     Persister une question
