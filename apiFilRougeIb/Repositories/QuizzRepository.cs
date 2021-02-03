@@ -7,38 +7,38 @@ using System.Threading.Tasks;
 
 namespace apiFilRougeIb.Repositories
 {
-    public class ThemeRepository : AbstractRepository<Models.Theme>
+    public class QuizzRepository : AbstractRepository<Models.Quizz>
     {
 
         private Utils.QueryBuilder _queryBuilder;
 
-        public ThemeRepository(Utils.QueryBuilder queryBuilder)
+        public QuizzRepository(Utils.QueryBuilder queryBuilder)
         {
             this._queryBuilder = queryBuilder;
         }
 
-        public override Models.Theme Create(Models.Theme obj)
+        public override Models.Quizz Create(Models.Quizz obj)
         {
             this.OpenConnection();
-            Dictionary<string, dynamic> themeDictionnary = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> quizzDictionnary = new Dictionary<string, dynamic>();
 
             foreach (PropertyInfo pr in obj.GetType().GetProperties())
             {
-                if (pr.Name.ToLower() != "idtheme")
+                if (pr.Name.ToLower() != "idquizz")
                 {
-                    themeDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
+                    quizzDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
                 }
             }
             string request = _queryBuilder
-                .Insert("theme")
-                .Values(themeDictionnary);
+                .Insert("quizz")
+                .Values(quizzDictionnary);
 
             Console.WriteLine(request);
 
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             cmd.ExecuteNonQuery();
-            long idTheme = cmd.LastInsertedId;
-            obj.IdTheme = idTheme;
+            long idQuizz = cmd.LastInsertedId;
+            obj.IdQuizz = idQuizz;
             connectionSql.Close();
             return obj;
         }
@@ -46,71 +46,73 @@ namespace apiFilRougeIb.Repositories
         public override int Delete(long id)
         {
             this.OpenConnection();
-            string request = _queryBuilder.Delete("theme", id);
+            string request = _queryBuilder.Delete("quizz", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             int result = cmd.ExecuteNonQuery();
             connectionSql.Close();
             return result;
         }
 
-        public override Models.Theme Find(long id)
+        public override Models.Quizz Find(long id)
         {
             this.OpenConnection();
             string request = _queryBuilder
                 .Select()
-                .From("theme")
-                .Where("idTheme", id, "=")
+                .From("quizz")
+                .Where("idQuizz", id, "=")
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            Models.Theme theme = new Models.Theme();
+            Models.Quizz quiz = new Models.Quizz();
             while (rdr.Read())
             {
-                theme.IdTheme = rdr.GetInt64(0);
-                theme.Category = rdr.GetString(1);
+                quiz.IdQuizz = rdr.GetInt64(0);
+                quiz.Name = rdr.GetString(1);
+                quiz.User_idUser = rdr.GetInt64(2);
             }
             this.CloseConnection(rdr);
-            return theme;
+            return quiz;
         }
 
-        public override List<Models.Theme> FindAll()
+        public override List<Models.Quizz> FindAll()
         {
             this.OpenConnection();
             string request = _queryBuilder
                 .Select()
-                .From("theme")
+                .From("quizz")
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Models.Theme> listThemes = new List<Models.Theme>();
+            List<Models.Quizz> listQuiz = new List<Models.Quizz>();
 
             while (rdr.Read())
             {
-                Models.Theme theme = new Models.Theme();
-                theme.IdTheme = rdr.GetInt64(0);
-                theme.Category = rdr.GetString(1);
-                listThemes.Add(theme);
+                Models.Quizz quiz = new Models.Quizz();
+                quiz.IdQuizz = rdr.GetInt64(0);
+                quiz.Name = rdr.GetString(1);
+                quiz.User_idUser = rdr.GetInt64(2);
+                listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);
-            return listThemes;
+            return listQuiz;
         }
 
-        public override Models.Theme Update(long id, Models.Theme obj)
+        public override Models.Quizz Update(long id, Models.Quizz obj)
         {
             this.OpenConnection();
-            Dictionary<string, dynamic> themeDictionnary = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> quizDictionnary = new Dictionary<string, dynamic>();
 
             foreach (PropertyInfo pr in obj.GetType().GetProperties())
             {
-                if (pr.Name.ToLower() != "idtheme" || pr.GetValue(obj) != null)
+                if (pr.Name.ToLower() != "idquizz" || pr.GetValue(obj) != null)
                 {
-                    themeDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
+                    quizDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
                 }
             }
             string request = _queryBuilder
-              .Update("theme")
-              .Set(themeDictionnary)
-              .Where("idTheme", id).Get();
+              .Update("quizz")
+              .Set(quizDictionnary)
+              .Where("idQuizz", id).Get();
 
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             cmd.ExecuteNonQuery();
