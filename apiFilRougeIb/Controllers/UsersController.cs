@@ -33,13 +33,23 @@ namespace apiFilRougeIb.Controllers
             return userServices.GetUser(id);
         }
 
-        [HttpGet("{id}/{join}")]
-        public Dto.FindAll.FindAllUsersDto Get(long id, string join = null)
+        
+        [HttpGet("{id}/useranswers")]
+        public Dto.FindAll.FindAllUsersDto Get2(long id)
         {
-            return userServices.GetUser(id, join);
+            return userServices.GetUserJoinUserAnwsers(id);
 
         }
-
+        [HttpGet("{id}/level")]
+        public Dto.FindAll.FindAllUsersDto Get3(long id)
+        {
+            return userServices.GetUserJoinLevel(id);            
+        }
+        [HttpGet("{id}/quizz")]
+        public Dto.FindAll.FindAllUsersDto Get4(long id)
+        {
+            return userServices.GetUserJoinQuizz(id);
+        }
 
         // POST api/<TodosController>
         [HttpPost]

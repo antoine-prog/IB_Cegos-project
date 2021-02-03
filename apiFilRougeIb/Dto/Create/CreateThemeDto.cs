@@ -7,10 +7,10 @@ namespace apiFilRougeIb.Dto.Create
 {
     public class CreateThemeDto
     {
-        public string Category { get; set; }
-        public CreateThemeDto(string category)
+        public string Theme { get; set; }
+        public CreateThemeDto(string theme)
         {
-            this.Category = category;
+            this.Theme = theme;
         }
 
 

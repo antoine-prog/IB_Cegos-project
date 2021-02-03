@@ -77,15 +77,15 @@ namespace apiFilRougeIb.Services
         }
         private Dto.FindAll.FindAllThemesDto TransformModelToDto(Models.Theme theme)
         {
-            return new Dto.FindAll.FindAllThemesDto(theme.Category, theme.IdTheme);
+            return new Dto.FindAll.FindAllThemesDto(theme.theme, theme.IdTheme);
         }
         private Models.Theme TransformDtoToModel(Dto.Create.CreateThemeDto theme)
         {
-            return new Models.Theme(theme.Category);
+            return new Models.Theme(theme.Theme);
         }
         private Dto.AfterCreate.AfterCreateThemeDto TransformModelToAfterCreateDto(Models.Theme theme, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateThemeDto(theme.Category, isCreated, theme.IdTheme);
+            return new Dto.AfterCreate.AfterCreateThemeDto(theme.theme, isCreated, theme.IdTheme);
         }
 
 

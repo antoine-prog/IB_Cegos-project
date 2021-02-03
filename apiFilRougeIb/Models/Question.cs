@@ -11,16 +11,15 @@ namespace apiFilRougeIb.Models
 
         public long? IdQuestion { get; set; }
         public string Title { get; set; }
-        public long Theme_idTheme { get; set; }
         public long Level_idLevel { get; set; }
 
         public Question() { }
 
-        public Question(string title, long theme_idTheme, long level_idLevel, long? idQuestion = null)
+        public Question(string title, long level_idLevel, long? idQuestion = null)
         {
             IdQuestion = idQuestion;
             Title = title;
-            Theme_idTheme = theme_idTheme;
+            
             Level_idLevel = level_idLevel;
 
 

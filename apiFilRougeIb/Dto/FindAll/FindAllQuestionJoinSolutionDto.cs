@@ -8,7 +8,7 @@ namespace apiFilRougeIb.Dto.FindAll
     public class FindAllQuestionJoinSolutionDto : FindAllQuestionsDto
     {
         public FindAllQuestionJoinSolutionDto(Models.Question question) : 
-            base(question.Title, question.Theme_idTheme, question.Level_idLevel, question.IdQuestion)
+            base(question.Title,  question.Level_idLevel, question.IdQuestion)
         {
             this.Solution = new Repositories.SolutionRepository(new Utils.QueryBuilder())
                 .FindSolution((long)question.IdQuestion).solution;            
