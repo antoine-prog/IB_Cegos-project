@@ -8,7 +8,6 @@ namespace apiFilRougeIb.Dto.Create
     public class CreateQuestionDto
     {
         public string Title { get; set; }
-        public long Theme_idTheme { get; set; }
         public long Level_idLevel { get; set; }
 
       

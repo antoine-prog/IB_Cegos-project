@@ -90,7 +90,7 @@ namespace apiFilRougeIb.Services
         }
         private Models.Question TransformDtoToModel(Dto.Create.CreateQuestionDto question)
         {
-            return new Models.Question(question.Title, question.Theme_idTheme, question.Level_idLevel);
+            return new Models.Question(question.Title,  question.Level_idLevel);
         }
         private Dto.AfterCreate.AfterCreateQuestionDto TransformModelToAfterCreateDto(Models.Question question, bool isCreated)
         {

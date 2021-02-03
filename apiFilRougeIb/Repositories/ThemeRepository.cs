@@ -46,7 +46,7 @@ namespace apiFilRougeIb.Repositories
         public override int Delete(long id)
         {
             this.OpenConnection();
-            string request = _queryBuilder.DeleteTheme("theme", id);
+            string request = _queryBuilder.Delete("theme", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             int result = cmd.ExecuteNonQuery();
             connectionSql.Close();

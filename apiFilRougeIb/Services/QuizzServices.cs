@@ -159,7 +159,7 @@ namespace apiFilRougeIb.Services
         }
         private Dto.AfterCreate.AfterCreateQuizzDto TransformModelToAfterCreateDto(Models.Quizz quiz, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateQuizzDto(quiz.Name, quiz.User_idUser, isCreated, quiz.IdQuizz);
+            return new Dto.AfterCreate.AfterCreateQuizzDto(quiz.Name, quiz.User_idUser,quiz.Theme_idTheme, isCreated, quiz.IdQuizz);
         }
 
 
