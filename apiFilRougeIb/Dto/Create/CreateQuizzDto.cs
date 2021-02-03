@@ -9,11 +9,13 @@ namespace apiFilRougeIb.Dto.Create
     {
         public string Name { get; set; }
         public long User_idUser { get; set; }
+        public long Theme_idTheme { get; set; }
 
-        public CreateQuizzDto(string name, long user_idUser)
+        public CreateQuizzDto(string name, long user_idUser,   long Theme_idTheme)
         {
-            Name = name;
-            User_idUser = user_idUser;
-        }
+            this.Name = name;
+            this.User_idUser = user_idUser;
+            this.Theme_idTheme = Theme_idTheme; 
+    }
     }
 }

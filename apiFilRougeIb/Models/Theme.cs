@@ -9,13 +9,13 @@ namespace apiFilRougeIb.Models
     {
 
         public long? IdTheme { get; set; }
-        public string Category { get; set; }
+        public string theme { get; set; }
 
 
         public Theme() { }
         public Theme(string category, long? idTheme = null)
         {
-            this.Category = category;
+            this.theme = category;
             this.IdTheme = idTheme;
         }
 

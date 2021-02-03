@@ -67,7 +67,7 @@ namespace apiFilRougeIb.Repositories
             while (rdr.Read())
             {
                 theme.IdTheme = rdr.GetInt64(0);
-                theme.Category = rdr.GetString(1);
+                theme.theme= rdr.GetString(1);
             }
             this.CloseConnection(rdr);
             return theme;
@@ -88,7 +88,7 @@ namespace apiFilRougeIb.Repositories
             {
                 Models.Theme theme = new Models.Theme();
                 theme.IdTheme = rdr.GetInt64(0);
-                theme.Category = rdr.GetString(1);
+                theme.theme = rdr.GetString(1);
                 listThemes.Add(theme);
             }
             this.CloseConnection(rdr);

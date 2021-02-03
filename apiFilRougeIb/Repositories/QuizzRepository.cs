@@ -69,6 +69,7 @@ namespace apiFilRougeIb.Repositories
                 quiz.IdQuizz = rdr.GetInt64(0);
                 quiz.Name = rdr.GetString(1);
                 quiz.User_idUser = rdr.GetInt64(2);
+                quiz.Theme_idTheme = rdr.GetInt64(3);
             }
             this.CloseConnection(rdr);
             return quiz;
@@ -92,6 +93,7 @@ namespace apiFilRougeIb.Repositories
                 quiz.IdQuizz = rdr.GetInt64(0);
                 quiz.Name = rdr.GetString(1);
                 quiz.User_idUser = rdr.GetInt64(2);
+                quiz.Theme_idTheme = rdr.GetInt64(3);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);
@@ -115,6 +117,7 @@ namespace apiFilRougeIb.Repositories
                 quiz.IdQuizz = rdr.GetInt64(0);
                 quiz.Name = rdr.GetString(1);
                 quiz.User_idUser = rdr.GetInt64(2);
+                quiz.Theme_idTheme = rdr.GetInt64(3);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);

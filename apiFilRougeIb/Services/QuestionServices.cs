@@ -86,7 +86,7 @@ namespace apiFilRougeIb.Services
         }
         private Dto.FindAll.FindAllQuestionsDto TransformModelToDto(Models.Question question)
         {
-            return new Dto.FindAll.FindAllQuestionsDto(question.Title, question.Theme_idTheme, question.Level_idLevel, question.IdQuestion);
+            return new Dto.FindAll.FindAllQuestionsDto(question.Title, question.Level_idLevel, question.IdQuestion);
         }
         private Models.Question TransformDtoToModel(Dto.Create.CreateQuestionDto question)
         {
@@ -94,7 +94,7 @@ namespace apiFilRougeIb.Services
         }
         private Dto.AfterCreate.AfterCreateQuestionDto TransformModelToAfterCreateDto(Models.Question question, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateQuestionDto(question.Title, question.Theme_idTheme, question.Level_idLevel,isCreated, question.IdQuestion);
+            return new Dto.AfterCreate.AfterCreateQuestionDto(question.Title,  question.Level_idLevel,isCreated, question.IdQuestion);
         }
 
     }
