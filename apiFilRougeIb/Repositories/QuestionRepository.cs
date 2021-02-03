@@ -75,6 +75,8 @@ namespace apiFilRougeIb.Repositories
             return question;
         }
 
+
+
         public override List<Models.Question> FindAll()
         {
             this.OpenConnection();
