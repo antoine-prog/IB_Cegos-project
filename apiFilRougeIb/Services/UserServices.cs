@@ -30,6 +30,20 @@ namespace apiFilRougeIb.Services
             });
             return usersDto;
         }
+        internal FindAllUsersDto GetUser(long id, string join)
+        {
+            switch (join)
+            {
+                case "useranswers":
+                    return GetUserJoinUserAnwsers(id);
+                case "level":
+                    return GetUserJoinLevel(id);
+                case "quizz":
+                    return GetUserJoinQuizz(id);
+                default:
+                    return GetUser(id);
+            }
+        }
 
         public FindAllUsersDto GetUserJoinLevel(long id)
         {
@@ -41,20 +55,18 @@ namespace apiFilRougeIb.Services
             return userjoinleveldto;
         }
 
-        internal FindAllUsersDto GetUser(long id, string join)
+        
+
+        private FindAllUsersDto GetUserJoinQuizz(long id)
         {
-            switch (join)
-            {
-                case "UserAnswers":
-                    Console.WriteLine("Case Souhaité !!!!!");
-                    return GetUserJoinUserAnwsers(id);
-                case "Level":
-                    return GetUserJoinLevel(id);
-                default:
-                    Console.WriteLine("Case Default");
-                    return GetUser(id);
-            }
+            Models.User user = this._userRepository.Find(id);
+            Dto.FindAll.FindAllUsersDto userDto = TransformModelToDto(user);
+
+            FindAllUsersDto userjoinquizzdto = new FindAllUsersJoinQuizzDto(userDto);
+            //Console.WriteLine(userjoinleveldto.Level);
+            return userjoinquizzdto;
         }
+
         public FindAllUsersDto GetUserJoinUserAnwsers(long id)
         {
             Models.User user = this._userRepository.Find(id);
