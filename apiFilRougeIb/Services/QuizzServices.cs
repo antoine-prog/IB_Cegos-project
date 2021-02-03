@@ -1,4 +1,5 @@
-﻿using System;
+﻿using apiFilRougeIb.Dto.FindAll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,6 +30,46 @@ namespace apiFilRougeIb.Services
             });
             return quizDto;
         }
+
+        public List<Models.Question> GetQuestions(long idQuizz)
+        {
+            Repositories.QuestionRepository qrep= new Repositories.QuestionRepository(new Utils.QueryBuilder());
+            List<Models.Question> questions = new List<Models.Question>();
+            List<Models.Quizz_Has_Question> listquizzquestion =
+                new Repositories.Quizz_Has_QuestionRepository(new Utils.QueryBuilder()).FindQuizz(idQuizz);
+            foreach(Models.Quizz_Has_Question qq in listquizzquestion)
+            {
+                if(qq.quizz_idQuizz==idQuizz)
+                {
+                    questions.Add(qrep.Find(qq.question_idQuestion));
+                }
+            }
+            return questions;
+        }
+
+        internal FindAllQuizzDto GetQuizzJoin(long id, string join)
+        {
+            switch (join)
+            {
+                case "questions":
+                    return GetQuizzJoinQuestions(id);
+                default:
+                    return GetQuizz(id);
+            }
+            throw new NotImplementedException();
+        }
+
+        private FindAllQuizzDto GetQuizzJoinQuestions(long id)
+        {
+            Models.Quizz quizz = this._quizRepository.Find(id);
+            Dto.FindAll.FindAllQuizzDto quizzDto = TransformModelToDto(quizz);
+
+            FindAllQuizzJoinQuestionDto quizzjoinquestiondto = new FindAllQuizzJoinQuestionDto(quizzDto);
+            quizzjoinquestiondto.questions = GetQuestions(id);
+            //Console.WriteLine(quizzjoinleveldto.Level);
+            return quizzjoinquestiondto;
+        }
+
 
         /// <summary>
         ///     Retourne un quiz

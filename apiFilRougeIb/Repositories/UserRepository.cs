@@ -106,6 +106,8 @@ namespace apiFilRougeIb.Repositories
             return listUserAnswers;
         }
 
+
+
         public override List<Models.User> FindAll()
         {
             this.OpenConnection();

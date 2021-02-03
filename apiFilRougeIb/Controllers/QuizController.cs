@@ -32,6 +32,12 @@ namespace apiFilRougeIb.Controllers
         {
             return quizzServices.GetQuizz(id);
         }
+        [HttpGet("{id}/{join}")]
+        public Dto.FindAll.FindAllQuizzDto Get(long id,string join)
+        {
+            return quizzServices.GetQuizzJoin(id,join);
+        }
+
 
         // POST api/<TodosController>
         [HttpPost]

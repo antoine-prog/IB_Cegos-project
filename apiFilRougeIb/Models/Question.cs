@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 namespace apiFilRougeIb.Models
 {
     public class Question
+
     {
+
         public long? IdQuestion { get; set; }
         public string Title { get; set; }
         public long Theme_idTheme { get; set; }
@@ -21,6 +23,8 @@ namespace apiFilRougeIb.Models
             Theme_idTheme = theme_idTheme;
             Level_idLevel = level_idLevel;
 
+
         }
+
     }
 }
