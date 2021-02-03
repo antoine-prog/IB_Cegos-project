@@ -7,7 +7,6 @@ namespace apiFilRougeIb.Models
 {
     public class User
     {
-
         public long? IdUser { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -33,5 +32,7 @@ namespace apiFilRougeIb.Models
             IsCreator = isCreator;
             Level_idLevel = level_idLevel;
         }
+
+
     }
 }

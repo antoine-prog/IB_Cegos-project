@@ -1,4 +1,5 @@
-﻿using System;
+﻿using apiFilRougeIb.Dto.FindAll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,6 +31,42 @@ namespace apiFilRougeIb.Services
             return usersDto;
         }
 
+        public FindAllUsersDto GetUserJoinLevel(long id)
+        {
+            Models.User user = this._userRepository.Find(id);
+            Dto.FindAll.FindAllUsersDto userDto = TransformModelToDto(user);
+
+            FindAllUsersDto userjoinleveldto = new FindAllUsersJoinLevelsDto(userDto);
+            //Console.WriteLine(userjoinleveldto.Level);
+            return userjoinleveldto;
+        }
+
+        internal FindAllUsersDto GetUser(long id, string join)
+        {
+            switch (join)
+            {
+                case "UserAnswers":
+                    Console.WriteLine("Case Souhaité !!!!!");
+                    return GetUserJoinUserAnwsers(id);
+                case "Level":
+                    return GetUserJoinLevel(id);
+                default:
+                    Console.WriteLine("Case Default");
+                    return GetUser(id);
+            }
+        }
+        public FindAllUsersDto GetUserJoinUserAnwsers(long id)
+        {
+            Models.User user = this._userRepository.Find(id);
+            FindAllUsersDto userDto = TransformModelToDto(user);
+
+            //FindAllUsersJoinUserAnswersDto u = new FindAllUsersJoinUserAnswersDto(userDto);
+
+            FindAllUsersDto userjoinluseranswerdto = new FindAllUsersJoinUserAnswersDto(userDto);
+            
+            //Console.WriteLine(userjoinleveldto.Level);
+            return userjoinluseranswerdto;
+        }
         /// <summary>
         ///     Retourne un theme
         /// </summary>
