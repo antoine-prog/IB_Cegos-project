@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création du quiz</title>
+    <script src="./scripts/création_quiz.js"></script>
+    <link rel="stylesheet" href="./styles/création_quiz.style.css">
+</head>
+
+<body>
+
+<section>
+    <form name="submitForm">
+        <div>
+            <label> Choisissez un nom : 
+                <input type="text" name="nomQuiz" id="nomQuiz" placeholder="Nom du quiz">
+            </label>
+        </div>
+
+
+        <div>
+            <label> Choisissez un thème : 
+                <input type="text" name="theme" id="theme" placeholder="Thème du quiz">
+                <select name="themes" id="themes">
+                
+                </select>
+
+            </label>
+        </div>
+
+        <div>
+             <label> Choisissez un niveau du quiz : 
+                <input type="text" name="levelQuiz" id="levelQuiz" placeholder="Niveau du quiz">
+                <select name="level" id="level">
+                
+                </select>
+
+            </label>
+        </div>
+
+        <div id="Validez">
+            <input type="button" value="Validez" onclick="onSubmit(form)">
+        </div>
+    </form>
+</section>
+
+
+
+    
+</body>
+</html>
