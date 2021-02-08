@@ -23,7 +23,8 @@ namespace FilRougeIb
             Theme = theme;
             User_idUser = user_idUser;
         }
-
+        
         public void ShowThisQuiz(User user, long idQuiz) { }
+        public  void ShowQuiz() { }
     }
 }

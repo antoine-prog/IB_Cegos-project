@@ -6,10 +6,11 @@ namespace FilRougeIb
 {
     class Start
     {
-         public Start() { }
+        static User user = new User();
+        public Start() { }
         public static void StartQuiz()
         {
-            User user = new User();
+            
             Console.WriteLine("Identidiez-vous");
             string username = Console.ReadLine();
             Identification(username);
@@ -21,7 +22,7 @@ namespace FilRougeIb
             else 
             {
                 Console.WriteLine("Cet username n'existe pas. Créez un username");
-                 user = UserCreateUsername(username); 
+                 user = user.UserCreateUsername(username); 
             }
 
             Console.WriteLine("Voulez-vous voir un quiz ou créer un quiz ?");
@@ -30,23 +31,7 @@ namespace FilRougeIb
 
         public static void UserConnection() 
         { }
-        public static User UserCreateUsername(string username)
-        {
-            User usercreate = new User();
-            Console.WriteLine("Saisissez votre Prénom");
-            usercreate.FirstName = Console.ReadLine();
-            Console.WriteLine("Saisissez votre nom");
-            usercreate.LastName = Console.ReadLine();
-            usercreate.Username = username;
-            Console.WriteLine("Saisissez votre adresse");
-            usercreate.Adress = Console.ReadLine();
-            Console.WriteLine("Saisissez votre adresse mail");
-            usercreate.Mail = Console.ReadLine();
-            Console.WriteLine("Saisissez votre mot de passe");
-            usercreate.Password = Console.ReadLine();
-            Console.WriteLine("Vous venez de créer votre utilisateur");
-            return usercreate;
-        }
+        
         public static bool Identification(string username) 
         {
             return false;
@@ -65,7 +50,7 @@ namespace FilRougeIb
             else if (Choix.ToLower() == "C") 
             { 
                 Console.WriteLine("Vous-pouvez créer votre quiz"); 
-                CreateQuizz();             
+                user.CreateQuiz();             
             }
             else 
             { 
@@ -74,8 +59,7 @@ namespace FilRougeIb
             }
 
         }
-        public static void ShowQuiz() { }
-        public static void CreateQuizz() { }
+        
         public static void ShowData() { }
     }
 }
