@@ -67,13 +67,14 @@ namespace apiFilRougeIb.Repositories
             {
                 question.IdQuestion = rdr.GetInt64(0);
                 question.Title = rdr.GetString(1);
-                question.Theme_idTheme = rdr.GetInt64(2);
-                question.Level_idLevel = rdr.GetInt64(3);
+                question.Level_idLevel = rdr.GetInt64(2);
               
             }
             this.CloseConnection(rdr);
             return question;
         }
+
+
 
         public override List<Models.Question> FindAll()
         {
@@ -91,8 +92,7 @@ namespace apiFilRougeIb.Repositories
                 Models.Question question = new Models.Question();
                 question.IdQuestion = rdr.GetInt64(0);
                 question.Title = rdr.GetString(1);
-                question.Theme_idTheme = rdr.GetInt64(2);
-                question.Level_idLevel = rdr.GetInt64(3);
+                question.Level_idLevel = rdr.GetInt64(2);
                 listQuestion.Add(question);
             }
             this.CloseConnection(rdr);

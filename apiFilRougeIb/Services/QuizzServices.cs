@@ -1,4 +1,5 @@
-﻿using System;
+﻿using apiFilRougeIb.Dto.FindAll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,6 +30,79 @@ namespace apiFilRougeIb.Services
             });
             return quizDto;
         }
+
+        public List<Models.Question> GetQuestions(long idQuizz)
+        {
+            Repositories.QuestionRepository qrep= new Repositories.QuestionRepository(new Utils.QueryBuilder());
+            List<Models.Question> questions = new List<Models.Question>();
+            List<Models.Quizz_Has_Question> listquizzquestion =
+                new Repositories.Quizz_Has_QuestionRepository(new Utils.QueryBuilder()).FindQuizz(idQuizz);
+            foreach(Models.Quizz_Has_Question qq in listquizzquestion)
+            {
+                if(qq.quizz_idQuizz==idQuizz)
+                {
+                    questions.Add(qrep.Find(qq.question_idQuestion));
+                }
+            }
+            return questions;
+        }
+
+        public List<FindAllQuestionJoinSolutionDto> GetQuestionJoinSolution(long idQuizz)
+        {
+            Repositories.QuestionRepository qrep = new Repositories.QuestionRepository(new Utils.QueryBuilder());
+            List<FindAllQuestionJoinSolutionDto> questionsolution = new List<FindAllQuestionJoinSolutionDto>();
+            List<Models.Quizz_Has_Question> listquizzquestion =
+                new Repositories.Quizz_Has_QuestionRepository(new Utils.QueryBuilder()).FindQuizz(idQuizz);
+            foreach (Models.Quizz_Has_Question qq in listquizzquestion)
+            {
+                if (qq.quizz_idQuizz == idQuizz)
+                {
+                    FindAllQuestionJoinSolutionDto dto = new FindAllQuestionJoinSolutionDto(qrep.Find(qq.question_idQuestion));
+
+                    questionsolution.Add(dto);
+                }
+            }
+            return questionsolution;
+        }
+        internal FindAllQuizzDto GetQuizzJoin(long id, string join)
+        {
+            switch (join)
+            {
+                case "questions":
+                    return GetQuizzJoinQuestions(id);
+                case "questions&solution":
+                    return GetQuizzJoinQuestionsJoinSolutions(id);
+                
+                default:
+                    return GetQuizz(id);
+            }
+        }
+
+        private FindAllQuizzDto GetQuizzJoinQuestionsJoinSolutions(long id)
+        {
+            Models.Quizz quizz = this._quizRepository.Find(id);
+            FindAllQuizzDto quizzDto = TransformModelToDto(quizz);
+
+            FindAllQuizzJoinQuestionJoinSolutionDto quizzjoinquestionjoinsolutiondto = new FindAllQuizzJoinQuestionJoinSolutionDto(quizzDto);
+            quizzjoinquestionjoinsolutiondto.listquestionsolution = GetQuestionJoinSolution(id);
+            //quizzjoinquestionjoinsolutiondto.questions = GetQuestions(id);
+            ////Console.WriteLine(quizzjoinleveldto.Level);
+            return quizzjoinquestionjoinsolutiondto;
+            //throw new NotImplementedException();
+        }
+
+        private FindAllQuizzDto GetQuizzJoinQuestions(long id)
+        {
+            Models.Quizz quizz = this._quizRepository.Find(id);
+            Dto.FindAll.FindAllQuizzDto quizzDto = TransformModelToDto(quizz);
+
+            FindAllQuizzJoinQuestionDto quizzjoinquestiondto = new FindAllQuizzJoinQuestionDto(quizzDto);
+            quizzjoinquestiondto.questions = GetQuestions(id);
+            //Console.WriteLine(quizzjoinleveldto.Level);
+            return quizzjoinquestiondto;
+        }
+
+
 
         /// <summary>
         ///     Retourne un quiz
@@ -77,15 +151,15 @@ namespace apiFilRougeIb.Services
         }
         private Dto.FindAll.FindAllQuizzDto TransformModelToDto(Models.Quizz quiz)
         {
-            return new Dto.FindAll.FindAllQuizzDto(quiz.Name, quiz.User_idUser, quiz.IdQuizz);
+            return new Dto.FindAll.FindAllQuizzDto(quiz.Name, quiz.User_idUser, quiz.Theme_idTheme,quiz.IdQuizz);
         }
         private Models.Quizz TransformDtoToModel(Dto.Create.CreateQuizzDto quiz)
         {
-            return new Models.Quizz(quiz.Name, quiz.User_idUser);
+            return new Models.Quizz(quiz.Name, quiz.User_idUser,quiz.Theme_idTheme);
         }
         private Dto.AfterCreate.AfterCreateQuizzDto TransformModelToAfterCreateDto(Models.Quizz quiz, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateQuizzDto(quiz.Name, quiz.User_idUser, isCreated, quiz.IdQuizz);
+            return new Dto.AfterCreate.AfterCreateQuizzDto(quiz.Name, quiz.User_idUser,quiz.Theme_idTheme, isCreated, quiz.IdQuizz);
         }
 
 

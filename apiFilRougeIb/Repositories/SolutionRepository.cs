@@ -75,6 +75,26 @@ namespace apiFilRougeIb.Repositories
             return solution;
         }
 
+        public  Models.Solution FindSolution(long id)
+        {
+            this.OpenConnection();
+            string request = _queryBuilder
+                .Select()
+                .From("solution")
+                .Where("question_idQuestion", id, "=")
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            Models.Solution solution = new Models.Solution();
+            while (rdr.Read())
+            {
+                solution.IdSolution = rdr.GetInt64(0);
+                solution.solution = rdr.GetString(1);
+                solution.Question_idQuestion = rdr.GetInt64(2);
+            }
+            this.CloseConnection(rdr);
+            return solution;
+        }
         public override List<Models.Solution> FindAll()
         {
             this.OpenConnection();

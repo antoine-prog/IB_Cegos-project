@@ -69,9 +69,35 @@ namespace apiFilRougeIb.Repositories
                 quiz.IdQuizz = rdr.GetInt64(0);
                 quiz.Name = rdr.GetString(1);
                 quiz.User_idUser = rdr.GetInt64(2);
+                quiz.Theme_idTheme = rdr.GetInt64(3);
             }
             this.CloseConnection(rdr);
             return quiz;
+        }
+
+        public  List<Models.Quizz> FindUser(long id)
+        {
+            this.OpenConnection();
+            string request = _queryBuilder
+                .Select()
+                .From("quizz")
+                .Where("user_iduser", id, "=")
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            List<Models.Quizz> listQuiz = new List<Models.Quizz>();
+
+            while (rdr.Read())
+            {
+                Models.Quizz quiz = new Models.Quizz();
+                quiz.IdQuizz = rdr.GetInt64(0);
+                quiz.Name = rdr.GetString(1);
+                quiz.User_idUser = rdr.GetInt64(2);
+                quiz.Theme_idTheme = rdr.GetInt64(3);
+                listQuiz.Add(quiz);
+            }
+            this.CloseConnection(rdr);
+            return listQuiz;
         }
 
         public override List<Models.Quizz> FindAll()
@@ -91,6 +117,7 @@ namespace apiFilRougeIb.Repositories
                 quiz.IdQuizz = rdr.GetInt64(0);
                 quiz.Name = rdr.GetString(1);
                 quiz.User_idUser = rdr.GetInt64(2);
+                quiz.Theme_idTheme = rdr.GetInt64(3);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);

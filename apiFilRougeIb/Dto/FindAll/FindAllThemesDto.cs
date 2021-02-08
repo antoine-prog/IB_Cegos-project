@@ -8,11 +8,11 @@ namespace apiFilRougeIb.Dto.FindAll
     public class FindAllThemesDto
     {
         public long? IdTheme { get; set; }
-        public string Category { get; set; }
-        public FindAllThemesDto(string category, long? idTheme = null)
+        public string Theme{ get; set; }
+        public FindAllThemesDto(string theme, long? idTheme = null)
         {
             this.IdTheme = idTheme;
-            this.Category = category;
+            this.Theme = theme;
         }
 
 

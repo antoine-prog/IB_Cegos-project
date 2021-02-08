@@ -29,6 +29,7 @@ namespace apiFilRougeIb.Services
             return questionsDto;
         }
 
+
         /// <summary>
         ///     Retourne une question
         /// </summary>
@@ -40,6 +41,15 @@ namespace apiFilRougeIb.Services
             Dto.FindAll.FindAllQuestionsDto questionDto = TransformModelToDto(question);
             return questionDto;
         }
+
+        internal Dto.FindAll.FindAllQuestionsDto GetQuestionJoinSolution(long id)
+        {
+            Models.Question question = this._questionRepository.Find(id);
+            Dto.FindAll.FindAllQuestionsDto questionDto = TransformModelToDto(question);
+            Dto.FindAll.FindAllQuestionsDto questionjoinsolutiondto = new Dto.FindAll.FindAllQuestionJoinSolutionDto(question);
+            return questionjoinsolutiondto;
+        }
+
 
         /// <summary>
         ///     Persister une question
@@ -76,15 +86,15 @@ namespace apiFilRougeIb.Services
         }
         private Dto.FindAll.FindAllQuestionsDto TransformModelToDto(Models.Question question)
         {
-            return new Dto.FindAll.FindAllQuestionsDto(question.Title, question.Theme_idTheme, question.Level_idLevel, question.IdQuestion);
+            return new Dto.FindAll.FindAllQuestionsDto(question.Title, question.Level_idLevel, question.IdQuestion);
         }
         private Models.Question TransformDtoToModel(Dto.Create.CreateQuestionDto question)
         {
-            return new Models.Question(question.Title, question.Theme_idTheme, question.Level_idLevel);
+            return new Models.Question(question.Title,  question.Level_idLevel);
         }
         private Dto.AfterCreate.AfterCreateQuestionDto TransformModelToAfterCreateDto(Models.Question question, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateQuestionDto(question.Title, question.Theme_idTheme, question.Level_idLevel,isCreated, question.IdQuestion);
+            return new Dto.AfterCreate.AfterCreateQuestionDto(question.Title,  question.Level_idLevel,isCreated, question.IdQuestion);
         }
 
     }

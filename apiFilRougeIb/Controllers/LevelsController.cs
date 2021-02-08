@@ -9,12 +9,12 @@ namespace apiFilRougeIb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LevelController : ControllerBase
+    public class LevelsController : ControllerBase
     {
 
         Services.LevelServices levelServices;
 
-        public LevelController()
+        public LevelsController()
         {
             this.levelServices = new Services.LevelServices();
         }
