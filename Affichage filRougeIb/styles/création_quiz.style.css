@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+
+/* header */
+
+/* header */
+
+
+
+/* body */
+
+section {
+    margin: 10em ;
+    font-size: xx-large;
+    border-color: black;
+  
+}
+::placeholder {
+    font-size: large;
+}
+#Validez{
+       box-sizing: content-box;
+       display: flex;
+       justify-content: center;
+}
+
+
+
+
+
+
+/* body */
+
+
+
+
+
+/* footer */
+
+/* footer */
