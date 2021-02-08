@@ -9,17 +9,32 @@
     <title>Home</title>
 </head>
 
-<body>
+<body class="container">
     <header>
-        
+        <nav>
+            <div class="home">
+                <a href="./index.html">Home</a>
+              </div>
+              <div class="naviguation">
+                  <a href="./inscription.html">Inscription</a>
+                  <a href="./seConnecter.html">Se connecter</a>
+              </div>
+        </nav>
     </header>
 
     <main>
-
+        <section class="principal">
+            <span>Rejoindre un Questionnaire : Entrer un code </span>
+            <form action="">
+                <input type="text" name="codeQuiz" placeholder="placer le code ici" id="codeQuiz">
+                <button type="button" name="commencer" id="commencer" onclick="onSubmit(this.form)">Commencer</button>
+               
+             </form>
+        </section>
     </main>
 
     <footer>
-
+        <nav></nav>
     </footer>
 </body>
 
