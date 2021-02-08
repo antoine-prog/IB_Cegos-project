@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./scripts/inscription.js"></script>
+    <link rel="stylesheet" href="./styles/inscription.style.css">
+</head>
+<body>
+    <header id="header">
+        <a href="./index.html"><input type="button" id="homebutton" value="HOME"></a>
+        <a href="./inscription.html"> <input type="button" value="Inscription" id="inscriptionbutton"> </a>
+        <input type="button" value="Se connecter" id="Se_connecter_button">
+    </header>
+    <main>
+        <H1>Inscription</H1>
+        <form action="" id="forminscription">
+            <label >Êtes-vous :
+                <input type="radio" name="genre" id="genreM" >
+                <label for="genreM">Créateur</label>
+                <input type="radio" name="genre" id="genreF" >
+                <label for="genreF">Créatrice</label>
+                <input type="radio" name="genre" id="genreO" >
+                <label for="genreM">Autre</label>
+            </label>
+            <label >Nom :
+                <input type="text" name="nomtxt" id="nomtxt" placeholder="Entrer votre nom">
+            </label>
+            <label >Prénom :
+                <input type="text" name="prenomtxt" id="prenomtxt" placeholder="Entrer votre prénom">
+            </label>
+            <label >Identifiant :
+                <input type="text" name="identifianttxt" id="identifianttxt" placeholder="Entrer un nom d'utilisateur">
+            </label>
+            <label >Adresse mail :
+                <input type="text" name="mailtxt" id="mailtxt" placeholder="Entrer votre adresse mail">
+            </label>
+            <label >Adresse postale :
+                <input type="text" name="adressetxt" id="adressetxt" placeholder="Entrer votre adresse postale">
+            </label>
+            <label>Niveau :
+            <select name="niveau" id="niveau">
+                <option value="1">Junior</option>
+                <option value="2">Expérimenté</option>
+            </select>
+            </label>
+            <input type="button" value="Valider" id="validerbutton">
+        </form>
+    </main>
+    <footer>
+        <p>Footer oi !</p>
+    </footer>
+</body>
+</html>
