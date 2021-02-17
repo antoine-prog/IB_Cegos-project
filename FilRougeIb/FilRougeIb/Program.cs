@@ -6,7 +6,7 @@ namespace FilRougeIb
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("");
+            //Lance le programme de questionaire
             Start.StartQuiz();
         }
     }
