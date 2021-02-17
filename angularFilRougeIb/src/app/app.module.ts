@@ -56,6 +56,7 @@ import { EditQCMComponent } from './_pages/edit-qcm/edit-qcm.component';
 import { VoirUnUtilisateurComponent } from './_pages/voir-un-utilisateur/voir-un-utilisateur.component';
 import { ProfilUtilisateurComponent } from './_pages/profil-utilisateur/profil-utilisateur.component';
 import { ModifierProfilComponent } from './_pages/modifier-profil/modifier-profil.component';
+import { NotfoundComponent } from './_pages/notfound/notfound.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { ModifierProfilComponent } from './_pages/modifier-profil/modifier-profi
     EditQCMComponent,
     VoirUnUtilisateurComponent,
     ProfilUtilisateurComponent,
-    ModifierProfilComponent
+    ModifierProfilComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
