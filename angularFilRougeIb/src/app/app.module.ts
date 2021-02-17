@@ -57,6 +57,8 @@ import { VoirUnUtilisateurComponent } from './_pages/voir-un-utilisateur/voir-un
 import { ProfilUtilisateurComponent } from './_pages/profil-utilisateur/profil-utilisateur.component';
 import { ModifierProfilComponent } from './_pages/modifier-profil/modifier-profil.component';
 import { NotfoundComponent } from './_pages/notfound/notfound.component';
+import { ActualitesComponent } from './_pages/home-connecte/_sousComponents/actualites/actualites.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -83,7 +85,8 @@ import { NotfoundComponent } from './_pages/notfound/notfound.component';
     VoirUnUtilisateurComponent,
     ProfilUtilisateurComponent,
     ModifierProfilComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ActualitesComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +124,9 @@ import { NotfoundComponent } from './_pages/notfound/notfound.component';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

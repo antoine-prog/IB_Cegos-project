@@ -8,10 +8,8 @@ import { NotfoundComponent } from './_pages/notfound/notfound.component';
 
 const routes: Routes = [
   {path:"", component : HomeComponent},
-  {path:"inscription", component : InscriptionComponent,
-      children: [
-        {path:"home-connecte", component : HomeConnecteComponent}
-      ]},
+  {path:"inscription", component : InscriptionComponent},
+  {path:"home-connecte", component : HomeConnecteComponent}, 
   {path:"404", component : NotfoundComponent},
   {path:"**", redirectTo: '404'}
 ];
