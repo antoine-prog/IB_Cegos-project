@@ -70,6 +70,10 @@ namespace apiFilRougeIb.Repositories
                 quiz.Name = rdr.GetString(1);
                 quiz.User_idUser = rdr.GetInt64(2);
                 quiz.Theme_idTheme = rdr.GetInt64(3);
+                quiz.Code = rdr.GetString(4);
+                quiz.DateCreation = rdr.GetDateTime(5);
+                quiz.DateFermeture = rdr.GetDateTime(6);
+                quiz.Timer = rdr.GetInt32(7);
             }
             this.CloseConnection(rdr);
             return quiz;
@@ -94,6 +98,10 @@ namespace apiFilRougeIb.Repositories
                 quiz.Name = rdr.GetString(1);
                 quiz.User_idUser = rdr.GetInt64(2);
                 quiz.Theme_idTheme = rdr.GetInt64(3);
+                quiz.Code = rdr.GetString(4);
+                quiz.DateCreation = rdr.GetDateTime(5);
+                quiz.DateFermeture = rdr.GetDateTime(6);
+                quiz.Timer = rdr.GetInt32(7);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);
@@ -118,6 +126,10 @@ namespace apiFilRougeIb.Repositories
                 quiz.Name = rdr.GetString(1);
                 quiz.User_idUser = rdr.GetInt64(2);
                 quiz.Theme_idTheme = rdr.GetInt64(3);
+                quiz.Code = rdr.GetString(4);
+                quiz.DateCreation = rdr.GetDateTime(5);
+                quiz.DateFermeture = rdr.GetDateTime(6);
+                quiz.Timer = rdr.GetInt32(7);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);

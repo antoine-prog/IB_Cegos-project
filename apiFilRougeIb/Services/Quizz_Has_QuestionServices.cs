@@ -19,6 +19,7 @@ namespace apiFilRougeIb.Services
         }
         internal int Delete(long id)
         {
+
             return this._quizzHasQuestionRepository.Delete(id);
         }
 

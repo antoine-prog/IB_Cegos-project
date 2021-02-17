@@ -12,6 +12,11 @@ namespace apiFilRougeIb.Models
         public string Name { get; set; }
         public long User_idUser { get; set; }
         public long Theme_idTheme { get; set; }
+        public string Code { get; set; }
+        public string? Comment { get; set; }
+        public DateTime DateExpiration { get; set; }
+        public DateTime DateCreation { get; set; }
+        public int? Timer { get; set; }
 
         public Quizz() { }
         public Quizz(string name, long user_idUser, long Theme_idTheme,long? idQuizz = null)
