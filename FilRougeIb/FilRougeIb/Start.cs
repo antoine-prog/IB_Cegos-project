@@ -65,7 +65,7 @@ namespace FilRougeIb
                 Console.WriteLine("Vous-pouvez créer votre quiz"); 
                 user.CreateQuiz();             
             }
-            else if (Choix.ToLower().Equals("P"))
+            else if (Choix.ToLower().Equals("p"))
             {
                 Console.WriteLine("Voici votre profil utilisateur");
                 user.ShowData();
