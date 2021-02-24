@@ -45,7 +45,7 @@ namespace apiFilRougeIb.Repositories
 
         public override int Delete(long id)
         {
-            this.OpenConnection();
+            //this.OpenConnection();
             string request = _queryBuilder.DeleteUser("user", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             int result = cmd.ExecuteNonQuery();
@@ -75,7 +75,6 @@ namespace apiFilRougeIb.Repositories
                 user.Password = rdr.GetString(6);
                 user.IsAdmin = rdr.GetBoolean(7);
                 user.IsCreator = rdr.GetBoolean(8);
-                user.Level_idLevel = rdr.GetInt64(9);
             }
             this.CloseConnection(rdr);
             return user;
@@ -131,7 +130,6 @@ namespace apiFilRougeIb.Repositories
                 user.Password = rdr.GetString(6);
                 user.IsAdmin = rdr.GetBoolean(7);
                 user.IsCreator = rdr.GetBoolean(8);
-                user.Level_idLevel = rdr.GetInt64(9);
                 listUsers.Add(user);
             }
             this.CloseConnection(rdr);

@@ -149,10 +149,7 @@ namespace apiFilRougeIb.Repositories
             return Find(id);
         }
 
-        public override UserAnswer Find(long id)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public override List<UserAnswer> FindAll()
         {
@@ -178,6 +175,11 @@ namespace apiFilRougeIb.Repositories
         }
 
         public override int Delete(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override UserAnswer Find(long id)
         {
             throw new NotImplementedException();
         }

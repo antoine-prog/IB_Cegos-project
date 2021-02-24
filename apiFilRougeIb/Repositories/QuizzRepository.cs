@@ -45,7 +45,7 @@ namespace apiFilRougeIb.Repositories
 
         public override int Delete(long id)
         {
-            this.OpenConnection();
+            //this.OpenConnection();
             string request = _queryBuilder.Delete("quizz", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             int result = cmd.ExecuteNonQuery();
@@ -68,12 +68,20 @@ namespace apiFilRougeIb.Repositories
             {
                 quiz.IdQuizz = rdr.GetInt64(0);
                 quiz.Name = rdr.GetString(1);
-                quiz.User_idUser = rdr.GetInt64(2);
-                quiz.Theme_idTheme = rdr.GetInt64(3);
-                quiz.Code = rdr.GetString(4);
-                quiz.DateCreation = rdr.GetDateTime(5);
-                quiz.DateFermeture = rdr.GetDateTime(6);
-                quiz.Timer = rdr.GetInt32(7);
+                try
+                {
+
+                quiz.Timer = rdr.GetInt32(2);
+                } catch { }
+                quiz.Code = rdr.GetString(3);
+                try
+                {
+                quiz.DateFermeture = rdr.GetDateTime(4);
+
+                }
+                catch { }
+                quiz.User_idUser = rdr.GetInt64(5);
+                quiz.Theme_idTheme = rdr.GetInt64(6);
             }
             this.CloseConnection(rdr);
             return quiz;
@@ -85,7 +93,7 @@ namespace apiFilRougeIb.Repositories
             string request = _queryBuilder
                 .Select()
                 .From("quizz")
-                .Where("user_iduser", id, "=")
+                .Where("user_idUser", id, "=")
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
@@ -96,12 +104,21 @@ namespace apiFilRougeIb.Repositories
                 Models.Quizz quiz = new Models.Quizz();
                 quiz.IdQuizz = rdr.GetInt64(0);
                 quiz.Name = rdr.GetString(1);
-                quiz.User_idUser = rdr.GetInt64(2);
-                quiz.Theme_idTheme = rdr.GetInt64(3);
-                quiz.Code = rdr.GetString(4);
-                quiz.DateCreation = rdr.GetDateTime(5);
-                quiz.DateFermeture = rdr.GetDateTime(6);
-                quiz.Timer = rdr.GetInt32(7);
+                try
+                {
+
+                    quiz.Timer = rdr.GetInt32(2);
+                }
+                catch { }
+                quiz.Code = rdr.GetString(3);
+                try
+                {
+                    quiz.DateFermeture = rdr.GetDateTime(4);
+
+                }
+                catch { }
+                quiz.User_idUser = rdr.GetInt64(5);
+                quiz.Theme_idTheme = rdr.GetInt64(6);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);
@@ -124,12 +141,21 @@ namespace apiFilRougeIb.Repositories
                 Models.Quizz quiz = new Models.Quizz();
                 quiz.IdQuizz = rdr.GetInt64(0);
                 quiz.Name = rdr.GetString(1);
-                quiz.User_idUser = rdr.GetInt64(2);
-                quiz.Theme_idTheme = rdr.GetInt64(3);
-                quiz.Code = rdr.GetString(4);
-                quiz.DateCreation = rdr.GetDateTime(5);
-                quiz.DateFermeture = rdr.GetDateTime(6);
-                quiz.Timer = rdr.GetInt32(7);
+                try
+                {
+
+                    quiz.Timer = rdr.GetInt32(2);
+                }
+                catch { }
+                quiz.Code = rdr.GetString(3);
+                try
+                {
+                    quiz.DateFermeture = rdr.GetDateTime(4);
+
+                }
+                catch { }
+                quiz.User_idUser = rdr.GetInt64(5);
+                quiz.Theme_idTheme = rdr.GetInt64(6);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);
