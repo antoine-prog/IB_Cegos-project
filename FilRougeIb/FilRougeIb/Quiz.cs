@@ -6,25 +6,40 @@ namespace FilRougeIb
 {
     class Quiz
     {
-        List<Questions> questions = new List<Questions>();
         public long IdQuiz { get; set; }
         public string Name { get; set; }
         public string Theme { get; set; }
-          
-        public long User_idUser { get; set; }
+        public User Creator { get; set; }
+
+        public List<Question> Questions { get; set; } = new List<Question>();
+        public List<User> Participants { get; set; } = new List<User>();
 
         public Quiz() { }
 
-        public Quiz(List<Questions> questions,long idQuiz, string name, string theme, long user_idUser)
+        public Quiz(long idQuiz, string name, string theme, User creator, List<Question> questions, List<User> participants)
         {
-            this.questions = questions;
-            IdQuiz = idQuiz;
-            Name = name;
-            Theme = theme;
-            User_idUser = user_idUser;
+            this.IdQuiz = idQuiz;
+            this.Name = name;
+            this.Theme = theme;
+            this.Creator = creator;
+            this.Questions = questions;
+            this.Participants = participants;
         }
         
-        public void ShowThisQuiz(User user, long idQuiz) { }
-        public  void ShowQuiz() { }
+        /// <summary>
+        /// Affiche un questionnaire en détail et les participants du questionnaire
+        /// </summary>
+        public  void ShowQuiz() {
+           
+            Console.WriteLine($"{this.Name} [{this.Theme}] (id={this.IdQuiz}");
+
+            foreach(User p in Participants)
+            {
+                Console.WriteLine($"{p.FirstName} {p.LastName}], mail : {p.Mail}");
+            }
+
+
+            
+        }
     }
 }
