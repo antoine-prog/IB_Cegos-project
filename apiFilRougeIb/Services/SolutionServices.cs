@@ -78,15 +78,15 @@ namespace apiFilRougeIb.Services
         }
         private Dto.FindAll.FindAllSolutionsDto TransformModelToDto(Models.Solution solution)
         {
-            return new Dto.FindAll.FindAllSolutionsDto(solution.solution, solution.Question_idQuestion ,solution.IdSolution);
+            return new Dto.FindAll.FindAllSolutionsDto(solution.solution, solution.IsTrue,solution.Question_idQuestion ,solution.IdSolution);
         }
         private Models.Solution TransformDtoToModel(Dto.Create.CreateSolutionDto solution)
         {
-            return new Models.Solution(solution.Solution,solution.Question_idQuestion);
+            return new Models.Solution(solution.Solution,solution.IsTrue,solution.Question_idQuestion);
         }
-        private Dto.AfterCreate.AfterCreateSolutionDto TransformModelToAfterCreateDto(Models.Solution solution, bool isCreated)
+        private Dto.AfterCreate.AfterCreateSolutionDto TransformModelToAfterCreateDto(Solution solution, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateSolutionDto(solution.solution, solution.Question_idQuestion, isCreated, solution.IdSolution);
+            return new Dto.AfterCreate.AfterCreateSolutionDto(solution.solution,solution.IsTrue, solution.Question_idQuestion, isCreated, solution.IdSolution);
         }
     }
 }

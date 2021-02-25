@@ -126,7 +126,7 @@ namespace apiFilRougeIb.Repositories
             return listUserAnswers;
         }
 
-        public override Models.UserAnswer Update(long id, Models.UserAnswer obj)
+        public override UserAnswer Update(long id, UserAnswer obj)
         {
             this.OpenConnection();
             Dictionary<string, dynamic> userAnswerDictionnary = new Dictionary<string, dynamic>();
