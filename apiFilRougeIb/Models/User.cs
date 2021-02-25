@@ -16,10 +16,9 @@ namespace apiFilRougeIb.Models
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsCreator { get; set; }
-        public long Level_idLevel { get; set; }
 
         public User() { }
-        public User(string firstName, string lastName, string username, string adress, string mail, string password, bool isAdmin, bool isCreator, long level_idLevel, long? idUser = null)
+        public User(string firstName, string lastName, string username, string adress, string mail, string password, bool isAdmin, bool isCreator,  long? idUser = null)
         {
             IdUser = idUser;
             FirstName = firstName;
@@ -30,7 +29,6 @@ namespace apiFilRougeIb.Models
             Password = password;
             IsAdmin = isAdmin;
             IsCreator = isCreator;
-            Level_idLevel = level_idLevel;
         }
 
 

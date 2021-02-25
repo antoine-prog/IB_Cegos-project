@@ -26,5 +26,11 @@ namespace apiFilRougeIb.Controllers
         {
             return quizz_has_questionServices.Get();
         }
+
+        [HttpPost]
+        public List<Models.Quizz_Has_Question> Post([FromBody] Dto.Create.CreateQuizzHasQuestionDto qhq)
+        {
+            return quizz_has_questionServices.Post(qhq);
+        }
     }
 }

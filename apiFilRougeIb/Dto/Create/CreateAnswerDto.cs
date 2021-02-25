@@ -9,10 +9,7 @@ namespace apiFilRougeIb.Dto.Create
     {
        
         public string Answer_ { get; set; }
-
         public bool Result { get; set; }
-
-
         public CreateAnswerDto(string answer_, bool result)
         {
             Answer_ = answer_;

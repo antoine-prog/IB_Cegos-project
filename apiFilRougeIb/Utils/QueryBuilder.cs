@@ -89,8 +89,18 @@ namespace apiFilRougeIb.Utils
             request.Append(");");
             return request.ToString();
         }
-
-
+        /// <summary>
+        /// Appelle l'instruction 'JOIN' qui créer
+        /// </summary>
+        /// <param name="tableSecondaire"></param>
+        /// <param name="cle1"></param>
+        /// <param name="cle2"></param>
+        /// <returns></returns>
+        internal QueryBuilder Join(string tableSecondaire, string cle1, string cle2, string type="")
+        {
+            request.Append($"{type}JOIN {tableSecondaire} ON {cle1} = {cle2} ");
+            return this;
+        }
         /// <summary>
         /// Appelle l'instruction 'DELETE' qui affectera une donnée défini par son id et sa base de donnée
         /// </summary>
