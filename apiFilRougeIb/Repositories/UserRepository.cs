@@ -131,7 +131,7 @@ namespace apiFilRougeIb.Repositories
                 user.Password = rdr.GetString(6);
                 user.IsAdmin = rdr.GetBoolean(7);
                 user.IsCreator = rdr.GetBoolean(8);
-                user.Level_idLevel = rdr.GetInt64(9);
+               
                 listUsers.Add(user);
             }
             this.CloseConnection(rdr);

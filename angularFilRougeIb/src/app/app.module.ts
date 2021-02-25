@@ -59,6 +59,7 @@ import { ModifierProfilComponent } from './_pages/modifier-profil/modifier-profi
 import { NotfoundComponent } from './_pages/notfound/notfound.component';
 import { ActualitesComponent } from './_pages/home-connecte/_sousComponents/actualites/actualites.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersComponent } from './_pages/users/users.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfilUtilisateurComponent,
     ModifierProfilComponent,
     NotfoundComponent,
-    ActualitesComponent
+    ActualitesComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
