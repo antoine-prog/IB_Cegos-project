@@ -75,7 +75,6 @@ namespace apiFilRougeIb.Repositories
                 user.Password = rdr.GetString(6);
                 user.IsAdmin = rdr.GetBoolean(7);
                 user.IsCreator = rdr.GetBoolean(8);
-                user.Level_idLevel = rdr.GetInt64(9);
             }
             this.CloseConnection(rdr);
             return user;
@@ -131,7 +130,10 @@ namespace apiFilRougeIb.Repositories
                 user.Password = rdr.GetString(6);
                 user.IsAdmin = rdr.GetBoolean(7);
                 user.IsCreator = rdr.GetBoolean(8);
+<<<<<<< HEAD
                
+=======
+>>>>>>> dev
                 listUsers.Add(user);
             }
             this.CloseConnection(rdr);

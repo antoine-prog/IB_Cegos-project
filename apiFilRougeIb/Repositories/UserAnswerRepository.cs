@@ -9,14 +9,14 @@ namespace apiFilRougeIb.Repositories
 {
     internal class UserAnswerRepository : AbstractRepository<Models.UserAnswer>
     {
-        private Utils.QueryBuilder _queryBuilder;
+        private QueryBuilder _queryBuilder;
 
-        public UserAnswerRepository(Utils.QueryBuilder queryBuilder)
+        public UserAnswerRepository(QueryBuilder queryBuilder)
         {
             this._queryBuilder = queryBuilder;
         }
 
-        public override Models.UserAnswer Create(Models.UserAnswer obj)
+        public override UserAnswer Create(UserAnswer obj)
         {
             this.OpenConnection();
             Dictionary<string, dynamic> userAnswerDictionnary = new Dictionary<string, dynamic>();
@@ -41,17 +41,17 @@ namespace apiFilRougeIb.Repositories
             return obj;
         }
 
-        //public override int Delete(long id)
-        //{
-        //    this.OpenConnection();
-        //    string request = _queryBuilder.Delete("userAnswer", id);
-        //    MySqlCommand cmd = new MySqlCommand(request, connectionSql);
-        //    int result = cmd.ExecuteNonQuery();
-        //    connectionSql.Close();
-        //    return result;
-        //}
+        public override int Delete(long id)
+        {
+            this.OpenConnection();
+            string request = _queryBuilder.Delete("userAnswer", id);
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            int result = cmd.ExecuteNonQuery();
+            connectionSql.Close();
+            return result;
+        }
 
-        public List<Models.UserAnswer> FindUsers(long idUsers)
+        public List<UserAnswer> FindUsers(long idUsers)
         {
             this.OpenConnection();
             string request = _queryBuilder
@@ -61,11 +61,11 @@ namespace apiFilRougeIb.Repositories
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Models.UserAnswer> listUserAnswers = new List<Models.UserAnswer>();
+            List<UserAnswer> listUserAnswers = new List<UserAnswer>();
 
             while (rdr.Read())
             {
-                Models.UserAnswer userAnswer = new Models.UserAnswer();
+                UserAnswer userAnswer = new UserAnswer();
                 userAnswer.User_IdUser = rdr.GetInt64(0);
                 userAnswer.Answer_IdAnswer = rdr.GetInt64(1);
                 userAnswer.Question_IdQuestion = rdr.GetInt64(2);
@@ -76,7 +76,7 @@ namespace apiFilRougeIb.Repositories
         }
 
 
-        public List<Models.UserAnswer> FindQuestions(long idQuestions)
+        public List<UserAnswer> FindQuestions(long idQuestions)
         {
             this.OpenConnection();
             string request = _queryBuilder
@@ -86,11 +86,11 @@ namespace apiFilRougeIb.Repositories
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Models.UserAnswer> listUserAnswers = new List<Models.UserAnswer>();
+            List<UserAnswer> listUserAnswers = new List<UserAnswer>();
 
             while (rdr.Read())
             {
-                Models.UserAnswer userAnswer = new Models.UserAnswer();
+                UserAnswer userAnswer = new UserAnswer();
                 userAnswer.User_IdUser = rdr.GetInt64(0);
                 userAnswer.Answer_IdAnswer = rdr.GetInt64(1);
                 userAnswer.Question_IdQuestion = rdr.GetInt64(2);
@@ -102,7 +102,7 @@ namespace apiFilRougeIb.Repositories
 
 
 
-        public List<Models.UserAnswer> FindAnswers(long idAnswers)
+        public List<UserAnswer> FindAnswers(long idAnswers)
         {
             this.OpenConnection();
             string request = _queryBuilder
@@ -112,11 +112,11 @@ namespace apiFilRougeIb.Repositories
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Models.UserAnswer> listUserAnswers = new List<Models.UserAnswer>();
+            List<UserAnswer> listUserAnswers = new List<UserAnswer>();
 
             while (rdr.Read())
             {
-                Models.UserAnswer userAnswer = new Models.UserAnswer();
+                UserAnswer userAnswer = new UserAnswer();
                 userAnswer.User_IdUser = rdr.GetInt64(0);
                 userAnswer.Answer_IdAnswer = rdr.GetInt64(1);
                 userAnswer.Question_IdQuestion = rdr.GetInt64(2);
@@ -149,10 +149,7 @@ namespace apiFilRougeIb.Repositories
             return Find(id);
         }
 
-        public override UserAnswer Find(long id)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public override List<UserAnswer> FindAll()
         {
@@ -177,7 +174,8 @@ namespace apiFilRougeIb.Repositories
             return listUserAnswers;
         }
 
-        public override int Delete(long id)
+
+        public override UserAnswer Find(long id)
         {
             throw new NotImplementedException();
         }

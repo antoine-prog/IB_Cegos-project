@@ -67,7 +67,8 @@ namespace apiFilRougeIb.Repositories
             {
                 question.IdQuestion = rdr.GetInt64(0);
                 question.Title = rdr.GetString(1);
-                question.Level_idLevel = rdr.GetInt64(2);
+                question.Comment = rdr.GetString(2);
+                question.Level_idLevel = rdr.GetInt64(3);
               
             }
             this.CloseConnection(rdr);
@@ -92,13 +93,41 @@ namespace apiFilRougeIb.Repositories
                 Models.Question question = new Models.Question();
                 question.IdQuestion = rdr.GetInt64(0);
                 question.Title = rdr.GetString(1);
-                question.Level_idLevel = rdr.GetInt64(2);
+                try {
+                question.Comment = rdr.GetString(2); } 
+                catch { }
+                question.Level_idLevel = rdr.GetInt64(3);
                 listQuestion.Add(question);
             }
             this.CloseConnection(rdr);
             return listQuestion;
         }
 
+        public List<Models.Question> FindAllByQuizz(long idUser)
+        {
+            this.OpenConnection();
+            string request = _queryBuilder
+                .Select()
+                .From("question")
+                .Join("quizz_has_questions","quizz_has_questions.question_idquestion","question.idquestion")
+                .Where("quizz_idquizz",idUser)
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            List<Models.Question> listQuestion = new List<Models.Question>();
+
+            while (rdr.Read())
+            {
+                Models.Question question = new Models.Question();
+                question.IdQuestion = rdr.GetInt64(0);
+                question.Title = rdr.GetString(1);
+                question.Comment = rdr.GetString(2);
+                question.Level_idLevel = rdr.GetInt64(3);
+                listQuestion.Add(question);
+            }
+            this.CloseConnection(rdr);
+            return listQuestion;
+        }
 
         public override Models.Question Update(long id, Models.Question obj)
         {
