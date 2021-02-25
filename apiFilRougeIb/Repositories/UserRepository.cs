@@ -45,7 +45,7 @@ namespace apiFilRougeIb.Repositories
 
         public override int Delete(long id)
         {
-            //this.OpenConnection();
+            this.OpenConnection();
             string request = _queryBuilder.DeleteUser("user", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             int result = cmd.ExecuteNonQuery();
