@@ -4,8 +4,24 @@
 html {
     font-size: 62.5%;
 }
+body{
+    background-color: rgb(7, 36, 14);
+    color :#ccc8db;
+}
+
+.container {
+	max-width: 90%;
+    margin:auto;
+}
 
 /* header */
+div{
+    background-color: rgb(218, 92, 92);
+    height : 7em;
+}
+
+ 
+
 
 /* header */
 
@@ -13,19 +29,37 @@ html {
 
 /* body */
 
-section {
-    margin: 10em ;
-    font-size: xx-large;
-    border-color: black;
-  
+
+.mainclass {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    background-color: white;
+    color: #333;
+    height: 18em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
 }
-::placeholder {
-    font-size: large;
+
+.inmain{
+    padding-top: 00.5em;
+    padding-bottom: 00.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 0.5em;
+    height: 8em;
+    background-color: whitesmoke;
+    }
+.button{
+    padding-top: 0.5em;
+    padding-bottom: 00.5em;
+    
 }
-#Validez{
-       box-sizing: content-box;
-       display: flex;
-       justify-content: center;
+
+input{
+    padding-top: 0.25em;
+    padding-bottom: 00.22em;
 }
 
 

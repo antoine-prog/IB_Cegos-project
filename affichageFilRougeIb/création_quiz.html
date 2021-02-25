@@ -9,42 +9,58 @@
     <link rel="stylesheet" href="./styles/création_quiz.style.css">
 </head>
 
-<body>
-
-<section>
-    <form name="submitForm">
+<body class="container">
+    <header>
         <div>
-            <label> Choisissez un nom : 
-                <input type="text" name="nomQuiz" id="nomQuiz" placeholder="Nom du quiz">
-            </label>
+           
         </div>
 
+    </header>
 
-        <div>
-            <label> Choisissez un thème : 
-                <input type="text" name="theme" id="theme" placeholder="Thème du quiz">
-                <select name="themes" id="themes">
+
+
+    <main>
+        <section class="mainclass">
+            <form name="submitForm">
+                <div class="inmain">
+                    <label> Saisissez un nom : 
+                        <input type="text" name="nomQuiz" id="nomQuiz" placeholder="Nom du quiz">
+                    </label> <br>
                 
-                </select>
+                    <label> Sélectionnez un thème : 
+                        <input type="text" name="theme" id="theme" placeholder="Thème du quiz">
+                        <select name="themes" id="themes">
+                        </select>
+        
+                    </label> <br>
+            
+                    <label> Sélectionnez un niveau : 
+                        <input type="text" name="levelQuiz" id="levelQuiz" placeholder="Niveau du quiz">
+                        <select name="level" id="level">
+                        </select>
+        
+                    </label> <br>
 
-            </label>
-        </div>
+                    <nav class="button">
+                        <button type="button" onclick=""onSubmit(form)>Validez</button>
+                    </nav>             
+                </div>
+            </form>
+        </section>
 
+    </main>
+
+
+
+    <footer>
         <div>
-             <label> Choisissez un niveau du quiz : 
-                <input type="text" name="levelQuiz" id="levelQuiz" placeholder="Niveau du quiz">
-                <select name="level" id="level">
-                
-                </select>
 
-            </label>
         </div>
 
-        <div id="Validez">
-            <input type="button" value="Validez" onclick="onSubmit(form)">
-        </div>
-    </form>
-</section>
+    </footer>
+
+
+
 
 
 
