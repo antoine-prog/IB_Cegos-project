@@ -7,8 +7,7 @@ import { AppService } from './app.service';
 })
 
 export class AppComponent {
-<<<<<<< HEAD:angular-ib-cegos-filRouge/src/app/app.component.ts
-  title = 'angular-ib-cegos-filRouge';
+<<<<<<< HEAD:angular-ib-cegos-filRouge/src/app/app.component.ts  title = 'angular-ib-cegos-filRouge';
   posts = []
 
   constructor(service: AppService) {
