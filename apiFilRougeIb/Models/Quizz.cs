@@ -13,13 +13,13 @@ namespace apiFilRougeIb.Models
         public long User_idUser { get; set; }
         public long Theme_idTheme { get; set; }
         public string Code { get; set; }
-        public string? Comment { get; set; }
-        public DateTime? DateFermeture { get; set; }
+        public DateTime? DateClosed { get; set; }
         public int? Timer { get; set; }
+        public int Level_idLevel { get; set; }
 
         public Quizz() { }
         public Quizz(string name, long user_idUser, long Theme_idTheme,string code,
-            DateTime? dateFermeture,  string? comment, int? timer, 
+            DateTime? dateClosed, int level_idlevel,  int? timer, 
             long? idQuizz = null)
         {
             this.Name = name;
@@ -27,9 +27,9 @@ namespace apiFilRougeIb.Models
             this.IdQuizz = idQuizz;
             this.Theme_idTheme = Theme_idTheme;
             this.Code =code;
-            this.DateFermeture =dateFermeture;
+            this.DateClosed =dateClosed;
             this.Timer =timer;
-            this.Comment = comment;
+            this.Level_idLevel = level_idlevel;
 
         }
     }

@@ -45,7 +45,7 @@ namespace apiFilRougeIb.Repositories
 
         public override int Delete(long id)
         {
-            //this.OpenConnection();
+            this.OpenConnection();
             string request = _queryBuilder.Delete("quizz", id);
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             int result = cmd.ExecuteNonQuery();
@@ -76,12 +76,13 @@ namespace apiFilRougeIb.Repositories
                 quiz.Code = rdr.GetString(3);
                 try
                 {
-                quiz.DateFermeture = rdr.GetDateTime(4);
+                quiz.DateClosed = rdr.GetDateTime(4);
 
                 }
                 catch { }
                 quiz.User_idUser = rdr.GetInt64(5);
                 quiz.Theme_idTheme = rdr.GetInt64(6);
+                quiz.Level_idLevel = rdr.GetInt32(7);
             }
             this.CloseConnection(rdr);
             return quiz;
@@ -113,18 +114,39 @@ namespace apiFilRougeIb.Repositories
                 quiz.Code = rdr.GetString(3);
                 try
                 {
-                    quiz.DateFermeture = rdr.GetDateTime(4);
+                    quiz.DateClosed = rdr.GetDateTime(4);
 
                 }
                 catch { }
                 quiz.User_idUser = rdr.GetInt64(5);
                 quiz.Theme_idTheme = rdr.GetInt64(6);
+                quiz.Level_idLevel = rdr.GetInt32(7);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);
             return listQuiz;
         }
-
+        
+        public long FindByCode(string code)
+        {
+            this.OpenConnection();
+            string request = _queryBuilder
+                .Select("idquizz")
+                .From("quizz")
+                .Where("code",code)
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            Console.WriteLine(request);
+            long id;
+            while (rdr.Read())
+            {
+                id = rdr.GetInt64(0);
+                this.CloseConnection(rdr);
+                return id;
+            }
+            return 0;
+        }
         public override List<Models.Quizz> FindAll()
         {
             this.OpenConnection();
@@ -150,12 +172,13 @@ namespace apiFilRougeIb.Repositories
                 quiz.Code = rdr.GetString(3);
                 try
                 {
-                    quiz.DateFermeture = rdr.GetDateTime(4);
+                    quiz.DateClosed = rdr.GetDateTime(4);
 
                 }
                 catch { }
                 quiz.User_idUser = rdr.GetInt64(5);
                 quiz.Theme_idTheme = rdr.GetInt64(6);
+                quiz.Level_idLevel = rdr.GetInt32(7);
                 listQuiz.Add(quiz);
             }
             this.CloseConnection(rdr);

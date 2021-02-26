@@ -9,11 +9,13 @@ namespace apiFilRougeIb.Dto.FindAll
     {
         public long? IdSolution { get; set; }
         public string Solution { get; set; }
+        public bool IsTrue { get; set; }
         public long Question_idquestion { get; set; }
-        public FindAllSolutionsDto(string solution, long id_question, long? id=null)
+        public FindAllSolutionsDto(string solution, bool istrue, long id_question, long? id=null)
         {
             this.IdSolution = id;
             this.Solution = solution;
+            this.IsTrue = istrue;
             this.Question_idquestion = id_question;
         }
 

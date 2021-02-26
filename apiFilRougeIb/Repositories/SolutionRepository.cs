@@ -69,7 +69,8 @@ namespace apiFilRougeIb.Repositories
             {
                 solution.IdSolution = rdr.GetInt64(0);
                 solution.solution = rdr.GetString(1);
-                solution.Question_idQuestion = rdr.GetInt64(2);
+                solution.IsTrue = rdr.GetBoolean(2);
+                solution.Question_idQuestion = rdr.GetInt64(3);
             }
             this.CloseConnection(rdr);
             return solution;
@@ -91,7 +92,8 @@ namespace apiFilRougeIb.Repositories
                 Models.Solution solution = new Models.Solution();
                 solution.IdSolution = rdr.GetInt64(0);
                 solution.solution = rdr.GetString(1);
-                solution.Question_idQuestion = rdr.GetInt64(2);
+                solution.IsTrue = rdr.GetBoolean(2);
+                solution.Question_idQuestion = rdr.GetInt64(3);
                 solutions.Add(solution);
             }
             this.CloseConnection(rdr);
@@ -113,7 +115,8 @@ namespace apiFilRougeIb.Repositories
                 Models.Solution solution = new Models.Solution();
                 solution.IdSolution = rdr.GetInt64(0);
                 solution.solution = rdr.GetString(1);
-                solution.Question_idQuestion = rdr.GetInt64(2);
+                solution.IsTrue = rdr.GetBoolean(2);
+                solution.Question_idQuestion = rdr.GetInt64(3);
                 listSolutions.Add(solution);
             }
             this.CloseConnection(rdr);
