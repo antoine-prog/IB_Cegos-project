@@ -60,6 +60,8 @@ import { NotfoundComponent } from './_pages/notfound/notfound.component';
 import { ActualitesComponent } from './_pages/home-connecte/_sousComponents/actualites/actualites.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './_pages/users/users.component';
+import { UserComponent } from './_components/user/user.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -88,7 +90,8 @@ import { UsersComponent } from './_pages/users/users.component';
     ModifierProfilComponent,
     NotfoundComponent,
     ActualitesComponent,
-    UsersComponent
+    UsersComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -127,6 +130,7 @@ import { UsersComponent } from './_pages/users/users.component';
     MatSortModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],

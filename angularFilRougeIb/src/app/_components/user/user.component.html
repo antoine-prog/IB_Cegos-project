@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>{{user.username}}</mat-card-title>
+    <mat-card-subtitle>{{user.firstName}} {{user.lastName}}</mat-card-subtitle>
+  </mat-card-header>
+  <div mat-card-image></div>
+  <mat-card-content>
+    <p>
+      {{user.adress}}
+    </p>
+    <p>
+      Admin : {{user.isAdmin}}  Créateur : {{user.isCreator}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Voir l'utilisateur</button>
+    <button mat-button (click)="delete()">SUPPRIMER</button>
+  </mat-card-actions>
+</mat-card>
