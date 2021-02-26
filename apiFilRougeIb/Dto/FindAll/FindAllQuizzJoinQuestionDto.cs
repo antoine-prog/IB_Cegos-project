@@ -10,7 +10,7 @@ namespace apiFilRougeIb.Dto.FindAll
     {
         public List<Models.Question> questions { get; set; }
         public FindAllQuizzJoinQuestionDto(FindAllQuizzDto quizz) : base(quizz.Name, quizz.User_idUser, quizz.Theme_idTheme,quizz.Code, quizz.DateFermeture,
-            quizz.Comment, quizz.Timer,quizz.IdQuizz)
+            quizz.Level_idLevel, quizz.Comment, quizz.Timer,quizz.IdQuizz)
         {
             this.questions = new QuestionRepository(new Utils.QueryBuilder()).FindAllByQuizz((long)quizz.IdQuizz);
         }

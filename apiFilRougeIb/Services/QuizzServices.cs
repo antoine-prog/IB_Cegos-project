@@ -152,12 +152,12 @@ namespace apiFilRougeIb.Services
         private Dto.FindAll.FindAllQuizzDto TransformModelToDto(Models.Quizz quizz)
         {
             return new Dto.FindAll.FindAllQuizzDto(quizz.Name, quizz.User_idUser, quizz.Theme_idTheme, quizz.Code, quizz.DateFermeture, 
-            quizz.Comment, quizz.Timer, quizz.IdQuizz);
+           quizz.Level_idLevel, quizz.Comment, quizz.Timer, quizz.IdQuizz);
         }
         private Models.Quizz TransformDtoToModel(Dto.Create.CreateQuizzDto quizz)
         {
             return new Models.Quizz(quizz.Name, quizz.User_idUser, quizz.Theme_idTheme, quizz.Code, quizz.DateFermeture,
-            quizz.Comment, quizz.Timer);
+            quizz.Level_idLevel, quizz.Comment, quizz.Timer);
         }
         private Dto.AfterCreate.AfterCreateQuizzDto TransformModelToAfterCreateDto(Models.Quizz quiz, bool isCreated)
         {
