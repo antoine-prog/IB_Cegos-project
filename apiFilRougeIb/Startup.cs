@@ -16,9 +16,11 @@ namespace apiFilRougeIb
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -32,6 +34,22 @@ namespace apiFilRougeIb
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "apiFilRougeIb", Version = "v1" });
             });
+
+            //RAJOUTTTTTTTTTTTTTTTTTTTTTTTTTTT
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                                  });
+            });
+            // services.AddResponseCaching();
+            services.AddControllers();
+
+            //FIN RAJOUUUUUUUUUUUUUUTTTTTTTTTTT
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,14 +63,17 @@ namespace apiFilRougeIb
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
+            //rajout
+            app.UseCors(MyAllowSpecificOrigins);
+            //rajout
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+
+
+
+                endpoints.MapControllers().RequireCors(MyAllowSpecificOrigins); ;
             });
         }
     }

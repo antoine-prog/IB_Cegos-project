@@ -9,7 +9,6 @@ namespace FilRougeIb
         
         public long? IdQuestions { get; set; }
         public string Title { get; set; }
-        public long Theme_idTheme { get; set; }
         public long Level_idLevel { get; set; }
         public Quiz Quiz { get; set; }
         public List<Solution> Solutions { get; set; } = new List<Solution>();
@@ -18,12 +17,11 @@ namespace FilRougeIb
 
         public Question() { }
 
-        public Question(string title, long theme_idTheme, long level_idLevel, Quiz quiz, List<Solution> solutions, Answer answer, long? idQuestions)
+        public Question(string title, long level_idLevel, Quiz quiz, List<Solution> solutions, Answer answer, long? idQuestions)
         {
            
             this.IdQuestions = idQuestions;
             this.Title = title;
-            this.Theme_idTheme = theme_idTheme;
             this.Level_idLevel = level_idLevel;
             this.Quiz = quiz;
             this.Solutions = solutions;

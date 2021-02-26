@@ -89,6 +89,8 @@ namespace FilRougeIb
             this.Mail = Console.ReadLine();
             Console.WriteLine("Saisissez votre mot de passe");
             this.Password = Console.ReadLine();
+            this.IsCreator = true;
+            this.IsCreator = true;
             Console.WriteLine("Vous venez de créer votre utilisateur");
             Console.WriteLine("----------------------------------------------------------------");
         }
@@ -109,29 +111,29 @@ namespace FilRougeIb
 
                 //On demande s'il veut voir un quizz en particulier
                 Console.WriteLine("quel questionanire voulez-vous voir ? (rentrer l'id)");
-                int choixQuiz = Int32.Parse(Console.ReadLine());
+                string choixQuiz = Console.ReadLine();
 
                 //on Vérifie que l'id que l'utilisateur rentre existe bien dans sa collection
                 foreach (Quiz q in ListQuiz)
                 {
                     //id à été trouvé dans la collection
-                    if (choixQuiz == q.IdQuiz)
+                    if (choixQuiz.Equals(q.Name))
                     {
-                        q.ShowQuiz();
+                        q.ShowthisQuiz(this);
                     }
                 }
 
-                //On demande à nouveau ce que l'utilisateur veut faire
-                Console.WriteLine("Que souhaitez vous faire maintenant ?");
-                Start.SelectMode();
             }
+            //On demande à nouveau ce que l'utilisateur veut faire
+            Console.WriteLine("Que souhaitez vous faire maintenant ?");
+            Start.SelectMode();
         }
         
 
 
 
 
-        public Quiz CreateQuiz() 
+        public void CreateQuiz() 
         {
             Quiz quizcreated = new Quiz();
             Console.WriteLine("Nommez votre quiz ?");
@@ -140,19 +142,62 @@ namespace FilRougeIb
             quizcreated.Theme = Console.ReadLine();
             Console.WriteLine("Combien de questions voulez vous ?");
             int nbrdequestions = Int32.Parse(Console.ReadLine());
-            for (int i = 0; i < nbrdequestions; i++) { }
-            Console.WriteLine("Vous avez créer " + nbrdequestions + " questions ?");
-            return quizcreated;
+            for (int i = 0; i < nbrdequestions; i++) {
+                Question newQuestion = new Question();
+                //intitulé de la question
+                Console.WriteLine($"Question {i + 1} : intitulé ");
+                newQuestion.Title = Console.ReadLine();
+                //niveau de la question
+                Console.WriteLine($"Question {i + 1} : niveau (1/2/3) ");
+                newQuestion.Level_idLevel = Int32.Parse(Console.ReadLine());
+                //nombre de proposition
+                Console.WriteLine($"Question {i + 1} : combien de proposition ? ");
+                int propositions = Int32.Parse(Console.ReadLine());
+                //Boucle on demande les propositions
+                for (int j = 0; j < propositions; j++)
+                {
+                    Solution newSolution = new Solution();
+                    //nom de la réponse
+                    Console.WriteLine($"Question {i + 1}, proposition {j+1} : intitulé ");
+                    newSolution.SolutionText = Console.ReadLine();
+                    //Est-ce la bonne réponse
+                    Console.WriteLine($"Question {i + 1}, proposition {j + 1} : bonne réponse ? (1 = oui, 2 = non)");
+                    int isTrueProposition = Int32.Parse(Console.ReadLine());
+                    if(isTrueProposition == 1)
+                    {
+                        newSolution.IsTrue = true;
+                    }
+                    else{
+                        newSolution.IsTrue = false;
+                    }
+                    //Ajout de la proposition à la question
+                    newQuestion.Solutions.Add(newSolution);
+                }
+                //Ajout de la question au quizz
+                quizcreated.Questions.Add(newQuestion);
 
+            }
+            //Ajout du quizz à l'utilisateur
+            this.ListQuiz.Add(quizcreated);
 
+            Console.WriteLine($"Vous avez créer le quizz {quizcreated.Name} comportant {nbrdequestions} questions ");
+            Start.SelectMode();
         }
 
         /// <summary>
         /// Affiche les données utilisateur
         /// </summary>
-        public static void ShowData() 
+        public void ShowData() 
         {
-
+            Console.WriteLine($"Username = {this.Username}");
+            Console.WriteLine($"Prénom = {this.FirstName}");
+            Console.WriteLine($"Nom = {this.LastName}");
+            Console.WriteLine($"Adresse = {this.Adress}");
+            Console.WriteLine($"Mail = {this.Mail}");
+            Console.WriteLine($"Mot de passe = {this.Password}");
+            Console.WriteLine($"Administrateur ? = {this.IsAdmin}");
+            Console.WriteLine($"Créateur ? = {this.IsCreator}");
+            Start.SelectMode();
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-inscription',
@@ -8,15 +10,36 @@ import { Router } from '@angular/router';
 })
 export class InscriptionComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  userForm : FormGroup;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb : FormBuilder,
+    private service : UserService){
+      this.userForm = this.fb.group({
+        firstName: [''],
+        lastName: [''],
+        username:[''],
+        adress: [''],
+        mail: [''],
+        password:[''],
+        isAdmin:false,
+        isCreator:true
+      })
+    }
 
   ngOnInit(): void {
   }
 
-  onRegister = () => {
-    alert("Vous êtes enregistré(e)");
+  // onRegister = () => {
+  //   alert("Vous êtes enregistré(e)");
+  // }
+
+  onSubmit = () =>{
+    this.service.create(this.userForm.value).subscribe();
+    this.router.navigate(['/home-connecte'], { relativeTo: this.route });
   }
 
-  
 
 }
