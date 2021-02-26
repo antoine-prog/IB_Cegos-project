@@ -1,3 +1,5 @@
+import { mainModule } from "process";
+
 export class User{
 
   private _idUser : number;
@@ -14,6 +16,7 @@ export class User{
   constructor(firstName : string, lastName : string, username : string, adress : string, mail : string, password : string, isAdmin : boolean, isCreator : boolean, idUser? : number){
     this._idUser = idUser;
     this._firstName = firstName;
+    this._mail = mail;
     this._lastName = lastName;
     this._username = username;
     this._adress = adress;
@@ -80,6 +83,12 @@ export class User{
 
   set isCreator(isCreator : boolean){
     this._isCreator = isCreator;
+  }
+  get mail(){
+    return this._mail;
+  }
+  set mail(mail : string){
+    this._mail=mail;
   }
 
 }
