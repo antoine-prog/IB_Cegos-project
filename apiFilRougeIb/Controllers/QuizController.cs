@@ -26,7 +26,7 @@ namespace apiFilRougeIb.Controllers
             return quizzServices.GetQuizz();
         }
 
-        // GET api/<TodosController>/5
+        // GET api/<QuizController>/5
         [HttpGet("{id}")]
         public Dto.FindAll.FindAllQuizzDto Get(long id)
         {
@@ -43,7 +43,11 @@ namespace apiFilRougeIb.Controllers
         {
             return quizzServices.GetQuizzJoin(id, "questions&solution");
         }
-
+        [HttpGet("code/{code}")]
+        public Dto.FindAll.FindAllQuizzDto Get4(string  code)
+        {
+            return quizzServices.GetQuizByCode(code);
+        }
 
         // POST api/<TodosController>
         [HttpPost]

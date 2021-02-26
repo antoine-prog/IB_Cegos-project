@@ -80,7 +80,10 @@ namespace apiFilRougeIb.Utils
                     string val = obj[key].ToString();
                     request.Append($"{val.Replace(',', '.')},");
                 }
-                else
+                else if (obj[key] is null)
+                {
+                    request.Append($"null,");
+                } else
                 {
                     request.Append($"'{obj[key]}',");
                 }
@@ -141,7 +144,8 @@ namespace apiFilRougeIb.Utils
 
         internal QueryBuilder Where(string key, dynamic value, string type = "=")
         {
-            request.Append($" WHERE {key} {type} {value}");
+          
+            request.Append($" WHERE {key} {type} '{value}'");
             return this;
         }
 
@@ -182,6 +186,10 @@ namespace apiFilRougeIb.Utils
                 {
                     string val = obj[key].ToString();
                     request.Append($"{key} = {val.Replace(',', '.')},");
+                }
+                else if (obj[key] is null)
+                {
+                    request.Append($"{key} = null,");
                 }
                 else
                 {
