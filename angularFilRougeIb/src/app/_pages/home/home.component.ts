@@ -11,5 +11,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  start = () =>{
+    // if(code !=0){
+    //   alert("Début de quiz")
+    // }
+    // else{
+    //   alert("Aucun questionnaire ne correpond à ce code")
+    // }
+  }
 
 }

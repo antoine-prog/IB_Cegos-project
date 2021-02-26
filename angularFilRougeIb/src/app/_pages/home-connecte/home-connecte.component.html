@@ -1,13 +1,12 @@
 <main>
-    <h1>Actualités</h1>
 
     <div>
+        <h1>Actualités</h1>
         <div>
-            <app-actualites> </app-actualites>
+            <app-actualites *ngFor="let actualite of actualites" [actualite]="actualites"></app-actualites>
         </div>
-        <div>
-            <button mat-button color="warn">Voir</button>
-        </div>
+        
     </div>
 
 </main>
+
