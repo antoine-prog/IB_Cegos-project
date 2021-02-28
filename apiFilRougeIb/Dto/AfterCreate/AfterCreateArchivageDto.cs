@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace apiFilRougeIb.Models
+namespace apiFilRougeIb.Dto.AfterCreate
 {
-    public class Archivage
+    public class AfterCreateArchivageDto
     {
-        public Archivage() { }
-        public Archivage(DateTime dateCompleted, bool isValidated, long quizz_idQuizz, long user_idUser,long? idArchivage =null)
+        public AfterCreateArchivageDto() { }
+        public AfterCreateArchivageDto(DateTime dateCompleted, bool isValidated, long quizz_idQuizz, long user_idUser, long? idArchivage)
         {
             this.IdArchivage = idArchivage;
             DateCompleted = dateCompleted;
             IsValidated = isValidated;
             Quizz_idQuizz = quizz_idQuizz;
             User_idUser = user_idUser;
+            IsCreated = true;
         }
 
         public long? IdArchivage { get; set; }
@@ -22,6 +20,6 @@ namespace apiFilRougeIb.Models
         public bool IsValidated { get; set; }
         public long Quizz_idQuizz { get; set; }
         public long User_idUser { get; set; }
-
+        public bool IsCreated { get; set; }
     }
 }

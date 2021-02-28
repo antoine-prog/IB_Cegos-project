@@ -83,7 +83,12 @@ namespace apiFilRougeIb.Utils
                 else if (obj[key] is null)
                 {
                     request.Append($"null,");
-                } else
+                } else if (obj[key] is DateTime)
+                {
+                    DateTime val = obj[key];
+                    request.Append($"'{val.Year}-{val.Month}-{val.Day} {val.Hour}:{val.Minute}:{val.Second}',");
+                }
+                else
                 {
                     request.Append($"'{obj[key]}',");
                 }
@@ -186,6 +191,11 @@ namespace apiFilRougeIb.Utils
                 {
                     string val = obj[key].ToString();
                     request.Append($"{key} = {val.Replace(',', '.')},");
+                }
+                else if (obj[key] is DateTime)
+                {
+                    DateTime val = obj[key];
+                    request.Append($"{key} = '{val.Year}-{val.Month}-{val.Day} {val.Hour}:{val.Minute}:{val.Second}',");
                 }
                 else if (obj[key] is null)
                 {
