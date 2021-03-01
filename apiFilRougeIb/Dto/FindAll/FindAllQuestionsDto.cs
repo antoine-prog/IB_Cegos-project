@@ -12,7 +12,7 @@ namespace apiFilRougeIb.Dto.FindAll
         public long Level_idLevel { get; set; }
         public string? Comment { get; set; }
 
-        public FindAllQuestionsDto(string title, long level_idLevel, string? comment,long? idQuestion = null)
+        public FindAllQuestionsDto(string title, long level_idLevel, string? comment = "",long? idQuestion = null)
         {
             Title = title;
             Level_idLevel = level_idLevel;

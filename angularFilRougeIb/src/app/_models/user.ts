@@ -1,3 +1,5 @@
+import { Quiz } from "./quiz";
+
 export class User{
 
   private _idUser : number;
@@ -9,10 +11,10 @@ export class User{
   private _password : string;
   private _isAdmin : boolean;
   private _isCreator : boolean;
-  private _listQuiz : [string]
+  private _listQuiz : [Quiz]
 
 
-  constructor(firstName : string, lastName : string, username : string, adress : string, mail : string, password : string, isAdmin : boolean, isCreator : boolean, listQuiz : [string], idUser? : number){
+  constructor(firstName : string, lastName : string, username : string, adress : string, mail : string, password : string, isAdmin : boolean, isCreator : boolean, listQuiz : [Quiz], idUser? : number){
     this._idUser = idUser;
     this._firstName = firstName;
     this._lastName = lastName;
@@ -93,11 +95,11 @@ export class User{
     this._isCreator = isCreator;
   }
 
-  get listQuiz() : [string] {
+  get listQuiz() : [Quiz] {
     return this._listQuiz;
   }
 
-  set listQuiz(listQuiz : [string]){
+  set listQuiz(listQuiz : [Quiz]){
     this._listQuiz = listQuiz;
   }
 }

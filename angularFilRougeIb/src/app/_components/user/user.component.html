@@ -2,13 +2,16 @@
    <mat-card>
    <div>
       <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel (opened)="openPannel()" (closed)="closePannel()">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{user.username}}
+            {{user.username}} {{user.firstName}} {{user.lastName}}
+            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+              <mat-icon (click)="deleteUtilisateur()">delete</mat-icon>
+            </button>
           </mat-panel-title>
           <mat-panel-description>
-            {{panelOpenState ? '' : '{{user.firstName}} {{user.lastName}}'}}
+            {{panelOpenState ? '{user.firstName} {{user.lastName}}' : 'Cliquer pour afficher l\'utilisateur'}}
           </mat-panel-description>
         </mat-expansion-panel-header>
           <p>Adresse : {{user.adress}}</p>
@@ -24,8 +27,7 @@
         </button>
         <button mat-button (click)="deleteQuiz()">SUPPRIMER</button>
     </div>
-  <mat-card-actions>
-    <button mat-button>Voir l'utilisateur (click)</button>
-    <button mat-button (click)="deleteUtilisateur()">SUPPRIMER</button>
-  </mat-card-actions>
+
+
+
 </mat-card>
