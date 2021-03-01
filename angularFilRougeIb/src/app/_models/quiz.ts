@@ -1,7 +1,7 @@
 
 export class Quiz{
 
-  private _idQuiz : number;
+  private _idQuizz : number;
   private _name : string;
   private _user_idUser : number;
   private _theme_idTheme: string;
@@ -11,7 +11,7 @@ export class Quiz{
   private _level_idLevel : number;
 
   constructor(name : string, user_idUser : number, theme_idTheme : string, code : string, level_idLevel : number, dateClosed? : Date, timer? : number, idQuiz? : number){
-    this._idQuiz = idQuiz;
+    this._idQuizz = idQuiz;
     this._name = name;
     this._user_idUser = user_idUser;
     this._theme_idTheme = theme_idTheme;
@@ -21,8 +21,8 @@ export class Quiz{
     this._level_idLevel = level_idLevel;
   }
 
-  get idQuiz() : number {
-    return this._idQuiz;
+  get idQuizz() : number {
+    return this._idQuizz;
   }
 
   get name() : string {
