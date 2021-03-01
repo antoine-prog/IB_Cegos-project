@@ -10,15 +10,19 @@ import { UserService } from 'src/app/_services/user.service';
 export class UserComponent implements OnInit {
 
   @Input() user : User;
+  panelOpenState = false;
 
   constructor(private service : UserService) { }
 
   ngOnInit(): void {
   }
 
-  delete() : void {
+  deleteUtilisateur() : void {
     console.log(this.user.idUser);
-    this.service.delete(this.user.idUser).subscribe;
+    this.service.delete(this.user.idUser).subscribe(user => {console.log(user)});
   }
 
+  deleteQuiz() : void {
+
+  }
 }

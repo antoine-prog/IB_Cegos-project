@@ -70,6 +70,7 @@ namespace apiFilRougeIb.Controllers
         [HttpDelete("{id}")]
         public int Delete(long id)
         {
+            Console.WriteLine("je suis dans le back");
             return userServices.Delete(id);
         }
     }
