@@ -10,10 +10,10 @@ namespace apiFilRougeIb.Models
         public long? IdAnswer { get; set; }
         public string answer { get; set; }
 
-        public bool Result { get; set; }
+        public bool? Result { get; set; }
         public Answer() { }
 
-        public Answer( string answer_, bool result,long? idAnswer=null)
+        public Answer( string answer_, bool? result,long? idAnswer=null)
         {
             IdAnswer = idAnswer;
             answer = answer_;
