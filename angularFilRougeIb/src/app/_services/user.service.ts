@@ -20,6 +20,11 @@ export class UserService {
     return this.http.get<User[]>(`${environment.apiUrl}/api/users/${idUser}`)
   }
 
+  getUserQuizbtId( idUser :number) : Observable<User[]>{
+    return this.http.get<User[]>(`${environment.apiUrl}/api/users/${idUser}/quizz`)
+
+  }
+
   create(user: User) : Observable<User>{
     return this.http.post<User>(`${environment.apiUrl}/api/users`, user)
   }
@@ -28,7 +33,8 @@ export class UserService {
         return this.http.put<User>(`${environment.apiUrl}/api/users`, user);
       }
 
-  delete(idUser : number) {
-    return this.http.delete(`${environment.apiUrl}/api/users/${idUser}`)
+  delete(idUser : number) : Observable<User[]>{
+    console.log("toto");
+    return this.http.delete<User[]>(`${environment.apiUrl}/api/users/${idUser}`)
   }
 }

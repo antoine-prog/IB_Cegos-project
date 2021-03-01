@@ -15,7 +15,7 @@ namespace apiFilRougeIb.Models
 
         public Question() { }
 
-        public Question(string title, long level_idLevel, string? comment,long? idQuestion = null)
+        public Question(string title, long level_idLevel, string? comment = "", long? idQuestion = null)
         {
             IdQuestion = idQuestion;
             Title = title;
