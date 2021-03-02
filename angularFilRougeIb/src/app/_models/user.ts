@@ -11,10 +11,10 @@ export class User{
   private _password : string;
   private _isAdmin : boolean;
   private _isCreator : boolean;
-  private _listQuiz : [Quiz]
+  private _listQuizz : Quiz[] = [];
 
 
-  constructor(firstName : string, lastName : string, username : string, adress : string, mail : string, password : string, isAdmin : boolean, isCreator : boolean, listQuiz : [Quiz], idUser? : number){
+  constructor(firstName : string, lastName : string, username : string, adress : string, mail : string, password : string, isAdmin : boolean, isCreator : boolean, idUser? : number){
     this._idUser = idUser;
     this._firstName = firstName;
     this._mail = mail;
@@ -25,7 +25,6 @@ export class User{
     this._password = password;
     this._isAdmin = isAdmin;
     this._isCreator = isCreator;
-    this._listQuiz = listQuiz;
   }
 
   get idUser() : number {
@@ -96,11 +95,11 @@ export class User{
     this._isCreator = isCreator;
   }
 
-  get listQuiz() : [Quiz] {
-    return this._listQuiz;
+  get listQuizz() : Quiz[] {
+    return this._listQuizz;
   }
 
-  set listQuiz(listQuiz : [Quiz]){
-    this._listQuiz = listQuiz;
+  set listQuizz(listQuiz : Quiz[]){
+    this._listQuizz = listQuiz;
   }
 }

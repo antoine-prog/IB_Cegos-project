@@ -8,18 +8,20 @@ import { NotfoundComponent } from './_pages/notfound/notfound.component';
 import { UsersComponent } from './_pages/users/users.component';
 
 import { QuizCreeCodeComponent } from './_pages/quiz-cree-code/quiz-cree-code.component';
+import { InscriptionCandidatComponent } from './_pages/inscription-candidat/inscription-candidat.component';
 
 
 
 const routes: Routes = [
   {path:"", component : HomeComponent},
+  //{path:':token', component : InscriptionCandidatComponent},
   {path:"inscription", component : InscriptionComponent},
 
   {path:"home-connecte", component : HomeConnecteComponent},
 
-  {path:"home-connecte", component : HomeConnecteComponent}, 
+  {path:"home-connecte", component : HomeConnecteComponent},
   {path:"quiz-cree-code", component : QuizCreeCodeComponent},
- 
+
   {path:"404", component : NotfoundComponent},
   {path:"users", component : UsersComponent},
   {path:"**", redirectTo: '404'}

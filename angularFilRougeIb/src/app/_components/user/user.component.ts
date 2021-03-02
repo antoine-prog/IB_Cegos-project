@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Quiz } from 'src/app/_models/quiz';
 import { User } from 'src/app/_models/user';
+import { UsersComponent } from 'src/app/_pages/users/users.component';
 import { UserService } from 'src/app/_services/user.service';
+import { switchMap } from 'rxjs/operators';
+import * as EventEmitter from 'events';
 
 @Component({
   selector: 'app-user',
@@ -12,29 +15,52 @@ export class UserComponent implements OnInit {
 
   @Input() user : User;
   panelOpenState = false;
-  listQuiz : Quiz[] ;
+  //listQuiz : Quiz[] = [] ;
+  descriptionA : string = "Cliquer pour afficher l'utilisateur";
+  descriptionB : string = "Afficher";
 
-  constructor(private service : UserService) { }
+  constructor(private service : UserService, private users:UsersComponent) { }
 
   ngOnInit(): void {
+    this.getUserQuiz();
   }
 
-  openPannel(){
-    this.panelOpenState = true
-    this.service.getUserQuizbtId(this.user.idUser).subscribe(user =>{console.log(user)})
-    this.listQuiz = this.user.listQuiz;
+  getUserQuiz(){
+    console.log(this.user.listQuizz);
+    this.service.getUserQuizbtId(this.user.idUser).subscribe(data => {
+      // this.user.listQuiz = [...data];
+      this.user.listQuizz = data.listQuizz
+      console.log(this.user.listQuizz);
+    })
+    //this.listQuiz = this.user.listQuiz;
+    // console.log(this.user.listQuiz);
   }
 
-  closePannel(){
-    this.panelOpenState = false
+  openPannelA(){
+    this.panelOpenState = true;
+    this.descriptionA = this.user.firstName + " " + this.user.lastName;
+  }
+
+  closePannelA(){
+    this.panelOpenState = false;
+    this.descriptionA = "Cliquer pour afficher l'utilisateur";
+  }
+
+  openPannelB(){
+    this.descriptionB = "Fermer";
+  }
+
+  closePannelB(){
+    this.descriptionB = "Afficher"
   }
 
   deleteUtilisateur() : void {
-    console.log(this.user.idUser);
-    this.service.delete(this.user.idUser).subscribe(user => {console.log(user)});
+    this.service.delete(this.user.idUser).subscribe(data => console.log(data));
+    this.users.getUsers();
   }
+
 
   deleteQuiz() : void {
-
   }
+
 }

@@ -1,33 +1,52 @@
-
-   <mat-card>
-   <div>
+     <section>
       <mat-accordion>
-        <mat-expansion-panel (opened)="openPannel()" (closed)="closePannel()">
+        <mat-expansion-panel id="expension1" (opened)="openPannelA()" (closed)="closePannelA()">
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{user.username}} {{user.firstName}} {{user.lastName}}
-            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-              <mat-icon (click)="deleteUtilisateur()">delete</mat-icon>
-            </button>
+          <mat-panel-title id="pannelA">
+            {{user.username}}
           </mat-panel-title>
           <mat-panel-description>
-            {{panelOpenState ? '{user.firstName} {{user.lastName}}' : 'Cliquer pour afficher l\'utilisateur'}}
+            {{this.descriptionA}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-          <p>Adresse : {{user.adress}}</p>
-          <p>Mail : {{user.mail}}</p>
-          <p>Admin : {{user.isAdmin}}  Créateur : {{user.isCreator}}</p>
-          <p *ngFor="let quiz of listQuiz">
-            {{quiz.name}}
-          </p>
+          <span>Adresse : {{user.adress}} ----</span>
+          <span> Mail : {{user.mail}} ----</span>
+          <span> Admin : {{user.isAdmin}}  Créateur : {{user.isCreator}}</span>
+
+
+          <mat-expansion-panel id="expension2" class="mat-elevation-z0" (opened)="openPannelB()" (closed)="closePannelB()"[hideToggle]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title id="pannelB">
+                Listes des questionnaires
+              </mat-panel-title>
+              <mat-panel-description>
+                {{this.descriptionB}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+              <div *ngFor="let quiz of user.listQuizz" id="questionnaires">
+                <span id="nom-quizz">{{quiz.name}}</span>
+                <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" aria-label="menu-icon" id="bouton-quiz">
+                  <mat-icon>menu</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button class="menu-bouton" mat-button routerLink="/voir-questionnaire">VOIR LE QUESTIONNAIRE</button>
+                  <button class="menu-bouton" mat-button routerLink="/modifier-questionnaire">EDITER LE QUESTIONNAIRE</button>
+                  <button class="menu-bouton" mat-button routerLink="/voir-un-utilisateur">VOIR LES CANDIDATS</button>
+                  <button class="menu-bouton" mat-button (click)="deleteQuiz()">SUPPRIMER</button>
+                </mat-menu>
+              </div>
+
+            </mat-expansion-panel>
         </mat-expansion-panel>
       </mat-accordion>
-        <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
-          <mat-icon>menu</mat-icon>
+
+      <div>
+        <button mat-icon-button class="icon-color-green" aria-label="Example icon button with a heart icon">
+          <mat-icon routerLink="/modifier-profil">settings</mat-icon>
         </button>
-        <button mat-button (click)="deleteQuiz()">SUPPRIMER</button>
-    </div>
-
-
-
-</mat-card>
+        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+          <mat-icon (click)="deleteUtilisateur()">delete</mat-icon>
+        </button>
+      </div>
+    </section>
