@@ -11,6 +11,54 @@ mat-accordion {
 
 mat-panel-title#pannelA{
   width: 13rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-panel-title#pannelA p {
+  width: 20rem;
+  text-align: center;
+}
+
+mat-panel-description{
+  display : flex ;
+  justify-content: center;
+}
+
+#description-utilisateur{
+  display : flex ;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+#status-user-admin{
+  width: 5rem;
+  display: block;
+  text-align: center;
+  padding : 0.4rem;
+  border : 1px solid black;
+  background-color: gold;
+  color :rgb(255, 255, 255)
+}
+
+#status-user-creator{
+  display: block;
+  width: 5rem;
+  text-align: center;
+  padding : 0.4rem;
+  border : 1px solid black;
+  background-color: silver;
+  color :rgb(255, 255, 255)
+}
+
+#status-user-candidat{
+  display: block;
+  width: 5rem;
+  text-align: center;
+  padding : 0.4rem;
+  border : 1px solid black;
+  background-color: #cd7f32;
+  color :rgb(255, 255, 255)
 }
 
 mat-expansion-panel#expension1{
@@ -31,8 +79,30 @@ div#questionnaires{
   align-items: center;
 }
 
-span#nom-quizz{
+span#nom-quiz{
   margin-left: 3rem;
+  width: 42rem;
+}
+
+div#status-quiz{
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#status-quiz-ouvert{
+  padding : 0.4rem;
+  border : 1px solid black;
+  background-color: green;
+  color :rgb(255, 255, 255)
+}
+
+span#status-quiz-ferme{
+  padding : 0.4rem;
+  border : 1px solid black;
+  background-color: red;
+  color :rgb(255, 255, 255)
 }
 
 button#bouton-quiz{
@@ -41,6 +111,11 @@ button#bouton-quiz{
 
 button.menu-bouton{
   display: block;
+  width: 13rem;
+}
+button.menu-bouton:hover{
+  display: block;
+  background-color: blue;
 }
 
 button.icon-color-green{

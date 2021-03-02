@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   IsNotOk : boolean
   constructor(private service : HomeService,private shared : SharedService, private router :Router) { }
   SharedQuiz : Quiz;
-  
+
   ngOnInit(): void {
     this.shared.quiz.subscribe((result) =>{
       this.SharedQuiz=result
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
         this.IsNotOk=(data.idQuizz==null);
         if(this.IsNotOk) {
           alert("Le code que vous avez entré est incorrect. Veuillez réessayer.")
-        } 
+        }
         else
         {
           this.shared.UpdateQuiz(data)

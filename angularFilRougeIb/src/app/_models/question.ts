@@ -1,7 +1,7 @@
 import { time } from "console";
 import { tmpdir } from "os";
 
-export class Answer{
+export class Question{
 
   private _idQuestion : number;
   private _title : string;

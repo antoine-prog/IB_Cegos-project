@@ -3,15 +3,27 @@
         <mat-expansion-panel id="expension1" (opened)="openPannelA()" (closed)="closePannelA()">
         <mat-expansion-panel-header>
           <mat-panel-title id="pannelA">
-            {{user.username}}
+            <p>{{user.username}}</p>
+            <div id="status-user">
+              <div *ngIf="user.isAdmin == true, then admin else nonAdmin"></div>
+              <ng-template #admin><span id="status-user-admin">  Admin  </span></ng-template>
+              <ng-template #nonAdmin>
+                <div *ngIf="user.isCreator == true, then creator else nonCreator"></div>
+                  <ng-template #creator><span id="status-user-creator">Créateur</span></ng-template>
+                  <ng-template #nonCreator><span id="status-user-candidat">Candidat</span></ng-template>
+              </ng-template>
+            </div>
           </mat-panel-title>
           <mat-panel-description>
             {{this.descriptionA}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-          <span>Adresse : {{user.adress}} ----</span>
-          <span> Mail : {{user.mail}} ----</span>
-          <span> Admin : {{user.isAdmin}}  Créateur : {{user.isCreator}}</span>
+          <div id="description-utilisateur">
+            <span>{{user.firstName}} {{user.lastName}}</span>
+            <span>Adresse : {{user.adress}}</span>
+            <span> Mail : {{user.mail}}</span>
+          </div>
+
 
 
           <mat-expansion-panel id="expension2" class="mat-elevation-z0" (opened)="openPannelB()" (closed)="closePannelB()"[hideToggle]="true">
@@ -25,8 +37,13 @@
             </mat-expansion-panel-header>
 
               <div *ngFor="let quiz of user.listQuizz" id="questionnaires">
-                <span id="nom-quizz">{{quiz.name}}</span>
-                <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" aria-label="menu-icon" id="bouton-quiz">
+                <span id="nom-quiz">{{quiz.name}}</span>
+                <div id="status-quiz">
+                  <div *ngIf="test==true, then ouvert else ferme"></div>
+                  <ng-template #ouvert><span id="status-quiz-ouvert">Disponible</span><span>    {{quiz.dateClosed|date:['dd/MM/yy']}}</span></ng-template>
+                  <ng-template #ferme><span id="status-quiz-ouvert">Fermé</span><span>    {{quiz.dateClosed}}</span></ng-template>
+                </div>
+                <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" aria-label="menu-icon" id="bouton-quiz">
                   <mat-icon>menu</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
