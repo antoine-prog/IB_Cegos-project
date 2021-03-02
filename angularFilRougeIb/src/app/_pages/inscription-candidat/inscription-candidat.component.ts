@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Quiz } from 'src/app/_models/quiz';
 
 @Component({
   selector: 'app-inscription-candidat',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InscriptionCandidatComponent implements OnInit {
 
-  constructor() { }
+  Quiz : Quiz 
+  constructor(private route:ActivatedRoute) { 
 
-  ngOnInit(): void {
   }
+  
 
-}
+  ngOnInit() {
+    this.route.queryParams.subscribe(params=> {
+
+      this.Quiz=params as Quiz;
+  console.log(this.Quiz)
+})
+
+}}

@@ -9,13 +9,16 @@ import { UsersComponent } from './_pages/users/users.component';
 
 import { QuizCreeCodeComponent } from './_pages/quiz-cree-code/quiz-cree-code.component';
 import { QuizCandidatComponent } from './_pages/quiz-candidat/quiz-candidat.component';
+import { InscriptionCandidatComponent } from './_pages/inscription-candidat/inscription-candidat.component';
+
 
 
 
 const routes: Routes = [
   {path:"", component : HomeComponent},
 
-  {path:"init_questionnaire", component : QuizCandidatComponent},
+  {path:"quiz", component : QuizCandidatComponent},
+  {path:"espace_candidat",component : InscriptionCandidatComponent },
   
   {path:"inscription", component : InscriptionComponent},
 
@@ -26,7 +29,7 @@ const routes: Routes = [
  
   {path:"404", component : NotfoundComponent},
   {path:"users", component : UsersComponent},
-  {path:"**", redirectTo: '404'}
+  // {path:"**", redirectTo: '404'}
 ];
 
 @NgModule({
