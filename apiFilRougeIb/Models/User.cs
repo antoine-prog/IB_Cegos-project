@@ -18,7 +18,7 @@ namespace apiFilRougeIb.Models
         public bool IsCreator { get; set; }
 
         public User() { }
-        public User(string firstName, string lastName, string username, string adress, string mail, string password, bool isAdmin, bool isCreator,  long? idUser = null)
+        public User(string firstName, string lastName, string username, string adress, string mail, string password, bool isAdmin, bool isCreator, long? idUser = null)
         {
             IdUser = idUser;
             FirstName = firstName;

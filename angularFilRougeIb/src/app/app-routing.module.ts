@@ -13,7 +13,6 @@ import { InscriptionCandidatComponent } from './_pages/inscription-candidat/insc
 
 
 
-
 const routes: Routes = [
   {path:"", component : HomeComponent},
 
@@ -24,9 +23,9 @@ const routes: Routes = [
 
   {path:"home-connecte", component : HomeConnecteComponent},
 
-  {path:"home-connecte", component : HomeConnecteComponent}, 
+  {path:"home-connecte", component : HomeConnecteComponent},
   {path:"quiz-cree-code", component : QuizCreeCodeComponent},
- 
+
   {path:"404", component : NotfoundComponent},
   {path:"users", component : UsersComponent},
   // {path:"**", redirectTo: '404'}
