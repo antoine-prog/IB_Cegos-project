@@ -39,7 +39,7 @@ import { FooterComponent } from './_components/footer/footer.component';
 import { HeaderComponent } from './_components/header/header.component';
 import { HomeComponent } from './_pages/home/home.component';
 import { InscriptionComponent } from './_pages/inscription/inscription.component';
-import { VoletConnectionComponent } from './_pages/volet-connection/volet-connection.component';
+import { VoletConnectionComponent } from './_components/volet-connection/volet-connection.component';
 import { MotDePasseOublieComponent } from './_pages/mot-de-passe-oublie/mot-de-passe-oublie.component';
 import { MotDePasseOublieDeuxiemePageComponent } from './_pages/mot-de-passe-oublie-deuxieme-page/mot-de-passe-oublie-deuxieme-page.component';
 import { InscriptionCandidatComponent } from './_pages/inscription-candidat/inscription-candidat.component';
