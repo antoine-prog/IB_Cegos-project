@@ -9,7 +9,7 @@ namespace apiFilRougeIb.Dto.FindAll
     public class FindAllUsersJoinQuizzDto : FindAllUsersDto
     {
 
-        public List<Models.Quizz> ListQuizz{ get; set; }
+        public List<Models.Quizz>? ListQuizz{ get; set; }
         public FindAllUsersJoinQuizzDto(FindAllUsersDto user) :
             base(user.FirstName, user.LastName, user.Username, user.Adress, user.Mail, user.Password, user.IsAdmin, user.IsCreator, user.IdUser)
         {

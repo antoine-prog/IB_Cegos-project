@@ -1,0 +1,48 @@
+section{
+  display : flex ;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+mat-accordion {
+  width: 80%;
+}
+
+mat-panel-title#pannelA{
+  width: 13rem;
+}
+
+mat-expansion-panel#expension1{
+  border : 3px solid black;
+  background-color:rgb(173, 206, 212);
+}
+
+mat-expansion-panel#expension2{
+  border : 1px solid black;
+  background-color:rgb(255, 255, 255);
+}
+
+
+div#questionnaires{
+  border-top : 0.5px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+span#nom-quizz{
+  margin-left: 3rem;
+}
+
+button#bouton-quiz{
+  margin-right: 3rem;
+}
+
+button.menu-bouton{
+  display: block;
+}
+
+button.icon-color-green{
+  color : rgb(26, 104, 33);
+}
