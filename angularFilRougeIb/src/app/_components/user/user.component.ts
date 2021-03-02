@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   //listQuiz : Quiz[] = [] ;
   descriptionA : string = "Cliquer pour afficher l'utilisateur";
   descriptionB : string = "Afficher";
+  test : boolean = true;
 
   constructor(private service : UserService, private users:UsersComponent) { }
 
@@ -38,7 +39,7 @@ export class UserComponent implements OnInit {
 
   openPannelA(){
     this.panelOpenState = true;
-    this.descriptionA = this.user.firstName + " " + this.user.lastName;
+    this.descriptionA = "Cliquer pour fermer l'utilisateur";
   }
 
   closePannelA(){

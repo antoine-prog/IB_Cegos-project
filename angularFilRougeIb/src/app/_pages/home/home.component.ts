@@ -14,10 +14,10 @@ import { HomeService } from 'src/app/_services/home.service';
 export class HomeComponent implements OnInit {
 
   Code : string
-  Quiz : Quiz 
+  Quiz : Quiz
   constructor(private service : HomeService, private router :Router) { }
-  
-  
+
+
   ngOnInit(): void {
   }
 
@@ -26,13 +26,13 @@ export class HomeComponent implements OnInit {
     // console.log(this.Code);
     this.service.getByCode(this.Code).subscribe(
       (data) => {
-        
+
         this.Quiz=data;
-        console.log(data);  
+        console.log(data);
 
         if(this.Quiz.idQuizz==null) {
           alert("Le code que vous avez entré est incorrect. Veuillez réessayer.")
-        } 
+        }
         else
         {
           this.router.navigateByUrl("init_questionnaire")
