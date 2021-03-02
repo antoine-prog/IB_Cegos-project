@@ -1,17 +1,13 @@
-     <section>
+     <section *ngIf="user.isAdmin == true || user.isCreator == true">
       <mat-accordion>
         <mat-expansion-panel id="expension1" (opened)="openPannelA()" (closed)="closePannelA()">
         <mat-expansion-panel-header>
           <mat-panel-title id="pannelA">
             <p>{{user.username}}</p>
             <div id="status-user">
-              <div *ngIf="user.isAdmin == true, then admin else nonAdmin"></div>
+              <div *ngIf="user.isAdmin == true, then admin else creator"></div>
               <ng-template #admin><span id="status-user-admin">  Admin  </span></ng-template>
-              <ng-template #nonAdmin>
-                <div *ngIf="user.isCreator == true, then creator else nonCreator"></div>
-                  <ng-template #creator><span id="status-user-creator">Créateur</span></ng-template>
-                  <ng-template #nonCreator><span id="status-user-candidat">Candidat</span></ng-template>
-              </ng-template>
+              <ng-template #creator><span id="status-user-creator">Créateur</span></ng-template>
             </div>
           </mat-panel-title>
           <mat-panel-description>
