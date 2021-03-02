@@ -8,11 +8,15 @@ import { NotfoundComponent } from './_pages/notfound/notfound.component';
 import { UsersComponent } from './_pages/users/users.component';
 
 import { QuizCreeCodeComponent } from './_pages/quiz-cree-code/quiz-cree-code.component';
+import { QuizCandidatComponent } from './_pages/quiz-candidat/quiz-candidat.component';
 
 
 
 const routes: Routes = [
   {path:"", component : HomeComponent},
+
+  {path:"init_questionnaire", component : QuizCandidatComponent},
+  
   {path:"inscription", component : InscriptionComponent},
 
   {path:"home-connecte", component : HomeConnecteComponent},

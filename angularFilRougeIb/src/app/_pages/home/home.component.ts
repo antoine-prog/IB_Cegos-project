@@ -1,6 +1,8 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { send } from 'process';
 import { Quiz } from 'src/app/_models/quiz';
 import { HomeService } from 'src/app/_services/home.service';
 
@@ -13,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   Code : string
   Quiz : Quiz 
-  constructor(private service : HomeService) { }
+  constructor(private service : HomeService, private router :Router) { }
   
   
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class HomeComponent implements OnInit {
         } 
         else
         {
-          
+          this.router.navigateByUrl("init_questionnaire")
         }
           })
   }
