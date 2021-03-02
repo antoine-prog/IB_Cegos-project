@@ -4,14 +4,16 @@ export class Quiz{
   private _idQuizz : number;
   private _name : string;
   private _user_idUser : number;
-  private _theme_idTheme: string;
+  private _theme_idTheme: number;
   private _code : string;
   private _dateClosed : Date;
   private _timer : number;
   private _level_idLevel : number;
+  private _listquestionsolution : Quiz[] = [];
 
-  constructor(name : string, user_idUser : number, theme_idTheme : string, code : string, level_idLevel : number, dateClosed? : Date, timer? : number, idQuiz? : number){
+  constructor(name : string, user_idUser : number, theme_idTheme : number, code : string, level_idLevel : number, listquestionsolution : Quiz[], dateClosed? : Date, timer? : number, idQuiz? : number){
     this._idQuizz = idQuiz;
+    this._listquestionsolution=listquestionsolution;
     this._name = name;
     this._user_idUser = user_idUser;
     this._theme_idTheme = theme_idTheme;
@@ -25,6 +27,13 @@ export class Quiz{
     return this._idQuizz;
   }
 
+  get listquestionsolution() : Quiz[] {
+    return this._listquestionsolution;
+  }
+
+  set listquestionsolution(listquestionsolution : Quiz[]){
+    this._listquestionsolution = listquestionsolution;
+  }
   get name() : string {
     return this._name;
   }
@@ -41,11 +50,11 @@ export class Quiz{
     this._user_idUser = user_idUser;
   }
 
-  get theme_idTheme() : string {
+  get theme_idTheme() : number {
     return this._theme_idTheme;
   }
 
-  set theme_idTheme(theme_idTheme : string){
+  set theme_idTheme(theme_idTheme : number){
     this._theme_idTheme = theme_idTheme;
   }
 

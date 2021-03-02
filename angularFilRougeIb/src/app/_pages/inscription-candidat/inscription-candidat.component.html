@@ -1,3 +1,22 @@
-<h1>OI!</h1>
-    <h1>{{Quiz.code}}</h1>
-<h1>{{Quiz.name}}</h1>
+<main>
+    <H2>Avant de commencer ...</H2>
+    <p>Vous </p>
+    <form id="forminscription" [formGroup]="userForm" (ngSubmit)="onSubmit()" >
+        <label >Nom :
+            <input type="text" formControlName="lastName" id="nomtxt" placeholder="Entrer votre nom">
+        </label>
+        <label >Prénom :
+            <input type="text" formControlName="firstName" id="prenomtxt" placeholder="Entrer votre prénom">
+        </label>
+  
+        <label >Adresse mail :
+            <input type="text" formControlName="mail" id="mailtxt" placeholder="Entrer votre adresse mail">
+        </label>
+        <!-- <label >Confirmer le Mot de passe :
+        <input type="password" name="passwordConfirm" id="passwordConfirmtxt" placeholder="Confirmer mot de passe">
+        </label> -->
+
+        <button type="submit">Valider</button>
+    </form>
+
+</main>
