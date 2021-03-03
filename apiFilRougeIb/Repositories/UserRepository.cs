@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using apiFilRougeIb.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,25 @@ namespace apiFilRougeIb.Repositories
             obj.IdUser = idUser;
             connectionSql.Close();
             return obj;
+        }
+
+        public long GetByMail(string mail)
+        {
+            this.OpenConnection();
+            string request = _queryBuilder
+                .Select("idUser")
+                .From("user")
+                .Where("mail", mail)
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            long id = 0;
+            while (rdr.Read())
+            {
+                id=rdr.GetInt64(0);
+            }
+            this.CloseConnection(rdr);
+            return id;
         }
 
         public override int Delete(long id)

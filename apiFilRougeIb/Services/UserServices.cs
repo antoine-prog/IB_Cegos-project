@@ -30,7 +30,20 @@ namespace apiFilRougeIb.Services
             });
             return usersDto;
         }
-        
+
+        public bool Check(string mail)
+        {
+
+            long? id = this._userRepository.GetByMail(mail);
+            if (id != null || id==0)
+            {
+                return false;
+            } else
+            {
+                return true;
+            }
+        }
+
 
         //public FindAllUsersDto GetUserJoinLevel(long id)
         //{
@@ -41,7 +54,7 @@ namespace apiFilRougeIb.Services
         //    return userjoinleveldto;
         //}
 
-        
+
 
         public FindAllUsersDto GetUserJoinQuizz(long id)
         {

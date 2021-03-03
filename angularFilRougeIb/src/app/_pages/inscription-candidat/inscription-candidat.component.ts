@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { promise } from 'protractor';
 import { Quiz } from 'src/app/_models/quiz';
 import { User } from 'src/app/_models/user';
 import { SharedService } from 'src/app/_services/shared.service';
@@ -32,18 +33,38 @@ export class InscriptionCandidatComponent implements OnInit {
   
   onSubmit(){
     let alpha : User = this.userForm.value as User
-    if(this.checkExists()){
-      // let candidat : User = this.service.GetByMail()
-    } else {
-
-    }
+    this.checkExists(alpha.mail).subscribe((retour) => {
+      if(retour){
+        alert("Adresse déjà utilisée !!")
+      }
+      else {
+        alert("Nouvelle adresse !")
+      }
+    })
     
-    this.service.create(this.userForm.value).subscribe();
-    this.router.navigate(["quiz_candidat"])
+    // console.log(oi)
+    // console.log(oi)
+    // if(this.checkExists(alpha.mail)){
+    //   // let candidat : User = this.service.GetByMail()
+    //   alert("Adresse déjà éxistante !!!")
+    // } else {
+    //   alert("Adresse nouvelle !!")
+    // }
+    
+    // this.service.create(this.userForm.value).subscribe();
+    // this.router.navigate(["quiz_candidat"])
   }
-
-  checkExists = () => {
-    return true;
+  checkExists =(mail : string)  => {
+    // var result : boolean;
+    //  this.service.checkMail(mail).subscribe(retour=>{
+    //    result=retour
+    //    console.log(result)
+    //  return result;
+    return this.service.checkMail(mail);
+      //  console.log(retour);
+    //  });
+     
+    // return oi;
   }
 
   ngOnInit() {
