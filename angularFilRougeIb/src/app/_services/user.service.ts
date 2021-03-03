@@ -34,8 +34,8 @@ export class UserService {
         return this.http.put<User>(`${environment.apiUrl}/api/users`, user);
       }
 
-  delete(idUser : number) : Observable<User[]>{
+  delete(idUser : number){
     console.log("toto");
-    return this.http.delete<User[]>(`${environment.apiUrl}/api/users/${idUser}`)
+    return this.http.delete(`${environment.apiUrl}/api/users/${idUser}`)
   }
 }
