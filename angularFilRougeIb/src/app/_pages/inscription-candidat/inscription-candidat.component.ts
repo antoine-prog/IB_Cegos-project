@@ -35,12 +35,17 @@ export class InscriptionCandidatComponent implements OnInit {
     let doe : User = this.userForm.value as User
     this.checkExists(doe.mail).subscribe((retour) => {
       if(retour>=1){
-        if(confirm(`Adresse déjà utilisée ! Continuer en tant que ${doe.firstName} ${doe.lastName} ?`)){
+        this.service.getById(retour).subscribe((anon) => {
+          console.log(anon)
+          
+          if(confirm(`Adresse déjà utilisée ! Continuer en tant que ${anon.firstName } ${anon.lastName} ?`)){
           alert("On continue !!")
           // this.shared.UpdateCurrentUser(this.service.getById(1) )
         } else {
           alert("Retour en arrière !!")
         }
+        } )
+        
       }
       else {
         alert("Nouvelle adresse !")
