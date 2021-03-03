@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/app/_models/quiz';
@@ -31,9 +31,21 @@ export class InscriptionCandidatComponent implements OnInit {
   }
   
   onSubmit(){
+    let alpha : User = this.userForm.value as User
+    if(this.checkExists()){
+      // let candidat : User = this.service.GetByMail()
+    } else {
+
+    }
+    
     this.service.create(this.userForm.value).subscribe();
     this.router.navigate(["quiz_candidat"])
   }
+
+  checkExists = () => {
+    return true;
+  }
+
   ngOnInit() {
     this.shared.quiz.subscribe((result)=> {
       this.Quiz=result
