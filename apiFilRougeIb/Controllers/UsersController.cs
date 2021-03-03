@@ -36,7 +36,7 @@ namespace apiFilRougeIb.Controllers
         }
 
         [HttpGet("check/{mail}")]
-        public bool Check(string mail)
+        public long? Check(string mail)
         {
             return userServices.Check(mail);
         }

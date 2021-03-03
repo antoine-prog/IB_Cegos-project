@@ -19,8 +19,8 @@ export class UserService {
   getById(idUser : number) : Observable<User[]>{
     return this.http.get<User[]>(`${environment.apiUrl}/api/users/${idUser}`)
   }
-  checkMail(mail: string) : Observable<boolean> {
-    return this.http.get<boolean> (`${environment.apiUrl}/api/users/check/${mail}`)
+  checkMail(mail: string) : Observable<number> {
+    return this.http.get<number> (`${environment.apiUrl}/api/users/check/${mail}`)
   }
   getUserQuizbtId(idUser :number) : Observable<User>{
     return this.http.get<User>(`${environment.apiUrl}/api/users/${idUser}/quizz`)

@@ -31,17 +31,11 @@ namespace apiFilRougeIb.Services
             return usersDto;
         }
 
-        public bool Check(string mail)
+        public long? Check(string mail)
         {
 
             long? id = this._userRepository.GetByMail(mail);
-            if (id != null || id==0)
-            {
-                return false;
-            } else
-            {
-                return true;
-            }
+            return id;
         }
 
 
