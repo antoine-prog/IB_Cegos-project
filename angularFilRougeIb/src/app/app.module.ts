@@ -62,6 +62,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './_pages/users/users.component';
 import { UserComponent } from './_components/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
+import { QuestionComponent } from './_components/question/question.component';
 
 
 @NgModule({
@@ -91,7 +92,8 @@ import { HttpClientModule } from '@angular/common/http';
     NotfoundComponent,
     ActualitesComponent,
     UsersComponent,
-    UserComponent
+    UserComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,

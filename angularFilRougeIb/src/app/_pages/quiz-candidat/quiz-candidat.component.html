@@ -1,1 +1,7 @@
 <p>quiz-candidat works!</p>
+<p>{{quiz.name}}</p>
+<div >
+    <app-quesion *ngFor="let question of quiz.listquestionsolution" [question]="question">aie</app-quesion>
+    
+    <!-- <app-user *ngFor="let user of users" [user]="user"></app-user> -->
+</div>
