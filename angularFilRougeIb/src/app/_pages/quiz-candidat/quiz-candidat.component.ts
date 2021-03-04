@@ -16,6 +16,7 @@ export class QuizCandidatComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // debug
     this.service.getByCode("azerty").subscribe((quiz)=>{
       this.quiz=quiz
       console.log(this.quiz.listquestionsolution)

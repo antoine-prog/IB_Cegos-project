@@ -63,6 +63,7 @@ import { UsersComponent } from './_pages/users/users.component';
 import { UserComponent } from './_components/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionComponent } from './_components/question/question.component';
+import { SolutionComponent } from './_components/solution/solution.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { QuestionComponent } from './_components/question/question.component';
     ActualitesComponent,
     UsersComponent,
     UserComponent,
-    QuestionComponent
+    QuestionComponent,
+    SolutionComponent
   ],
   imports: [
     BrowserModule,

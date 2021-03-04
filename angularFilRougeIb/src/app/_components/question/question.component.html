@@ -1,3 +1,10 @@
-<p>oi</p>
+ <li>
+    <p>{{question.title}}</p>
+    <app-solution *ngFor="let solution of question.solution" [solution]="solution"></app-solution>
+</li>
 
-
+<!-- symptomes
+source
+situation
+solutions
+saut -->
