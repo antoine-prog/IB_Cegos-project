@@ -19,7 +19,7 @@ const routes: Routes = [
 
   {path:"quiz", component : QuizCandidatComponent},
   {path:"espace_candidat",component : InscriptionCandidatComponent },
-
+  {path:"quiz_candidat",component : QuizCandidatComponent},
   {path:"inscription", component : InscriptionComponent},
 
   {path:"home-connecte", component : HomeConnecteComponent},

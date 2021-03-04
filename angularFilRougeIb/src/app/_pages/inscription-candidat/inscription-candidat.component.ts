@@ -37,18 +37,19 @@ export class InscriptionCandidatComponent implements OnInit {
       if(retour>=1){
         this.service.getById(retour).subscribe((anon) => {
           console.log(anon)
-          
-          if(confirm(`Adresse déjà utilisée ! Continuer en tant que ${anon.firstName } ${anon.lastName} ?`)){
-          alert("On continue !!")
-          // this.shared.UpdateCurrentUser(this.service.getById(1) )
-        } else {
-          alert("Retour en arrière !!")
-        }
-        } )
-        
+          if(confirm(`Adresse déjà utilisée ! Continuer en tant que ${anon.firstName } ${anon.lastName}*/ ?`)){
+            alert("On continue !!")
+            this.shared.UpdateCurrentUser(anon)
+            this.router.navigateByUrl("quiz_candidat")
+          } else {}
+        })
       }
       else {
-        alert("Nouvelle adresse !")
+        if(confirm(`Continuer en tant que ${doe.firstName} ${doe.lastName} ?`)){
+          alert("Nous allons commencer !!")
+          this.shared.UpdateCurrentUser(doe)
+          this.router.navigateByUrl("quiz_candidat")
+        }
       }
     })
     
