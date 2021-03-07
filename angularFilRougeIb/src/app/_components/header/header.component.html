@@ -7,9 +7,15 @@
           <div class="naviguation">
               <a routerLink="/inscription">Inscription</a>
               <a routerLink="/users">Utilisateurs</a>
-              <button>Se connecter</button>
+              <a routerLink="/connexion">Connexion</a>
+              <div *ngIf="currentUser">
+                <p>{{currentUser.username}}</p>
+                <button (click)="seDeconnecter()">Deconnexion</button>
+              </div>
+              <div *ngIf="!currentUser">
+                <button>Se connecter</button>
+              </div>
           </div>
-
 
     </nav>
 </header>

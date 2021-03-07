@@ -1,0 +1,27 @@
+<main>
+  <h1> Page de connexion</h1>
+  <div class="login">
+    <h2 class="login-header">S'identifier</h2>
+    <form [formGroup]="loginForm" class="login-container" (ngSubmit)="onSubmit()">
+
+      <label for="username">Identifiant</label>
+      <input type="text" formControlName="username" [ngClass]="{'has-error': isSubmitted && formControls.username.errors}">
+      <div *ngIf="isSubmitted && formControls.username.errors" class="help-block">
+        <div *ngIf="formControls.username.errors.required" class="error">L'identifiant est requis</div>
+      </div>
+
+      <label for="password">Mot de passe</label>
+      <input type="password" formControlName="password" [ngClass]="{'has-error': isSubmitted && formControls.password.errors }">
+      <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+        <div *ngIf="formControls.password.errors.required" class="error">Mot de passe requis</div>
+      </div>
+
+      <div>
+        <input type="submit" value="Connexion">
+        <a routerLink="/inscription">Inscription</a>
+      </div>
+    </form>
+  </div>
+
+
+</main>

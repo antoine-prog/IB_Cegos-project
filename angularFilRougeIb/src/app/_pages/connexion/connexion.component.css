@@ -1,0 +1,71 @@
+h1{
+  text-align: center;
+}
+
+.login{
+  width: 40rem;
+  margin: 1.6rem auto;
+  font-size : 1.6 rem;
+}
+
+.login-header {
+  background: rgb(12, 77, 129);
+  padding: 2rem;
+  font-size: 1.4rem;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.login-container {
+  background: #ebebeb;
+  padding: 1.2rem;
+}
+
+.login p {
+  padding: 12rem;
+}
+
+.login input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 1.6rem;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}
+
+.login input[type="email"]:focus,
+.login input[type="password"]:focus {
+  border-color: #888;
+}
+
+.login input[type="submit"] {
+  background: rgb(1, 29, 51);
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+  background: #17c;
+}
+
+.login input[type="submit"]:focus {
+  border-color: #05a;
+}
+
+div.error{
+  color: red;
+}
