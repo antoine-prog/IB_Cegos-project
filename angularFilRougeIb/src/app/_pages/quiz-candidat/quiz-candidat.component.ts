@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Quiz } from 'src/app/_models/quiz';
+import { HomeService } from 'src/app/_services/home.service';
+import { SharedService } from 'src/app/_services/shared.service';
 
 @Component({
   selector: 'app-quiz-candidat',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizCandidatComponent implements OnInit {
 
-  constructor() { }
+  quiz : Quiz
+
+  constructor(private shared : SharedService,private service : HomeService ) { }
+
 
   ngOnInit(): void {
+    // debug
+    this.service.getByCode("azerty").subscribe((quiz)=>{
+      this.quiz=quiz
+      console.log(this.quiz.listquestionsolution)
+    })
+    // this.shared.quiz.subscribe((quiz) => {
+    //   this.quiz = quiz;
+    // } )
   }
 
 }

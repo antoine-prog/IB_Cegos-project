@@ -1,7 +1,7 @@
 <main>
-    <H2>Avant de commencer ...</H2>
-    <p>Vous </p>
     <form id="forminscription" [formGroup]="userForm" (ngSubmit)="onSubmit()" >
+        <H2>Avant de commencer...</H2>
+        <p>Veuillez remplir ce court questionnaire. Il permettra au recruteur de revenir vers vous ensuite. </p>
         <label >Nom :
             <input type="text" formControlName="lastName" id="nomtxt" placeholder="Entrer votre nom">
         </label>

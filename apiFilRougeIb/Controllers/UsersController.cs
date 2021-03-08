@@ -41,6 +41,12 @@ namespace apiFilRougeIb.Controllers
             return userServices.GetUser(id);
         }
 
+        [HttpGet("check/{mail}")]
+        public long? Check(string mail)
+        {
+            return userServices.Check(mail);
+        }
+
         [HttpGet("{id}/useranswers")]
         public Dto.FindAll.FindAllUsersDto Get2(long id)
         {

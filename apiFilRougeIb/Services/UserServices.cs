@@ -54,6 +54,13 @@ namespace apiFilRougeIb.Services
             //authentication succes
             return user;
         }
+        public long? Check(string mail)
+        {
+
+            long? id = this._userRepository.GetByMail(mail);
+            return id;
+        }
+
 
         //public FindAllUsersDto GetUserJoinLevel(long id)
         //{
@@ -64,7 +71,7 @@ namespace apiFilRougeIb.Services
         //    return userjoinleveldto;
         //}
 
-        
+
 
         public FindAllUsersDto GetUserJoinQuizz(long id)
         {
