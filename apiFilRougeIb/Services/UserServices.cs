@@ -31,6 +31,29 @@ namespace apiFilRougeIb.Services
             return usersDto;
         }
 
+        public Models.User Authenticate(string username, string password) 
+        {
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                return null;
+
+            var user = this._userRepository.FindAll().SingleOrDefault(x => x.Username == username);
+
+            if (user == null)
+                return null;
+
+            if (user.Password == null) 
+                throw new ArgumentNullException("password");
+
+            if (string.IsNullOrWhiteSpace(user.Password)) 
+                throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+
+            if (user.Password != password)
+                return null;
+
+            //authentication succes
+            return user;
+        }
         public long? Check(string mail)
         {
 

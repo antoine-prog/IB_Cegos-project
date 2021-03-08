@@ -12,6 +12,7 @@ export class User{
   private _isAdmin : boolean;
   private _isCreator : boolean;
   private _listQuizz : Quiz[] = [];
+  private _token: string;
 
 
   constructor(firstName : string, lastName : string, username : string, adress : string, mail : string, password : string, isAdmin : boolean, isCreator : boolean, idUser? : number){
@@ -101,5 +102,13 @@ export class User{
 
   set listQuizz(listQuiz : Quiz[]){
     this._listQuizz = listQuiz;
+  }
+
+  get token() : string {
+    return this._token;
+  }
+
+  set token(token : string){
+    this._token = token;
   }
 }

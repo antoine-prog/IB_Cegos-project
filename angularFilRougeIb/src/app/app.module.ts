@@ -39,7 +39,7 @@ import { FooterComponent } from './_components/footer/footer.component';
 import { HeaderComponent } from './_components/header/header.component';
 import { HomeComponent } from './_pages/home/home.component';
 import { InscriptionComponent } from './_pages/inscription/inscription.component';
-import { VoletConnectionComponent } from './_pages/volet-connection/volet-connection.component';
+import { VoletConnectionComponent } from './_components/volet-connection/volet-connection.component';
 import { MotDePasseOublieComponent } from './_pages/mot-de-passe-oublie/mot-de-passe-oublie.component';
 import { MotDePasseOublieDeuxiemePageComponent } from './_pages/mot-de-passe-oublie-deuxieme-page/mot-de-passe-oublie-deuxieme-page.component';
 import { InscriptionCandidatComponent } from './_pages/inscription-candidat/inscription-candidat.component';
@@ -62,8 +62,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './_pages/users/users.component';
 import { UserComponent } from './_components/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
-import { QuestionComponent } from './_components/question/question.component';
+import { ConnexionComponent } from './_pages/connexion/connexion.component';
 import { SolutionComponent } from './_components/solution/solution.component';
+import { QuestionComponent } from './_components/question/question.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { SolutionComponent } from './_components/solution/solution.component';
     ActualitesComponent,
     UsersComponent,
     UserComponent,
+    ConnexionComponent,
     QuestionComponent,
     SolutionComponent
   ],
