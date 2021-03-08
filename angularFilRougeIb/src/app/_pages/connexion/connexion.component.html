@@ -16,9 +16,16 @@
         <div *ngIf="formControls.password.errors.required" class="error">Mot de passe requis</div>
       </div>
 
-      <div>
-        <input type="submit" value="Connexion">
+      <div class="bouton-end">
+        <button mat-button [disabled]="loading" class="connexion">
+          <div>
+            <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode"></mat-progress-spinner>
+          </div>
+          <span>Connexion</span>
+        </button>
         <a routerLink="/inscription">Inscription</a>
+
+
       </div>
     </form>
   </div>

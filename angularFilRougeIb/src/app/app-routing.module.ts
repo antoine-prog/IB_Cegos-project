@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:"quiz", component : QuizCandidatComponent},
   {path:"espace_candidat",component : InscriptionCandidatComponent },
   {path:"inscription", component : InscriptionComponent},
-  {path:"home-connecte", component : HomeConnecteComponent},
+  {path:"home-connecte", component : HomeConnecteComponent, canActivate:[AuthGuardGuard]},
   {path:"quiz-cree-code", component : QuizCreeCodeComponent},
   {path:"404", component : NotfoundComponent},
   {path:"users", component : UsersComponent},

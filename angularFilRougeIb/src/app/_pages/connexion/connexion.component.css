@@ -51,21 +51,64 @@ h1{
   border-color: #888;
 }
 
-.login input[type="submit"] {
+button.connexion {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 1.6rem;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
   background: rgb(1, 29, 51);
   border-color: transparent;
   color: #fff;
   cursor: pointer;
+  margin-top : 1rem;
+  justify-content: center;
 }
 
-.login input[type="submit"]:hover {
+button.connexion:hover {
   background: #17c;
 }
 
-.login input[type="submit"]:focus {
+button.connexion:focus {
   border-color: #05a;
 }
 
 div.error{
   color: red;
+}
+
+div.bouton-end{
+
+  justify-content: center;
+}
+
+mat-progress-spinner{
+  margin:auto;
+  margin-top : 1rem;
+}
+
+a{
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.7rem;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: rgb(180, 118, 1);
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-decoration:  none;
+  text-align: center;
+}
+
+a:hover{
+  background: orange;
 }
