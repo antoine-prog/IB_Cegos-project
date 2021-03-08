@@ -15,18 +15,16 @@
       <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
         <div *ngIf="formControls.password.errors.required" class="error">Mot de passe requis</div>
       </div>
-
-      <div class="bouton-end">
-        <button mat-button [disabled]="loading" class="connexion">
-          <div>
-            <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode"></mat-progress-spinner>
-          </div>
-          <span>Connexion</span>
+      <div class="button-row">
+        <button mat-raised-button [disabled]="loading" class="connexion">
+          <span *ngIf="!loading">Connexion</span>
+          <mat-icon *ngIf="loading">
+            <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" diameter="35" ></mat-progress-spinner>
+          </mat-icon>
         </button>
-        <a routerLink="/inscription">Inscription</a>
-
-
       </div>
+
+      <a routerLink="/inscription">Inscription</a>
     </form>
   </div>
 
