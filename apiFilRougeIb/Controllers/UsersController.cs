@@ -76,7 +76,6 @@ namespace apiFilRougeIb.Controllers
         [HttpDelete("{id}")]
         public int Delete(long id)
         {
-            Console.WriteLine("je suis dans le back");
             return userServices.Delete(id);
         }
 
@@ -84,10 +83,16 @@ namespace apiFilRougeIb.Controllers
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] Authenticate model)
         {
+            Console.WriteLine("je suis dans le back");
+            Console.WriteLine(model);
             var user = this.userServices.Authenticate(model.Username, model.Password);
 
             if (user == null)
+            {
+                Console.WriteLine("l'user n'existe pas");
                 return BadRequest(new { message = "Username or password is incorrect" });
+            }
+               
 
             var tokenHandler = new JwtSecurityTokenHandler();
             //var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
