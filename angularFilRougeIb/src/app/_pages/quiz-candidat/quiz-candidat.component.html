@@ -1,6 +1,8 @@
-<p>{{quiz.name}}</p>
-<div>
-    <ol>
-        <app-question *ngFor="let question of quiz.listquestionsolution" [question]="question">aie</app-question>
-    </ol>
-</div>
+<main>
+    <p>{{quiz.name}}</p>
+    <div class="container">
+        <ol>
+            <app-question *ngFor="let question of quiz.listquestionsolution" [question]="question">aie</app-question>
+        </ol>
+    </div>
+</main>
