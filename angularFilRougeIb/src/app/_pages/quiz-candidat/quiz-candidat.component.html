@@ -2,7 +2,10 @@
     <p>{{quiz.name}}</p>
     <div class="container">
         <ol>
-            <app-question *ngFor="let question of quiz.listquestionsolution" [question]="question"(repSend)="addReponse()">aie</app-question>
+            <app-question *ngFor="let question of quiz.listquestionsolution" [question]="question"(questionUpdate)="addReponse()">aie</app-question>
         </ol>
+    </div>
+    <div>
+        <input type="button" value="Valider" (click)="valider()">
     </div>
 </main>

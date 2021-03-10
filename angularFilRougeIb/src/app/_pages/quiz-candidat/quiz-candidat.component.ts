@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Quiz } from 'src/app/_models/quiz';
 import { HomeService } from 'src/app/_services/home.service';
 import { SharedService } from 'src/app/_services/shared.service';
@@ -14,12 +15,13 @@ import { SharedService } from 'src/app/_services/shared.service';
 export class QuizCandidatComponent implements OnInit {
 
   quiz : Quiz
-  private listReponses : FormArray
+  private listReponses : any[]
   
-  constructor(private shared : SharedService,private service : HomeService, private fb : FormBuilder ) {
-    this.listReponses=this.fb.array([
-      this.fb.control('')
-    ])
+  constructor(private shared : SharedService,private service : HomeService, private route:Router) {
+    // this.listReponses=this.fb.array([
+    //   this.fb.control('')
+    // ])
+    this.listReponses=[]
    }
   //  get listReponses() : FormArray {
   //    return this.listReponses
@@ -37,11 +39,13 @@ export class QuizCandidatComponent implements OnInit {
     // } )
   }
   addReponse(){
-    this.listReponses.push(this.fb.control(''))
+    // this.listReponses.push(this.fb.control(''))
     alert("oi")
   }
 
 
-  valider() {}
-
+  valider() {
+    this.route.navigate(["validation_quiz_candidat"]);
+  }
+  
 }

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter ,Component, Input, OnInit, Output } from '@angular/core';
+
 import { Question } from 'src/app/_models/question';
 
 @Component({
@@ -9,7 +10,7 @@ import { Question } from 'src/app/_models/question';
 export class QuestionComponent implements OnInit {
 
   @Input() question;
-  @Output() 
+  @Output() questionUpdate = new EventEmitter<any>()
   selected : number[];
   text : string;
 
@@ -29,7 +30,7 @@ export class QuestionComponent implements OnInit {
       else {
         this.selected.push(event)
       }
-    console.log(this.selected)
+    this.questionUpdate.emit(this.selected)
   }
   ngOnInit(): void {
   }

@@ -11,6 +11,7 @@ import { InscriptionCandidatComponent } from './_pages/inscription-candidat/insc
 import { ModifierProfilComponent } from './_pages/modifier-profil/modifier-profil.component';
 import {AuthGuardGuard} from './_guard/auth-guard.guard';
 import { ConnexionComponent } from './_pages/connexion/connexion.component';
+import { ValidationQuizCandidatComponent } from './_pages/validation-quiz-candidat/validation-quiz-candidat.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:"inscription", component : InscriptionComponent},
   {path:"home-connecte", component : HomeConnecteComponent, canActivate:[AuthGuardGuard]},
   {path:"quiz-cree-code", component : QuizCreeCodeComponent},
+  {path:"validation_quiz_candidat",component:ValidationQuizCandidatComponent},
   {path:"404", component : NotfoundComponent},
   {path:"users", component : UsersComponent},
   {path:"modifier-profil", component : ModifierProfilComponent},
