@@ -1,12 +1,7 @@
  <li>
     <p>{{question.title}}</p>
     <ul>
-        <app-solution *ngFor="let solution of question.solution" [solution]="solution"></app-solution>
+        <app-solution *ngFor="let solution of question.solution; let i =index" [solution]="solution" (repSend)="relai($event)"></app-solution>
     </ul>
 </li>
 
-<!-- symptomes
-source
-situation
-solutions
-saut -->

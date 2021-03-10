@@ -1,4 +1,4 @@
 <li>
-    <input type="radio" [id]="solution.question_idQuestion" [name]="solution.question_idQuestion"/>
+    <input type="radio" [id]="solution.question_idQuestion" [name]="solution.question_idQuestion" [value]="isChecked" (change)="changement()"/>
     <label for="solution.idSolution">{{solution.solution}}</label>
 </li>
