@@ -31,6 +31,13 @@ namespace apiFilRougeIb.Services
             return usersDto;
         }
 
+
+        /// <summary>
+        /// Authentification du user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public Models.User Authenticate(string username, string password) 
         {
 

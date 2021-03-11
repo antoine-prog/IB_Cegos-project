@@ -115,10 +115,15 @@ namespace apiFilRougeIb.Controllers
             // return basic user info and authentication token
             return Ok(new
             {
-                Id = user.IdUser,
-                Username = user.Username,
+                Id = user.IdUser,        
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Username = user.Username,
+                Adress = user.Adress,
+                Mail = user.Mail,
+                Password = user.Password,
+                IsAdmin = user.IsAdmin,
+                IsCreator = user.IsCreator,
                 Token = tokenString
             });
         }
