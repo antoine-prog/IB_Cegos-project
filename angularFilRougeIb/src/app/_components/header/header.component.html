@@ -1,21 +1,46 @@
 <header>
     <nav>
-        <div class="home">
-            <a routerLink="">Home</a>
+      <div>
+        <a routerLink="">
+          <img src="../../../assets/img/Logo Final.png" alt="logo questionanire" width="350">
+        </a>
+      </div>
 
-          </div>
           <div class="naviguation">
-              <a routerLink="/inscription">Inscription</a>
-              <a routerLink="/users">Utilisateurs</a>
-              <a routerLink="/connexion">Connexion</a>
-              <div *ngIf="currentUser">
-                <p>{{currentUser.username}}</p>
-                <button (click)="seDeconnecter()">Deconnexion</button>
+            <div>
+              <div class="dark-hover">
+                <a mat-raised-button  routerLink="/inscription" *ngIf="!currentUser" class="navo-button">Inscription</a>
               </div>
-              <div *ngIf="!currentUser">
-                <button>Se connecter</button>
+              <div class="dark-hover">
+                <a mat-raised-button  routerLink="/inscription" *ngIf="currentUser" class="navo-button">Nouveau</a>
               </div>
-          </div>
+              <div class="dark-hover">
+                <a mat-raised-button  routerLink="/inscription" *ngIf="currentUser" class="navo-button">Mes questionnaires</a>
+              </div>
+              <div class="dark-hover">
+                <a mat-raised-button  routerLink="/users" *ngIf="currentUser && currentUser.isAdmin == true" class="navo-button">Utilisateurs</a>
+              </div>
+            </div>
+            <div class="user-connect">
+              <div class="dark-hover">
+                <a mat-raised-button  routerLink="/connexion" *ngIf="!currentUser" class="navo-button">Connexion</a>
+              </div>
 
+              <div *ngIf="currentUser" class="username">
+                <button mat-button color="primary" [matMenuTriggerFor]="menu" aria-label="menu-icon" id="bouton-quiz">
+                  <mat-icon>person</mat-icon>
+                  {{currentUser.username}}
+                </button>
+                <mat-menu #menu="matMenu" class="menu-volet">
+                  <div class="dark-hover profil-button">
+                    <a mat-stroked-button  routerLink="/modifier-profil">Voir profil</a>
+                  </div>
+                  <div class="dark-hover profil-button">
+                    <button mat-stroked-button  (click)="seDeconnecter()">Déconnexion</button>
+                  </div>
+                </mat-menu>
+              </div>
+            </div>
+          </div>
     </nav>
 </header>

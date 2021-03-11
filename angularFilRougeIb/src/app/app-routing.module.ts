@@ -23,8 +23,8 @@ const routes: Routes = [
   {path:"home-connecte", component : HomeConnecteComponent, canActivate:[AuthGuardGuard]},
   {path:"quiz-cree-code", component : QuizCreeCodeComponent},
   {path:"404", component : NotfoundComponent},
-  {path:"users", component : UsersComponent},
-  {path:"modifier-profil", component : ModifierProfilComponent},
+  {path:"users", component : UsersComponent, canActivate:[AuthGuardGuard]},
+  {path:"modifier-profil", component : ModifierProfilComponent, canActivate:[AuthGuardGuard]},
   {path:"connexion", component : ConnexionComponent},
   {path:"**", redirectTo: '404'}
 
