@@ -15,7 +15,7 @@ import { SharedService } from 'src/app/_services/shared.service';
 export class QuizCandidatComponent implements OnInit {
 
   quiz : Quiz
-  private listReponses : any[]
+  listReponses : any[]
   
   constructor(private shared : SharedService,private service : HomeService, private route:Router) {
     // this.listReponses=this.fb.array([
@@ -38,9 +38,9 @@ export class QuizCandidatComponent implements OnInit {
     //   this.quiz = quiz;
     // } )
   }
-  addReponse(){
-    // this.listReponses.push(this.fb.control(''))
-    alert("oi")
+  updateReponse(event){
+    this.listReponses.push(event)
+    console.log(this.listReponses)
   }
 
 
