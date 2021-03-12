@@ -5,6 +5,7 @@ import { UsersComponent } from 'src/app/_pages/users/users.component';
 import { UserService } from 'src/app/_services/user.service';
 import { switchMap } from 'rxjs/operators';
 import * as EventEmitter from 'events';
+import { QuizService } from 'src/app/_services/quiz.service';
 
 @Component({
   selector: 'app-user',
@@ -20,7 +21,9 @@ export class UserComponent implements OnInit {
   descriptionB : string = "Afficher";
   test : boolean = true;
 
-  constructor(private service : UserService, private users:UsersComponent) { }
+  constructor(private userService : UserService,
+    private users:UsersComponent,
+    private quizService : QuizService) { }
 
   ngOnInit(): void {
     this.getUserQuiz();
@@ -28,7 +31,7 @@ export class UserComponent implements OnInit {
 
   getUserQuiz(){
     console.log(this.user.listQuizz);
-    this.service.getUserQuizbtId(this.user.idUser).subscribe(data => {
+    this.userService.getUserQuizbtId(this.user.idUser).subscribe(data => {
       // this.user.listQuiz = [...data];
       this.user.listQuizz = data.listQuizz
       console.log(this.user.listQuizz);
@@ -56,12 +59,12 @@ export class UserComponent implements OnInit {
   }
 
   deleteUtilisateur() : void {
-    this.service.delete(this.user.idUser).subscribe(data =>this.users.getUsers()  );
-
+    this.userService.delete(this.user.idUser).subscribe(data =>this.users.getUsers()  );
   }
 
 
-  deleteQuiz() : void {
+  deleteQuiz( id : number) : void {
+    this.quizService.delete(id).subscribe(data =>this.getUserQuiz())
   }
 
 }

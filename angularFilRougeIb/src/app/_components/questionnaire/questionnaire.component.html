@@ -1,0 +1,24 @@
+<section>
+
+<div class="information">
+  <div class="nom">
+    <span>{{questionnaire.name}}</span>
+    <span *ngIf="questionnaire.level_idLevel == 1" id="questionnaire-Junior">  Admin  </span>
+    <span *ngIf="questionnaire.level_idLevel == 2" id="questionnaire-Confirmé">  Confirmé  </span>
+    <span *ngIf="questionnaire.level_idLevel == 3" id="questionnaire-Expérimenté">  Expérimenté  </span>
+    <button mat-raised-button (click)="openDialog()">Afficher code</button>
+  </div>
+
+  <div class="userTry">
+
+  </div>
+</div>
+
+<div class="information2">
+
+
+</div>
+
+
+
+</section>

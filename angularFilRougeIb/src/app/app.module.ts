@@ -67,7 +67,10 @@ import { SolutionComponent } from './_components/solution/solution.component';
 import { QuestionComponent } from './_components/question/question.component';
 import { AlertComponent } from './_components/alert/alert.component';
 import { JwtInterceptor } from './_helper/jwt.interceptor';
-import {ErrorInterceptor } from './_helper/error-interceptor';
+import { QuestionnaireComponent } from './_components/questionnaire/questionnaire.component';
+import { DialogComponent } from './_components/dialog/dialog.component';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import { ErrorInterceptor } from './_helper/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -100,7 +103,9 @@ import {ErrorInterceptor } from './_helper/error-interceptor';
     ConnexionComponent,
     QuestionComponent,
     SolutionComponent,
-    AlertComponent
+    AlertComponent,
+    QuestionnaireComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -141,7 +146,8 @@ import {ErrorInterceptor } from './_helper/error-interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

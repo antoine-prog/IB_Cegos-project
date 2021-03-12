@@ -1,1 +1,12 @@
-<p>mes-questionnaires works!</p>
+<main>
+  <div class="title">
+    <span>Mes questionnaires</span>
+  </div>
+
+  <div>
+        <div>
+          <app-questionnaire *ngFor="let questionnaire of questionnaires" [questionnaire]="questionnaire"></app-questionnaire>
+        </div>
+  </div>
+</main>
+

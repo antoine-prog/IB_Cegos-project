@@ -33,7 +33,7 @@
             </mat-expansion-panel-header>
 
               <div *ngFor="let quiz of user.listQuizz" id="questionnaires">
-                <span id="nom-quiz">{{quiz.name}}</span>
+                <span id="nom-quiz" >{{quiz.name}}</span>
                 <div id="status-quiz">
                   <div *ngIf="test==true, then ouvert else ferme"></div>
                   <ng-template #ouvert><span id="status-quiz-ouvert">Disponible</span><span>    {{quiz.dateClosed|date:['dd/MM/yy']}}</span></ng-template>
@@ -46,7 +46,7 @@
                   <button class="menu-bouton" mat-button routerLink="/voir-questionnaire">VOIR LE QUESTIONNAIRE</button>
                   <button class="menu-bouton" mat-button routerLink="/modifier-questionnaire">EDITER LE QUESTIONNAIRE</button>
                   <button class="menu-bouton" mat-button routerLink="/voir-un-utilisateur">VOIR LES CANDIDATS</button>
-                  <button class="menu-bouton" mat-button (click)="deleteQuiz()">SUPPRIMER</button>
+                  <button class="menu-bouton" mat-button (click)="deleteQuiz(quiz.idQuizz)">SUPPRIMER</button>
                 </mat-menu>
               </div>
 

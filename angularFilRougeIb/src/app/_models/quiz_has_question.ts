@@ -1,6 +1,3 @@
-import { time } from "console";
-import { tmpdir } from "os";
-
 export class Quiz_has_Question{
 
   private _quizz_idQuizz : number;

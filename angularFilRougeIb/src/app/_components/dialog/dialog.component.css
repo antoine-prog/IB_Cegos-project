@@ -1,0 +1,9 @@
+.codename{
+  border : 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+span {
+  padding : 0.5rem;
+}
