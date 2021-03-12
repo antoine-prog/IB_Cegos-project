@@ -1,0 +1,42 @@
+#questionnaire-Expérimenté{
+width: 5rem;
+display: block;
+text-align: center;
+padding : 0.4rem;
+border : 1px solid black;
+background-color: rgb(202, 173, 5);
+color :rgb(255, 255, 255)
+}
+
+#questionnaire-Confirmé{
+  display: block;
+  width: 5rem;
+  text-align: center;
+  padding : 0.4rem;
+  border : 1px solid black;
+  background-color: rgb(129, 129, 129);
+  color :rgb(255, 255, 255)
+}
+
+#questionnaire-Junior{
+  display: block;
+  width: 5rem;
+  text-align: center;
+  padding : 0.4rem;
+  border : 1px solid black;
+  background-color:  #614e1a;
+  color :rgb(255, 255, 255)
+}
+
+div.information{
+  display :flex;
+
+}
+
+div.nom{
+  display: flex;
+  justify-content: space-between;
+  padding : 2rem;
+  align-items: center;
+  width: 60%;
+}

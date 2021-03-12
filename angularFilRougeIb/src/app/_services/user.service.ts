@@ -36,7 +36,6 @@ export class UserService {
       }
 
   delete(idUser : number){
-    console.log("toto");
     return this.http.delete(`${environment.apiUrl}/api/users/${idUser}`)
   }
 }

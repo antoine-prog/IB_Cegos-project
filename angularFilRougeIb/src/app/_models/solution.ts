@@ -1,6 +1,3 @@
-import { time } from "console";
-import { tmpdir } from "os";
-
 export class Solution{
 
   private _idSolution : number;

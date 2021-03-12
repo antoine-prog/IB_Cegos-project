@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Code</h1>
+<div mat-dialog-content>
+  <p>Questionnaire : {{data.name}}</p>
+  <div class="codename">
+    <span>{{data.code}}</span>
+    <button [cdkCopyToClipboard]="data.code">
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button color="warn" mat-button (click)="onClick()">Fermer</button>
+
+</div>
