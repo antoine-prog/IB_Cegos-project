@@ -27,6 +27,7 @@ export class UserService {
   }
 
   create(user: User) : Observable<User>{
+    console.log(user)
     return this.http.post<User>(`${environment.apiUrl}/api/users`, user)
   }
 
