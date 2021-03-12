@@ -13,6 +13,7 @@ import {AuthGuardGuard} from './_guard/auth-guard.guard';
 import { ConnexionComponent } from './_pages/connexion/connexion.component';
 import { CreationQuizComponent } from './_pages/creation-quiz/creation-quiz.component';
 import { MesQuestionnairesComponent } from './_pages/mes-questionnaires/mes-questionnaires.component';
+import { ValidationQuizCandidatComponent } from './_pages/validation-quiz-candidat/validation-quiz-candidat.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:"create", component : CreationQuizComponent, canActivate:[AuthGuardGuard]},
   {path:"questionnaires", component : MesQuestionnairesComponent, canActivate:[AuthGuardGuard]},
 
+  {path:"validation_quiz_candidat",component:ValidationQuizCandidatComponent},
   {path:"404", component : NotfoundComponent},
   {path:"users", component : UsersComponent, canActivate:[AuthGuardGuard]},
   {path:"modifier-profil", component : ModifierProfilComponent, canActivate:[AuthGuardGuard]},

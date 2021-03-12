@@ -108,7 +108,7 @@ namespace apiFilRougeIb.Repositories
             string request = _queryBuilder
                 .Select()
                 .From("userAnswer")
-                .Where("answer_idanswer", idAnswers, "=")
+                .Where("answeridanswer", idAnswers, "=")
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             MySqlDataReader rdr = cmd.ExecuteReader();

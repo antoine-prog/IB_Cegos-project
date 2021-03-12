@@ -13,7 +13,7 @@ export class Answer{
     this._result = result;
   }
 
-  get idQuiz() : number {
+  get idAnswer() : number {
     return this._idAnswer;
   }
 

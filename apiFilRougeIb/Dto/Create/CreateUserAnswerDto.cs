@@ -1,10 +1,10 @@
 ﻿namespace apiFilRougeIb.Dto.Create
 {
-    internal class CreateUserAnswerDto
+    public class CreateUserAnswerDto
     {
-        public CreateUserAnswerDto(long user_idUser, long answer_IdAnswer, long question_IdQuestion)
+        public CreateUserAnswerDto(long idUser, long answer_IdAnswer, long question_IdQuestion)
         {
-            IdUser = user_idUser;
+            IdUser = idUser;
             Answer_IdAnswer = answer_IdAnswer;
             Question_IdQuestion = question_IdQuestion;
         }
