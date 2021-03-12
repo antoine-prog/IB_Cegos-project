@@ -14,7 +14,7 @@ export class InscriptionComponent implements OnInit {
 
   userForm : FormGroup;
   loading = false;
-  submitted = false;
+  isSubmitted = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +29,7 @@ export class InscriptionComponent implements OnInit {
         username:['',Validators.required],
         adress: [''],
         mail: ['', Validators.required],
-        password:['',['', [Validators.required, Validators.minLength(6)]]],
+        password:['', [Validators.required, Validators.minLength(6)]],
         isAdmin:false,
         isCreator:true
       })
@@ -45,9 +45,21 @@ export class InscriptionComponent implements OnInit {
   get f() { return this.userForm.controls; }
 
   onSubmit = () =>{
+    this.isSubmitted = true;
+
+    //reset alert on submit
+    this.alertService.clear();
+
+    //stop if form invalid
+    if(this.userForm.invalid){
+      return;
+    }
+
+    this.loading = true;
     this.service
       .create(this.userForm.value)
-      .subscribe({
+      .subscribe(
+        {
         next:() =>{
           this.alertService.success('Registration successful', { keepAfterRouteChange: true });
           this.router.navigate(['/home-connecte'], { relativeTo: this.route });
@@ -56,7 +68,8 @@ export class InscriptionComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
       }
-    });
+    }
+    );
   }
 
 

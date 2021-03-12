@@ -1,32 +1,81 @@
 <main>
     <H1>Inscription</H1>
     <form id="forminscription" [formGroup]="userForm" (ngSubmit)="onSubmit()" >
-        <label >Nom* :
-            <input type="text" formControlName="lastName" id="nomtxt" placeholder="Entrer votre nom">
-        </label>
-        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+      <div class="form-case">
+        <div class="case">
+          <label >Nom* :
+              <input type="text" formControlName="lastName" id="nomtxt" placeholder="Entrer votre nom">
+          </label>
+        </div>
+        <div *ngIf="isSubmitted && f.lastName.errors" class="invalid-feedback error-div">
+          <div *ngIf="f.lastName.errors.required" class="error">Nom requis</div>
+        </div>
       </div>
-        <label >Prénom* :
-            <input type="text" formControlName="firstName" id="prenomtxt" placeholder="Entrer votre prénom">
-        </label>
-        <label >Identifiant* :
-            <input type="text" formControlName="username" id="identifianttxt" placeholder="Entrer un nom d'utilisateur">
-        </label>
-        <label >Adresse mail* :
-            <input type="text" formControlName="mail" id="mailtxt" placeholder="Entrer votre adresse mail">
-        </label>
-        <label >Adresse postale :
-            <input type="text" formControlName="adress" id="adressetxt" placeholder="Entrer votre adresse postale">
-        </label>
-        <label >Mot de passe* :
-          <input type="password" formControlName="password" id="passwordtxt" placeholder="Entrer mot de passe">
-        </label>
+
+
+      <div class="form-case">
+        <div class="case">
+          <label >Prénom* :
+              <input type="text" formControlName="firstName" id="prenomtxt" placeholder="Entrer votre prénom">
+          </label>
+        </div>
+        <div *ngIf="isSubmitted && f.firstName.errors" class="invalid-feedback error-div">
+          <div *ngIf="f.firstName.errors.required" class="error">Prénom requis</div>
+        </div>
+      </div>
+
+      <div class="form-case">
+        <div class="case">
+          <label >Identifiant* :
+              <input type="text" formControlName="username" id="identifianttxt" placeholder="Entrer un nom d'utilisateur">
+          </label>
+        </div>
+        <div *ngIf="isSubmitted && f.username.errors" class="invalid-feedback error-div">
+          <div *ngIf="f.username.errors.required" class="error">L'identifiant est required</div>
+        </div>
+      </div>
+
+      <div class="form-case">
+        <div class="case">
+          <label >Adresse mail* :
+              <input type="text" formControlName="mail" id="mailtxt" placeholder="Entrer votre adresse mail">
+          </label>
+        </div>
+        <div *ngIf="isSubmitted && f.mail.errors" class="invalid-feedback error-div">
+          <div *ngIf="f.mail.errors.required" class="error">Le mail est requis</div>
+        </div>
+      </div>
+
+      <div class="form-case">
+        <div class="case">
+          <label >Adresse postale :
+              <input type="text" formControlName="adress" id="adressetxt" placeholder="Entrer votre adresse postale">
+          </label>
+        </div>
+      </div>
+
+      <div class="form-case">
+        <div class="case">
+          <label >Mot de passe* :
+            <input type="password" formControlName="password" id="passwordtxt" placeholder="Entrer mot de passe">
+          </label>
+        </div>
+        <div *ngIf="isSubmitted && f.mail.errors" class="invalid-feedback error-div">
+          <div *ngIf="f.mail.errors.required" class="error">Le mot de passe est requis</div>
+        </div>
+      </div>
+
+
         <!-- <label >Confirmer le Mot de passe :
         <input type="password" name="passwordConfirm" id="passwordConfirmtxt" placeholder="Confirmer mot de passe">
-        </label> -->
+        </label>
+        <div *ngIf="submitted && f.passwordConfirm.errors" class="invalid-feedback">
+          <div *ngIf="f.passwordConfirm.errors.required">Confirmation requise</div>
+        </div>-->
+    <div class="form-button">
+      <button mat-stroked-button type="submit">Valider</button>
+    </div>
 
-        <button type="submit">Valider</button>
+        <p>* : champs requis</p>
     </form>
-    <p>* : champs requis</p>
 </main>

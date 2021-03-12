@@ -4,8 +4,19 @@
 html {
     font-size: 62.5%;
 }
- 
-div {
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+main{
+  background-color: bisque;
+}
+
+div.form-div {
     width: auto;
     border-radius: 00.5em;
     padding-top: 10%;
@@ -14,6 +25,12 @@ div {
     display: flex;
     justify-content: center;
 }
+
+div.main{
+  height: 100%;
+  background-color: bisque;
+}
+
 h2{
     display: flex;
 }
@@ -23,6 +40,6 @@ h2{
     font-size: x-large;
 }
 button{
-        background-color: crimson; 
+        background-color: crimson;
         width: 8em;
 }

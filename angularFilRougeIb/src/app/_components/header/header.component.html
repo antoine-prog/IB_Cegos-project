@@ -1,14 +1,20 @@
 <header>
     <nav>
       <div>
-        <a routerLink="">
+        <a routerLink="" *ngIf="!currentUser">
           <img src="../../../assets/img/Logo Final.png" alt="logo questionanire" width="350">
         </a>
       </div>
+      <div>
+        <a routerLink="home-connecte" *ngIf="currentUser">
+          <img src="../../../assets/img/Logo Final.png" alt="logo questionanire" width="350">
+        </a>
+      </div>
+
           <div class="naviguation">
             <div>
               <div class="dark-hover" *ngIf="!currentUser">
-                <a mat-raised-button  routerLink="/inscription"  class="navo-button">Inscription</a>
+                <a mat-raised-button  routerLink="/inscription" class="navo-button">Inscription</a>
               </div>
               <div class="dark-hover" *ngIf="currentUser">
                 <a mat-raised-button  routerLink="/create" class="navo-button">Nouveau</a>
