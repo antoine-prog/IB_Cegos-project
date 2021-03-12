@@ -1,0 +1,66 @@
+* {
+	box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+
+body{
+    background-color: #373e57;
+    color :#ccc8db;
+}
+
+/* ------------HEADER----------- */
+
+form{
+  padding:0.1rem;
+  padding-top:0.6rem;
+  padding-bottom:0.6rem;
+}
+
+.login{
+  background-color: brown;
+  overflow: hidden;
+}
+
+.identifiant{
+  display: block;
+  margin-top: 0.2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.2rem;
+  padding: 0.5rem;
+  background-color: snow;
+  border-radius: 2px;
+}
+
+label{
+  display:block;
+}
+
+.identifiant-button{
+  margin-top: 0.2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.identifiant-button button{
+  float: right;
+  height: 100%;
+}
+
+.identifiant-button button:hover{
+  background-color: rgb(185, 184, 184);;
+}
+
+.identifiant-button a{
+  color : rgb(230, 162, 107);
+}
+
+div.error{
+  color: red;
+}

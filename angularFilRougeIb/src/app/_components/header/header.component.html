@@ -5,29 +5,33 @@
           <img src="../../../assets/img/Logo Final.png" alt="logo questionanire" width="350">
         </a>
       </div>
-
           <div class="naviguation">
             <div>
-              <div class="dark-hover">
-                <a mat-raised-button  routerLink="/inscription" *ngIf="!currentUser" class="navo-button">Inscription</a>
+              <div class="dark-hover" *ngIf="!currentUser">
+                <a mat-raised-button  routerLink="/inscription"  class="navo-button">Inscription</a>
               </div>
-              <div class="dark-hover">
-                <a mat-raised-button  routerLink="/inscription" *ngIf="currentUser" class="navo-button">Nouveau</a>
+              <div class="dark-hover" *ngIf="currentUser">
+                <a mat-raised-button  routerLink="/create" class="navo-button">Nouveau</a>
               </div>
-              <div class="dark-hover">
-                <a mat-raised-button  routerLink="/inscription" *ngIf="currentUser" class="navo-button">Mes questionnaires</a>
+              <div class="dark-hover" *ngIf="currentUser">
+                <a mat-raised-button  routerLink="/questionnaires" class="navo-button">Mes questionnaires</a>
               </div>
-              <div class="dark-hover">
-                <a mat-raised-button  routerLink="/users" *ngIf="currentUser && currentUser.isAdmin == true" class="navo-button">Utilisateurs</a>
+              <div class="dark-hover" *ngIf="currentUser && currentUser.isAdmin == true">
+                <a mat-raised-button  routerLink="/users"  class="navo-button">Utilisateurs</a>
               </div>
             </div>
-            <div class="user-connect">
+            <div class="user-connect" *ngIf="!currentUser">
               <div class="dark-hover">
-                <a mat-raised-button  routerLink="/connexion" *ngIf="!currentUser" class="navo-button">Connexion</a>
+                <button mat-button [matMenuTriggerFor]="menuconnx">
+                  Connexion
+                </button>
+                <mat-menu #menuconnx="matMenu" class="menu-volet">
+                 <app-volet-connection></app-volet-connection>
+                </mat-menu>
               </div>
-
+            </div>
               <div *ngIf="currentUser" class="username">
-                <button mat-button color="primary" [matMenuTriggerFor]="menu" aria-label="menu-icon" id="bouton-quiz">
+                <button mat-button color="primary" [matMenuTriggerFor]="menu" >
                   <mat-icon>person</mat-icon>
                   {{currentUser.username}}
                 </button>
@@ -40,7 +44,7 @@
                   </div>
                 </mat-menu>
               </div>
-            </div>
+
           </div>
     </nav>
 </header>

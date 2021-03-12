@@ -1,22 +1,25 @@
 <main>
     <H1>Inscription</H1>
     <form id="forminscription" [formGroup]="userForm" (ngSubmit)="onSubmit()" >
-        <label >Nom :
+        <label >Nom* :
             <input type="text" formControlName="lastName" id="nomtxt" placeholder="Entrer votre nom">
         </label>
-        <label >Prénom :
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+      </div>
+        <label >Prénom* :
             <input type="text" formControlName="firstName" id="prenomtxt" placeholder="Entrer votre prénom">
         </label>
-        <label >Identifiant :
+        <label >Identifiant* :
             <input type="text" formControlName="username" id="identifianttxt" placeholder="Entrer un nom d'utilisateur">
         </label>
-        <label >Adresse mail :
+        <label >Adresse mail* :
             <input type="text" formControlName="mail" id="mailtxt" placeholder="Entrer votre adresse mail">
         </label>
         <label >Adresse postale :
             <input type="text" formControlName="adress" id="adressetxt" placeholder="Entrer votre adresse postale">
         </label>
-        <label >Mot de passe:
+        <label >Mot de passe* :
           <input type="password" formControlName="password" id="passwordtxt" placeholder="Entrer mot de passe">
         </label>
         <!-- <label >Confirmer le Mot de passe :
@@ -25,5 +28,5 @@
 
         <button type="submit">Valider</button>
     </form>
-
+    <p>* : champs requis</p>
 </main>

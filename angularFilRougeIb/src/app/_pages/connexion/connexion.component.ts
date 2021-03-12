@@ -4,7 +4,8 @@ import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AlertService } from 'src/app/_helper/alert.service';
+
+import { AlertService } from 'src/app/_services/alert.service';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -47,7 +48,6 @@ export class ConnexionComponent implements OnInit {
   get formControls() { return this.loginForm.controls;}
 
   onSubmit(){
-    console.log(this.loginForm.value);
     this.isSubmitted = true;
 
     //reset alert on submit

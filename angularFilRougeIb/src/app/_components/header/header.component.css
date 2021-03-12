@@ -38,35 +38,23 @@ header nav div{
     justify-content: space-evenly;
 }
 
-div.home{
-    width: 10em;
-}
-
-div.home a{
-    color : white;
-    text-decoration: none;
-    margin : 0.05em;
-    padding: 0.2em;
-    background-color: #080808;
-    width: 20rem;
-    text-align: center;
-
-}
-
 div.naviguation{
     width: 30em;
 }
+
 div.naviguation a{
     background-color: #ddd;
     text-decoration: none;
     color: #333;
     margin : 0.05em;
     padding: 1em;
-    width: 10em;
     text-align: center;
+    display: block;
     margin: 2rem;
-    width :10rem;
+    width :11rem;
+    font-size: 1rem;
 }
+
 .dark-hover :hover{
     background-color: #333;
     color: #ddd;
@@ -75,6 +63,18 @@ div.naviguation a{
 div.naviguation button{
   color:snow;
   font-size: 1.5rem;
+}
+
+div .user-connect button{
+  background-color: #ddd;
+  text-decoration: none;
+  color: #333;
+  margin : 0.05em;
+  padding: 1em;
+  text-align: center;
+  margin: 2rem;
+  width :11rem;
+  font-size: 1rem;
 }
 
 .profil-button {
