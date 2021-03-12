@@ -34,6 +34,11 @@ namespace apiFilRougeIb.Controllers
         {
             return userAnswerServices.GetUsers();
         }
+        [HttpPost]
+        public Dto.FindAll.FindAllUserAnswersDto Post([FromBody] Dto.Create.CreateUserAnswerDto userAnswer)
+        {
+            return userAnswerServices.Create(userAnswer);
+        }
 
 
     }

@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
         else
         {
           this.shared.UpdateQuiz(data)
+          this.shared.UpdateCode(this.Code)
           this.router.navigate(["espace_candidat"])
         }
           })

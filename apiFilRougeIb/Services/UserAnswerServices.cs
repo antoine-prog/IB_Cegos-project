@@ -1,4 +1,6 @@
-﻿using System;
+﻿using apiFilRougeIb.Dto.AfterCreate;
+using apiFilRougeIb.Dto.Create;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,6 +24,13 @@ namespace apiFilRougeIb.Services
         public List<Models.UserAnswer> GetUsers()
         {
             return this._userAnswerRepository.FindAll();
+        }
+
+        internal Dto.FindAll.FindAllUserAnswersDto Create(CreateUserAnswerDto userAnswer)
+        {
+            Models.UserAnswer userAnswerModel = TransformDtoToModel(userAnswer);
+            Models.UserAnswer userAnswerModelCreated = this._userAnswerRepository.Create(userAnswerModel);
+            return TransformModelToDto(userAnswerModelCreated);
         }
 
         /// <summary>
@@ -79,17 +88,17 @@ namespace apiFilRougeIb.Services
         {
             return this._userAnswerRepository.Delete(id);
         }
-        //private Dto.FindAll.FindAllUserAnswersDto TransformModelToDto(Models.UserAnswer userAnswer)
-        //{
-        //    return new Dto.FindAll.FindAllUserAnswersDto(userAnswer.Category, userAnswer.IdUserAnswer);
-        //}
-        //private Models.UserAnswer TransformDtoToModel(Dto.Create.CreateUserAnswerDto userAnswer)
-        //{
-        //    return new Models.UserAnswer(userAnswer.Category);
-        //}
+        private Dto.FindAll.FindAllUserAnswersDto TransformModelToDto(Models.UserAnswer userAnswer)
+        {
+            return new Dto.FindAll.FindAllUserAnswersDto(userAnswer.User_IdUser, userAnswer.Answer_IdAnswer,userAnswer.Question_IdQuestion);
+        }
+        private Models.UserAnswer TransformDtoToModel(Dto.Create.CreateUserAnswerDto userAnswer)
+        {
+            return new Models.UserAnswer(userAnswer.IdUser,userAnswer.Answer_IdAnswer,userAnswer.Question_IdQuestion);
+        }
         //private Dto.AfterCreate.AfterCreateUserAnswerDto TransformModelToAfterCreateDto(Models.UserAnswer userAnswer, bool isCreated)
         //{
-        //    return new Dto.AfterCreate.AfterCreateUserAnswerDto(userAnswer.Category, isCreated, userAnswer.IdUserAnswer);
+        //    return new Dto.AfterCreate.AfterCreateUserAnswerDto(userAnswer.IdUser, userAnswer.Answer_IdAnswer, userAnswer.Question_IdQuestion);
         //}
 
 

@@ -1,6 +1,6 @@
 ﻿namespace apiFilRougeIb.Dto.AfterCreate
 {
-    internal class AfterCreateUserAnswerDto
+    internal class FindAllUserAnswersDto
     {
     }
 }

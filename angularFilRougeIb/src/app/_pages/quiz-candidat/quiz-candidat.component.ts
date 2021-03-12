@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,8 +7,10 @@ import { Answer } from 'src/app/_models/answer';
 import { Quiz } from 'src/app/_models/quiz';
 import { Solution } from 'src/app/_models/solution';
 import { AnswerService } from 'src/app/_services/answer.service';
+import { AuthService } from 'src/app/_services/auth.service';
 import { HomeService } from 'src/app/_services/home.service';
 import { SharedService } from 'src/app/_services/shared.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-quiz-candidat',
@@ -20,29 +23,30 @@ export class QuizCandidatComponent implements OnInit {
 
   quiz : Quiz
   listReponses =new Map<number,number>();
+  private http : HttpClient
   
-  
-  constructor(private shared : SharedService,private homeService : HomeService,private answerService : AnswerService, private route:Router) {
-    // this.listReponses=this.fb.array([
-    //   this.fb.control('')
-    // ])
-    // this.listReponses=[]
-   }
-  //  get listReponses() : FormArray {
-  //    return this.listReponses
-  //  }
-   
-  ngOnInit(): void {
-    // debug
-    this.homeService.getByCode("azerty").subscribe((quiz)=>{
-      this.quiz=quiz
-      this.shared.UpdateQuiz(quiz)
-      console.log(this.quiz.listquestionsolution)
+constructor(private shared : SharedService,private homeService : HomeService,private answerService : AnswerService,
+  private authService : AuthService, private route:Router) {}
+
+  ngOnInit(): void 
+  {
+    this.shared.quiz.subscribe(quiz=>
+    {
+      if(quiz.idQuizz>0){
+        console.log("found by service")
+        this.quiz=quiz
+      } else {
+        this.shared.code.subscribe((code)=>{
+          console.log("quiz not found, query by localstored code",code)
+          this.homeService.getByCode(code).subscribe((quiz)=>{
+            this.quiz=quiz;
+          })
+        })
+      }
+      console.log(this.quiz)
     })
-    // this.shared.quiz.subscribe((quiz) => {
-    //   this.quiz = quiz;
-    // } )
   }
+
   updateReponse(event){
     this.listReponses.set(event[0],event[1])
     console.clear()
@@ -60,49 +64,21 @@ export class QuizCandidatComponent implements OnInit {
     this.quiz.listquestionsolution.forEach(question =>{
       console.clear
       let q = question as any
-      // console.log(q)
       q.solution.forEach(sol => {
-        // if(sol.idSolution=this.listReponses.get(q.idQuestion)){
-        //   console.log(q.title)
-        // }
         if(sol.idSolution==this.listReponses.get(q.idQuestion)){
-
-          let solution=sol.solution as string
-          let isTrue=sol.isTrue as boolean
-          // console.log({"answer":sol.solution,"result":sol.isTrue})
           
-          // this.answerService.postAnswer({"answer":sol.solution,"result":sol.isTrue}as Answer).subscribe()
+          this.answerService.postAnswer({"answer":sol.solution,"result":sol.isTrue}as Answer).subscribe(returnAnswer =>{
+            this.shared.currentUser.subscribe(user =>{        
+              let oi= {"idUser":user.idUser,"answer_idAnswer":returnAnswer.idAnswer,"question_idQuestion":q.idQuestion}    
+              console.log(user)
+              console.log(oi)
+              this.answerService.postUserAnswer(oi).subscribe()
+            })
+          })
         }
+    this.route.navigate(["validation_quiz_candidat"]);
       })
-      // console.log([q.idQuestion,this.listReponses.get(q.idQuestion)])
-      // let sol  = this.getSol(q.idQuestion,this.listReponses.get(q.idQuestion));
-      // console.log(sol)
-    })
-    // this.route.navigate(["validation_quiz_candidat"]);
-
-  }
-  getQuestion(idquestion :number) {
-    this.quiz.listquestionsolution.forEach((item)=> {
-      let i=item as any
-      if(i.idQuestion=idquestion){
-        console.log("trouvé")
-        // console.log(i.idQuestion,idquestion)
-        var question= i as any[];
-        return question
-        
-      }
-        // console.log(question)
-        // question.forEach((solution)=>{
-        //   if(solution.idSolution==idsolution){
-        //     return solution
-        //   }
-        // })
-      
-
     })
   }
-  getSol(idquestion :number,idsolution:number){
-    let question= this.getQuestion(idquestion)
-    console.log(question)
-  }
+  
 }

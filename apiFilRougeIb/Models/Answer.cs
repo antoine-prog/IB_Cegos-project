@@ -16,7 +16,7 @@ namespace apiFilRougeIb.Models
         public Answer( string answer, bool? result,long? idAnswer=null)
         {
             IdAnswer = idAnswer;
-            answer = answer;
+            this.answer = answer;
             Result = result;
         }
     }

@@ -8,11 +8,11 @@ namespace apiFilRougeIb.Dto.Create
     public class CreateAnswerDto
     {
        
-        public string Answer_ { get; set; }
+        public string Answer { get; set; }
         public bool Result { get; set; }
-        public CreateAnswerDto(string answer_, bool result)
+        public CreateAnswerDto(string answer, bool result)
         {
-            Answer_ = answer_;
+            Answer = answer;
             Result = result;
         }
     }

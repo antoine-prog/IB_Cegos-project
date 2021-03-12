@@ -81,7 +81,7 @@ namespace apiFilRougeIb.Services
         }
         private Models.Answer TransformDtoToModel(Dto.Create.CreateAnswerDto answer)
         {
-            return new Models.Answer(answer.Answer_, answer.Result );
+            return new Models.Answer(answer.Answer, answer.Result );
         }
         private Dto.AfterCreate.AfterCreateAnswerDto TransformModelToAfterCreateDto(Models.Answer answer, bool isCreated)
         {
