@@ -18,11 +18,10 @@ export class SolutionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changement(){
-    // this.isChecked= !this.isChecked
-    // if(this.isChecked){
+  changement(e){
       this.repSend.emit(this.solution.idSolution)
     }
-    
+    // console.log(this.solution.solution,this.isChecked)
+  // }
   
 }

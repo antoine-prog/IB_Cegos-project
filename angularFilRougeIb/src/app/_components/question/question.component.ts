@@ -23,14 +23,16 @@ export class QuestionComponent implements OnInit {
     // if(this.selected.indexOf(event)>-1  ){
     //   delete this.selected[event]  
     // }
-    const index = this.selected.indexOf(event, 0);
-      if (index > -1) {
-        this.selected.splice(index, 1);
-      }
-      else {
-        this.selected.push(event)
-      }
-    this.questionUpdate.emit(this.selected)
+    // const index = this.selected.indexOf(event, 0);
+    //   if (index > -1) {
+    //     this.selected.splice(index, 1);
+    //   }
+    //   else {
+    //     this.selected.push(event)
+    //   };
+    this.selected=[event]
+    this.questionUpdate.emit([this.question.idQuestion,this.selected[0]])
+    
   }
   ngOnInit(): void {
   }

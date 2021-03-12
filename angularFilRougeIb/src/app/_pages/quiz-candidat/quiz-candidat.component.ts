@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AnyCnameRecord } from 'node:dns';
 import { Quiz } from 'src/app/_models/quiz';
 import { HomeService } from 'src/app/_services/home.service';
 import { SharedService } from 'src/app/_services/shared.service';
@@ -15,13 +16,14 @@ import { SharedService } from 'src/app/_services/shared.service';
 export class QuizCandidatComponent implements OnInit {
 
   quiz : Quiz
-  listReponses : any[]
+  listReponses =new Map<number,number>();
+  
   
   constructor(private shared : SharedService,private service : HomeService, private route:Router) {
     // this.listReponses=this.fb.array([
     //   this.fb.control('')
     // ])
-    this.listReponses=[]
+    // this.listReponses=[]
    }
   //  get listReponses() : FormArray {
   //    return this.listReponses
@@ -39,7 +41,14 @@ export class QuizCandidatComponent implements OnInit {
     // } )
   }
   updateReponse(event){
-    this.listReponses.push(event)
+    this.listReponses.set(event[0],event[1])
+    console.clear()
+
+    this.quiz.listquestionsolution.forEach(question =>{
+      let q = question as any
+      console.log([q.idQuestion,this.listReponses.get(q.idQuestion)])
+    })
+    
     console.log(this.listReponses)
   }
 
