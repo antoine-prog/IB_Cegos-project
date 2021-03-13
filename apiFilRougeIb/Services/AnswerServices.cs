@@ -30,6 +30,11 @@ namespace apiFilRougeIb.Services
             return answerDto;
         }
 
+        internal dynamic Results(long iduser, long idquiz)
+        {
+            return this._answerRepository.Results(iduser,idquiz);
+        }
+
         /// <summary>
         ///     Retourne un niveau
         /// </summary>

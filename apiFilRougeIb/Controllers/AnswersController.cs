@@ -34,6 +34,13 @@ namespace apiFilRougeIb.Controllers
             return answerServices.GetAnswer(id);
         }
 
+        [HttpGet("{iduser},{idquiz}")]
+        public dynamic Results(long iduser,long idquiz)
+        {
+            return this.answerServices.Results(iduser, idquiz);
+            
+        }
+
         // POST api/<TodosController>
         [HttpPost]
         public Dto.AfterCreate.AfterCreateAnswerDto Post([FromBody] Dto.Create.CreateAnswerDto answer)

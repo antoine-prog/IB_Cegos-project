@@ -43,6 +43,35 @@ namespace apiFilRougeIb.Repositories
             return obj;
         }
 
+        internal dynamic Results(long iduser, long idquiz)
+        {
+            this.OpenConnection();
+            string secondRequest = "("+ _queryBuilder
+                .Select("question_idquestion")
+                .From("quizz_has_questions")
+                .Where("quizz_idquizz", idquiz)
+                .Get()
+                +")";
+            string request = _queryBuilder
+                .Select("Count(result), Count(*)")
+                .From("answer")
+                .Join("useranswer","useranswer.answer_idanswer","answer.idanswer")
+                .Where("user_iduser",iduser)
+                .And()
+                .Where("question_idquestion",$"{secondRequest}","IN",false)
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            Models.Resultat resultat = new Models.Resultat();
+            while (rdr.Read())
+            {
+                resultat.resultat = rdr.GetInt64(0);
+                resultat.total = rdr.GetInt64(1);
+            }
+            connectionSql.Close();
+            return resultat;
+        }
+
         public override int Delete(long id)
         {
             this.OpenConnection();

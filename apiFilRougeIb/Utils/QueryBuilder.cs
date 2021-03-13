@@ -98,7 +98,7 @@ namespace apiFilRougeIb.Utils
             return request.ToString();
         }
         /// <summary>
-        /// Appelle l'instruction 'JOIN' qui créer
+        /// Appelle l'instruction 'JOIN' qui permet d'effectuer des jointures
         /// </summary>
         /// <param name="tableSecondaire"></param>
         /// <param name="cle1"></param>
@@ -147,13 +147,25 @@ namespace apiFilRougeIb.Utils
         }
 
 
-        internal QueryBuilder Where(string key, dynamic value, string type = "=")
+        internal QueryBuilder Where(string key, dynamic value, string type = "=",bool addWhere = true)
         {
-          
-            request.Append($" WHERE {key} {type} '{value}'");
+            if (addWhere)
+            {
+                request.Append(" WHERE ");
+            }
+            if(value is string) {
+                request.Append($"{key} {type} {value}");
+            } else
+            {
+                request.Append($"{key} {type} '{value}'");
+            }
             return this;
         }
-
+        internal QueryBuilder And()
+        {
+            request.Append(" AND ");
+            return this;
+        }
         internal QueryBuilder From(string table)
         {
             request.Append($" FROM {table} ");
