@@ -48,7 +48,10 @@ export class InscriptionCandidatComponent implements OnInit {
         if(confirm(`Continuer en tant que ${doe.firstName} ${doe.lastName} ?`)){
           alert("Nous allons commencer !!")
           this.shared.UpdateCurrentUser(doe)
-          this.router.navigateByUrl("quiz_candidat")
+          this.service.create(doe).subscribe(e=>{
+            this.router.navigateByUrl("quiz_candidat")
+          })
+          
         }
       }
     })

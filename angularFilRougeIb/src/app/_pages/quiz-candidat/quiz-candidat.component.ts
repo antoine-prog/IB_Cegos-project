@@ -7,6 +7,7 @@ import { Answer } from 'src/app/_models/answer';
 import { Quiz } from 'src/app/_models/quiz';
 import { Solution } from 'src/app/_models/solution';
 import { AnswerService } from 'src/app/_services/answer.service';
+import { ArchivageService } from 'src/app/_services/archivage.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { HomeService } from 'src/app/_services/home.service';
 import { SharedService } from 'src/app/_services/shared.service';
@@ -26,7 +27,7 @@ export class QuizCandidatComponent implements OnInit {
   private http : HttpClient
   
 constructor(private shared : SharedService,private homeService : HomeService,private answerService : AnswerService,
-  private authService : AuthService, private route:Router) {}
+  private authService : AuthService, private archivageService : ArchivageService ,private route:Router) {}
 
   ngOnInit(): void 
   {
@@ -73,6 +74,7 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
               console.log(user)
               console.log(oi)
               this.answerService.postUserAnswer(oi).subscribe()
+              // this.archivageService.postArchivage(oi)
             })
           })
         }

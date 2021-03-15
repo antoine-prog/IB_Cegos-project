@@ -31,6 +31,9 @@ export class User{
   get idUser() : number {
     return this._idUser;
   }
+  set idUser(idUser : number) {
+    this._idUser=idUser;
+  }
 
   get firstName() : string {
     return this._firstName;

@@ -15,7 +15,6 @@ export class AnswerService {
 
   //Il nous faut : post dans answer et useranswer
   postAnswer(body:Answer) /*: Observable<any>*/{
-    console.log("body",body)
     return this.http.post<Answer>(`${environment.apiUrl}/api/answers/`,body)
   }
   postUserAnswer(body) : Observable<any>{
@@ -23,8 +22,8 @@ export class AnswerService {
   }
 
   //Récupération des réponses par utilisateur par quiz
-  get(idQuiz,idCandidat): Observable<any>{
-    return this.http.get<Answer[]>(`${environment.apiUrl}/api/useranswers`)
+  get(idCandidat,idQuiz): Observable<any>{
+    return this.http.get<Answer[]>(`${environment.apiUrl}/api/answers/${idCandidat},${idQuiz}`)
   }
 
 }
