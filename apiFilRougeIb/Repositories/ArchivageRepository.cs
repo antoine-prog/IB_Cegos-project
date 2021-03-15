@@ -61,6 +61,7 @@ namespace apiFilRougeIb.Repositories
                 listIds.Add(rdr.GetInt64(0));
             }
             this.CloseConnection(rdr);
+            listIds.Reverse();
             return listIds;
         }
 

@@ -1,4 +1,90 @@
-<div >
-    <p>{{actualite.idArchive}} {{actualite.prenom}}</p>
-    <button mat-button color="warn" routerLink ="/quiz-cree-code">Voir</button>
- </div>
+<section>
+        <mat-accordion >
+            <mat-expansion-panel >
+                <mat-expansion-panel-header id="expension1">
+                    <mat-panel-title id="pannelA">
+                        <p>{{actualite.dateCompleted | date }}</p> 
+                        <div *ngIf="candidat;else stillLoading">
+                            <div>
+                                {{candidat.firstName}}
+                            </div>
+                            <div>
+                                {{candidat.lastName}}
+                            </div> 
+                        </div>
+                        <ng-template #stillLoading><p>Loading...</p></ng-template>
+                        <div>{{quiz.name}}</div> 
+                        <div *ngIf="actualite.isValidated,then valid else notValid"></div>
+                        <ng-template #valid><span id="status-valid">Vu</span></ng-template>
+                        <ng-template #notValid><span id="status-notValid">Non vu</span></ng-template>
+
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+        </mat-accordion>
+</section>
+<!-- <section *ngIf="user.isAdmin == true || user.isCreator == true">
+    <mat-accordion>
+      <mat-expansion-panel id="expension1" (opened)="openPannelA()" (closed)="closePannelA()">
+      <mat-expansion-panel-header>
+        <mat-panel-title id="pannelA">
+          <p>{{user.username}}</p>
+          <div id="status-user">
+            <div *ngIf="user.isAdmin == true, then admin else creator"></div>
+            <ng-template #admin><span id="status-user-admin">  Admin  </span></ng-template>
+            <ng-template #creator><span id="status-user-creator">Créateur</span></ng-template>
+          </div>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{this.descriptionA}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <div id="description-utilisateur">
+          <span>{{user.firstName}} {{user.lastName}}</span>
+          <span>Adresse : {{user.adress}}</span>
+          <span> Mail : {{user.mail}}</span>
+        </div>
+
+
+
+        <mat-expansion-panel id="expension2" class="mat-elevation-z0" (opened)="openPannelB()" (closed)="closePannelB()"[hideToggle]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title id="pannelB">
+              Listes des questionnaires
+            </mat-panel-title>
+            <mat-panel-description>
+              {{this.descriptionB}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+            <div *ngFor="let quiz of user.listQuizz" id="questionnaires">
+              <span id="nom-quiz" >{{quiz.name}}</span>
+              <div id="status-quiz">
+                <div *ngIf="test==true, then ouvert else ferme"></div>
+                <ng-template #ouvert><span id="status-quiz-ouvert">Disponible</span><span>    {{quiz.dateClosed|date:['dd/MM/yy']}}</span></ng-template>
+                <ng-template #ferme><span id="status-quiz-ouvert">Fermé</span><span>    {{quiz.dateClosed}}</span></ng-template>
+              </div>
+              <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" aria-label="menu-icon" id="bouton-quiz">
+                <mat-icon>menu</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button class="menu-bouton" mat-button routerLink="/voir-questionnaire">VOIR LE QUESTIONNAIRE</button>
+                <button class="menu-bouton" mat-button routerLink="/modifier-questionnaire">EDITER LE QUESTIONNAIRE</button>
+                <button class="menu-bouton" mat-button routerLink="/voir-un-utilisateur">VOIR LES CANDIDATS</button>
+                <button class="menu-bouton" mat-button (click)="deleteQuiz(quiz.idQuizz)">SUPPRIMER</button>
+              </mat-menu>
+            </div>
+
+          </mat-expansion-panel>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div>
+      <button mat-icon-button class="icon-color-green" aria-label="Example icon button with a heart icon">
+        <mat-icon routerLink="/modifier-profil">settings</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+        <mat-icon (click)="deleteUtilisateur()">delete</mat-icon>
+      </button>
+    </div>
+  </section> -->

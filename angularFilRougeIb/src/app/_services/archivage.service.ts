@@ -17,7 +17,7 @@ export class ArchivageService {
   }
 
   getbyidCreator(id) : Observable<any>{
-    return this.http.get<Archivage[]>(`${environment.apiUrl}/api/archivagescreator/${id}`)
+    return this.http.get<Archivage[]>(`${environment.apiUrl}/api/archivages/ArchivagesCreator/${id}`)
   }
   postArchivage(body) : Observable<any>{
     return this.http.post<PostArchivage>(`${environment.apiUrl}/api/archivages`,body)

@@ -19,9 +19,11 @@ export class HomeConnecteComponent implements OnInit {
 
   ngOnInit(): void {
     this.user =this.authService.currentUserValue
-    console.log(this.user)
+    console.log("storage",this.authService.currentUserValue)
+    console.log("User",this.user)
       this.archivageService.getbyidCreator(this.user.idUser).subscribe(event=>{
         this.actualites=event
+        console.log(this.actualites)
       })
 
     }
