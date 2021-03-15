@@ -1,10 +1,7 @@
 section{
   margin:auto;
-  text-align: center
-}
-
-h1{
-  margin-top : 2rem;
+  text-align: center;
+  margin: 2rem;
 }
 
 div.quizAttribute {

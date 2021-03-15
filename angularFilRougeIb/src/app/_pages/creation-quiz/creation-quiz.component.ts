@@ -34,8 +34,8 @@ export class CreationQuizComponent implements OnInit {
       this.authService.currentUser.subscribe(x => this.currentUser = x);
       this.quizForm = this.fb.group({
         name : ['', Validators.required],
-        user_idUser :  [this.currentUser.idUser],
-        theme_idTheme:  [''],
+        user_idUser : [this.currentUser.idUser],
+        theme_idTheme: [''],
         code : [''],
         dateClosed : [''],
         timer : [''],
@@ -49,10 +49,18 @@ export class CreationQuizComponent implements OnInit {
     this.getThemesQuiz();
   }
 
+  get f() { return this.quizForm.controls; }
+
   getThemesQuiz(){
     this.themesService.getAll().subscribe(response => {
       this.themes = response;
     })
+  }
+
+  getErrorMessage() {
+    if (this.f.name.hasError('required')) {
+      return 'You must enter a value';
+    }
   }
 
   onSubmit = () =>{

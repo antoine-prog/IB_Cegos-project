@@ -1,14 +1,15 @@
 <section>
 <h1>Création d'un nouveau Questionnaire</h1>
 <div class="quizAttribute" [formGroup]="quizForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill" formControlName="name" id="name">
+  <mat-form-field appearance="fill"  id="name">
     <mat-label>Nom</mat-label>
-    <input matInput type="text">
+    <input matInput type="text" formControlName="name" required>
+    <mat-error *ngIf="f.name.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <div class="second-line">
     <mat-form-field appearance="fill">
       <mat-label>Niveau</mat-label>
-      <mat-select formControlName="level_idLevel">
+      <mat-select formControlName="level_idLevel" required>
         <mat-option value="1">Junior</mat-option>
         <mat-option value="2">Confirmé</mat-option>
         <mat-option value="3">Expérimenté</mat-option>
@@ -16,7 +17,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Thème</mat-label>
-      <mat-select  formControlName="theme_idTheme">
+      <mat-select  formControlName="theme_idTheme" required>
         <mat-option *ngFor="let theme of themes" value="{{theme.idTheme}}" >{{theme.theme}}</mat-option>
       </mat-select>
     </mat-form-field>
