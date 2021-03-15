@@ -11,7 +11,11 @@ namespace apiFilRougeIb.Models
         public Archivage(DateTime? dateCompleted, bool isValidated, long quizz_idQuizz, long user_idUser,long? idArchivage =null)
         {
             this.IdArchivage = idArchivage;
+            if (dateCompleted != null)
+            {
+
             DateCompleted = dateCompleted;
+            }
             IsValidated = isValidated;
             Quizz_idQuizz = quizz_idQuizz;
             User_idUser = user_idUser;

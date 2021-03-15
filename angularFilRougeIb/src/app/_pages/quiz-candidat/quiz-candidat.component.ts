@@ -6,6 +6,7 @@ import { time } from 'node:console';
 import { AnyCnameRecord } from 'node:dns';
 import { Answer } from 'src/app/_models/answer';
 import { Archivage } from 'src/app/_models/archivage';
+import { PostArchivage } from 'src/app/_models/postarchivage';
 import { Quiz } from 'src/app/_models/quiz';
 import { Solution } from 'src/app/_models/solution';
 import { User } from 'src/app/_models/user';
@@ -80,15 +81,16 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
               let oi= {"idUser":user.idUser,"answer_idAnswer":returnAnswer.idAnswer,"question_idQuestion":q.idQuestion}    
               console.log(user)
               console.log(oi)
-              this.answerService.postUserAnswer(oi).subscribe()
+              this.answerService.postUserAnswer(oi).subscribe(e=>{console.log("postuseranswer",e)})
               
             // constructor(dateCompleted : Date, isValidated : boolean, quizz_idQuizz : number, user_idUser : number, idArchivage? : number){
             })
+            
           })
         }
       })
     })
-    this.archivageService.postArchivage({    "isValidated": false,"quizz_idQuizz": this.quiz.idQuizz,"user_idUser": this.user.idUser} as Archivage)
+    this.archivageService.postArchivage({    "isValidated": false,"quizz_idQuizz": this.quiz.idQuizz,"user_idUser": this.user.idUser} as PostArchivage)
       .subscribe(e=>console.log("archivage!"))
     this.route.navigate(["validation_quiz_candidat"]);
   }

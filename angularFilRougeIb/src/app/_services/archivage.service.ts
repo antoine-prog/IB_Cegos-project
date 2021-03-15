@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Archivage } from '../_models/archivage';
+import { PostArchivage } from '../_models/postarchivage';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,11 @@ export class ArchivageService {
     return this.http.get<Archivage[]>(`${environment.apiUrl}/api/archivages/${id}`)
   }
 
+  getbyidCreator(id) : Observable<any>{
+    return this.http.get<Archivage[]>(`${environment.apiUrl}/api/archivagescreator/${id}`)
+  }
   postArchivage(body) : Observable<any>{
-    return this.http.post<Archivage>(`${environment.apiUrl}/api/archivages`,body)
+    return this.http.post<PostArchivage>(`${environment.apiUrl}/api/archivages`,body)
   }
 
 }
