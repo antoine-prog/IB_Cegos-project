@@ -36,10 +36,6 @@ h1 {
   margin-bottom: 2rem;
 }
 
-input{
-  /* float: right; */
-}
-
 div.error{
   color: red;
   margin-left: 2rem;
