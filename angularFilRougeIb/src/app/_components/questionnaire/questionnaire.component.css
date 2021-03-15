@@ -1,3 +1,9 @@
+section{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 #questionnaire-Expérimenté{
 width: 5rem;
 display: block;
@@ -29,14 +35,78 @@ color :rgb(255, 255, 255)
 }
 
 div.information{
-  display :flex;
+  min-width: 50%;
+}
 
+div.information2{
+  display: flex;
+  justify-content: space-around;
+  align-items: center ;
+  width: 10%;
 }
 
 div.nom{
   display: flex;
   justify-content: space-between;
   padding : 2rem;
+  padding-bottom: 0.5rem;
   align-items: center;
-  width: 60%;
+
+
 }
+
+span.name-quiz{
+  min-width: 30rem;
+  font-size: large;
+  font-weight: bold;
+  margin-left: 7rem;
+}
+
+span.score-quiz{
+  border: 1px solid black;
+  border-radius: 2px;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+div.userTry{
+  display: flex;
+  justify-content: space-around;
+  padding : 2rem;
+  margin : 0 10rem 0 10rem;
+  padding-top: 0.5rem;
+  align-items: center;
+}
+
+#questionnaire-ouvert{
+  width: 5rem;
+  display: block;
+  text-align: center;
+  padding : 0.4rem;
+  border : 1px solid black;
+  background-color: green;
+  color :rgb(255, 255, 255)
+  }
+
+  #questionnaire-ferme{
+    width: 5rem;
+    display: block;
+    text-align: center;
+    padding : 0.4rem;
+    border : 1px solid black;
+    background-color: red;
+    color :rgb(255, 255, 255)
+    }
+
+    #bouton-setting{
+      background-color: #ddd;
+    }
+
+    button.menu-bouton{
+      display: block;
+      width: 13rem;
+    }
+
+    button.menu-bouton:hover{
+      background-color: #ddd;
+    }

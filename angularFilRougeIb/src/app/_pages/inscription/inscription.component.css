@@ -26,24 +26,23 @@ h1 {
 
 }
 #forminscription > *{
-    padding:15px;
+
+    width: 50%;
+    margin: auto;
     /* overflow: hidden; */
 }
 
 .case{
   margin-left: 40%;
   display: inline;
-  margin-bottom: 2rem;
-}
-
-input{
-  /* float: right; */
+  margin-bottom: 0.5rem;
 }
 
 div.error{
   color: red;
   margin-left: 2rem;
   display: inline-block;
+  font-size: 0.9rem;
 }
 .error-div{
   display: inline
