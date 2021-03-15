@@ -1,5 +1,5 @@
 <p>validation-quiz-candidat works! (?)</p>
-<p>Donc pour vérifier, l'utilisateur {{user.firstName}} {{user.lastName}} a fait </p>
-<p> un score de {{resultat.resultat}}/{{resultat.total}}. </p>
+<p *ngIf="user.mail!=''">Donc pour vérifier, l'utilisateur {{user.firstName}} {{user.lastName}} a fait </p>
+<p *ngIf="resultat!=undefined"> un score de {{resultat.resultat}}/{{resultat.total}}. </p>
 <p>au quiz nommé {{quiz.name}}</p>
 <p>C'est bien ça ?</p>

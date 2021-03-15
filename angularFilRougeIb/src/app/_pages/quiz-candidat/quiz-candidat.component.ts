@@ -2,10 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { time } from 'node:console';
 import { AnyCnameRecord } from 'node:dns';
 import { Answer } from 'src/app/_models/answer';
+import { Archivage } from 'src/app/_models/archivage';
 import { Quiz } from 'src/app/_models/quiz';
 import { Solution } from 'src/app/_models/solution';
+import { User } from 'src/app/_models/user';
 import { AnswerService } from 'src/app/_services/answer.service';
 import { ArchivageService } from 'src/app/_services/archivage.service';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -24,6 +27,7 @@ export class QuizCandidatComponent implements OnInit {
 
   quiz : Quiz
   listReponses =new Map<number,number>();
+  user : User
   private http : HttpClient
   
 constructor(private shared : SharedService,private homeService : HomeService,private answerService : AnswerService,
@@ -45,6 +49,9 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
         })
       }
       console.log(this.quiz)
+    })
+    this.shared.currentUser.subscribe(us=>{
+      this.user=us
     })
   }
 
@@ -74,13 +81,16 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
               console.log(user)
               console.log(oi)
               this.answerService.postUserAnswer(oi).subscribe()
-              // this.archivageService.postArchivage(oi)
+              
+            // constructor(dateCompleted : Date, isValidated : boolean, quizz_idQuizz : number, user_idUser : number, idArchivage? : number){
             })
           })
         }
-    this.route.navigate(["validation_quiz_candidat"]);
       })
     })
+    this.archivageService.postArchivage({    "isValidated": false,"quizz_idQuizz": this.quiz.idQuizz,"user_idUser": this.user.idUser} as Archivage)
+      .subscribe(e=>console.log("archivage!"))
+    this.route.navigate(["validation_quiz_candidat"]);
   }
   
 }
