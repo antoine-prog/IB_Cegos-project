@@ -1,0 +1,37 @@
+section{
+  margin:auto;
+  text-align: center;
+  margin: 2rem;
+}
+
+div.quizAttribute {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+}
+
+div.second-line{
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom : 3rem;
+}
+
+#name{
+  width: 50%;
+  margin : 3rem;
+}
+
+button{
+  padding: 1.5rem;
+  width: 10rem;
+  border-radius: 1rem;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+}

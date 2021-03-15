@@ -10,7 +10,7 @@ export class Quiz{
   private _level_idLevel : number;
   private _listquestionsolution : Quiz[] = [];
 
-  constructor(name : string, user_idUser : number, theme_idTheme : number, code : string, level_idLevel : number, listquestionsolution : Quiz[], dateClosed? : Date, timer? : number, idQuiz? : number){
+  constructor(name : string, user_idUser : number, theme_idTheme : number, code : string, level_idLevel : number, listquestionsolution? : Quiz[], dateClosed? : Date, timer? : number, idQuiz? : number){
     this._idQuizz = idQuiz;
     this._listquestionsolution=listquestionsolution;
     this._name = name;

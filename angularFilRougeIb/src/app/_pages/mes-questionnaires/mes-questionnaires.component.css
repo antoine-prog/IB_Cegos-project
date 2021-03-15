@@ -6,3 +6,9 @@ div.title{
   align-items: center;
   font-size: 1.6rem;
 }
+
+hr{
+  border-top: 1px dotted #ddd;
+  margin-top:2rem;
+  margin-bottom:1rem;
+}
