@@ -14,6 +14,8 @@ import { ConnexionComponent } from './_pages/connexion/connexion.component';
 import { CreationQuizComponent } from './_pages/creation-quiz/creation-quiz.component';
 import { MesQuestionnairesComponent } from './_pages/mes-questionnaires/mes-questionnaires.component';
 import { ValidationQuizCandidatComponent } from './_pages/validation-quiz-candidat/validation-quiz-candidat.component';
+import { VoirUnQuestionnaireComponent } from './_pages/voir-un-questionnaire/voir-un-questionnaire.component';
+import { ModifierUnQuestionnaireComponent } from './_pages/modifier-un-questionnaire/modifier-un-questionnaire.component';
 
 
 const routes: Routes = [
@@ -25,8 +27,10 @@ const routes: Routes = [
   {path:"inscription", component : InscriptionComponent},
   {path:"home-connecte", component : HomeConnecteComponent, canActivate:[AuthGuardGuard]},
   {path:"quiz-cree-code", component : QuizCreeCodeComponent, canActivate:[AuthGuardGuard]},
-  {path:"create", component : CreationQuizComponent, canActivate:[AuthGuardGuard]},
   {path:"questionnaires", component : MesQuestionnairesComponent, canActivate:[AuthGuardGuard]},
+  {path:"voir-questionnaire", component : VoirUnQuestionnaireComponent, canActivate:[AuthGuardGuard]},
+  {path:"modifier-questionnaire", component : ModifierUnQuestionnaireComponent, canActivate:[AuthGuardGuard]},
+  {path:"nouveau", component : CreationQuizComponent, canActivate:[AuthGuardGuard]},
 
   {path:"validation_quiz_candidat",component:ValidationQuizCandidatComponent},
   {path:"404", component : NotfoundComponent},

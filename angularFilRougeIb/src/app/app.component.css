@@ -12,6 +12,7 @@ div#container {
 
 main{
   padding: 1em;
+  padding-bottom: 7em;
 }
 
 app-footer{

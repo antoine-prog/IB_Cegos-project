@@ -18,6 +18,8 @@ export interface DialogData {
 export class QuestionnaireComponent implements OnInit {
 
   @Input() questionnaire : Quiz;
+  currentDate : Date = new Date();
+  // expiredDate : Date = new Date(this.questionnaire.dateClosed);
 
   constructor(
     private quizService : QuizService,
@@ -27,7 +29,6 @@ export class QuestionnaireComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '40rem',
@@ -35,9 +36,20 @@ export class QuestionnaireComponent implements OnInit {
     });
   }
 
+  //methode pour return true si le questionnaire est toujours ouvert
+  ouvertDate() : boolean {
+    //variable closedate = this.questionaire.dateClosed en format Date TS
+    var closedate = new Date(this.questionnaire.dateClosed);
+    if(this.currentDate < closedate)  {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   deleteQuiz() : void {
     this.quizService.delete(this.questionnaire.idQuizz).subscribe(data =>this.questionnaires.getQuiz() );
   }
-
 
 }

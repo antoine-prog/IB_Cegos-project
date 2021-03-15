@@ -1,23 +1,38 @@
 <section>
 
 <div class="information">
+
   <div class="nom">
-    <span>{{questionnaire.name}}</span>
-    <span *ngIf="questionnaire.level_idLevel == 1" id="questionnaire-Junior">  Admin  </span>
+    <span class="name-quiz">{{questionnaire.name}} </span>
+    <span *ngIf="questionnaire.level_idLevel == 1" id="questionnaire-Junior">  Junior  </span>
     <span *ngIf="questionnaire.level_idLevel == 2" id="questionnaire-Confirmé">  Confirmé  </span>
     <span *ngIf="questionnaire.level_idLevel == 3" id="questionnaire-Expérimenté">  Expérimenté  </span>
     <button mat-raised-button (click)="openDialog()">Afficher code</button>
   </div>
-
   <div class="userTry">
-
+    <div>
+      <span>Total tentative : </span>
+      <span class="score-quiz">8 </span>
+    </div>
+    <div>
+     <span>Score moyen : </span>
+     <span class="score-quiz">12 </span>
+    </div>
   </div>
 </div>
-
 <div class="information2">
-
-
+  <span *ngIf="ouvertDate() == true" id="questionnaire-ouvert">  Ouvert </span>
+  <span *ngIf="ouvertDate() == false" id="questionnaire-ferme">  Fermé  </span>
+  <button mat-icon-button [matMenuTriggerFor]="menu" id="bouton-setting">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button class="menu-bouton" mat-button routerLink="/voir-questionnaire">VOIR LE QUESTIONNAIRE</button>
+    <button class="menu-bouton" mat-button routerLink="/modifier-questionnaire">EDITER LE QUESTIONNAIRE</button>
+    <button class="menu-bouton" mat-button (click)="deleteQuiz()">SUPPRIMER</button>
+  </mat-menu>
 </div>
+
 
 
 

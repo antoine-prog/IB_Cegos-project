@@ -30,14 +30,9 @@ export class UserComponent implements OnInit {
   }
 
   getUserQuiz(){
-    console.log(this.user.listQuizz);
     this.userService.getUserQuizbtId(this.user.idUser).subscribe(data => {
-      // this.user.listQuiz = [...data];
-      this.user.listQuizz = data.listQuizz
-      console.log(this.user.listQuizz);
+      this.user.listQuizz = data.listQuizz;
     })
-    //this.listQuiz = this.user.listQuiz;
-    // console.log(this.user.listQuiz);
   }
 
   openPannelA(){

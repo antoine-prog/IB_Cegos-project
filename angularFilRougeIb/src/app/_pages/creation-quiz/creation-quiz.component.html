@@ -1,1 +1,21 @@
-<p>creation-quiz works!</p>
+<h1>Creation d'un nouveau Questionnaire</h1>
+<div class="quizAttribute">
+  <mat-form-field appearance="fill">
+    <mat-label>Nom</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Niveau</mat-label>
+    <mat-select>
+      <mat-option value="1">Junior</mat-option>
+      <mat-option value="2">Confirmé</mat-option>
+      <mat-option value="3">Expérimenté</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Thème</mat-label>
+    <mat-select *ngFor="let theme of themes">
+      <mat-option value="z">{{theme.theme}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
