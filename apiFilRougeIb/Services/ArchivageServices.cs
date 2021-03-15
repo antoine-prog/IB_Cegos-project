@@ -77,15 +77,15 @@ namespace apiFilRougeIb.Services
         }
         private Dto.FindAll.FindAllArchivagesDto TransformModelToDto(Models.Archivage archivage)
         {
-            return new Dto.FindAll.FindAllArchivagesDto(archivage.DateCompleted, archivage.IsValidated, archivage.Quizz_idQuizz, archivage.User_idUser, archivage.IdArchivage);
+            return new Dto.FindAll.FindAllArchivagesDto((DateTime)archivage.DateCompleted, archivage.IsValidated, archivage.Quizz_idQuizz, archivage.User_idUser, archivage.IdArchivage);
         }
         private Models.Archivage TransformDtoToModel(Dto.Create.CreateArchivageDto archivage)
         {
-            return new Models.Archivage(archivage.DateCompleted, archivage.IsValidated, archivage.Quizz_idQuizz, archivage.User_idUser);
+            return new Models.Archivage(/*archivage.DateCompleted,*/null, archivage.IsValidated, archivage.Quizz_idQuizz, archivage.User_idUser);
         }
         private Dto.AfterCreate.AfterCreateArchivageDto TransformModelToAfterCreateDto(Models.Archivage archivage, bool isCreated)
         {
-            return new Dto.AfterCreate.AfterCreateArchivageDto(archivage.DateCompleted, archivage.IsValidated, archivage.Quizz_idQuizz, archivage.User_idUser, archivage.IdArchivage);
+            return new Dto.AfterCreate.AfterCreateArchivageDto((DateTime)archivage.DateCompleted, archivage.IsValidated, archivage.Quizz_idQuizz, archivage.User_idUser, archivage.IdArchivage);
         }
 
 

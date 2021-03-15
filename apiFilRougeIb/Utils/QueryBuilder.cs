@@ -153,7 +153,7 @@ namespace apiFilRougeIb.Utils
             {
                 request.Append(" WHERE ");
             }
-            if(value is string) {
+            if(value is string && value[0]=='(') {
                 request.Append($"{key} {type} {value}");
             } else
             {

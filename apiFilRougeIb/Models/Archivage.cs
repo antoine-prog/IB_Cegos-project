@@ -8,7 +8,7 @@ namespace apiFilRougeIb.Models
     public class Archivage
     {
         public Archivage() { }
-        public Archivage(DateTime dateCompleted, bool isValidated, long quizz_idQuizz, long user_idUser,long? idArchivage =null)
+        public Archivage(DateTime? dateCompleted, bool isValidated, long quizz_idQuizz, long user_idUser,long? idArchivage =null)
         {
             this.IdArchivage = idArchivage;
             DateCompleted = dateCompleted;
@@ -18,7 +18,7 @@ namespace apiFilRougeIb.Models
         }
 
         public long? IdArchivage { get; set; }
-        public DateTime DateCompleted { get; set; }
+        public DateTime? DateCompleted { get; set; }
         public bool IsValidated { get; set; }
         public long Quizz_idQuizz { get; set; }
         public long User_idUser { get; set; }

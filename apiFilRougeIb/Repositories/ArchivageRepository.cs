@@ -38,6 +38,7 @@ namespace apiFilRougeIb.Repositories
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
             cmd.ExecuteNonQuery();
             long idArchivage = cmd.LastInsertedId;
+            obj.DateCompleted=DateTime.Now;
             obj.IdArchivage = idArchivage;
             connectionSql.Close();
             return obj;

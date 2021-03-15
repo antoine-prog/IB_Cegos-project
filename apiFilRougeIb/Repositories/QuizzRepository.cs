@@ -136,8 +136,8 @@ namespace apiFilRougeIb.Repositories
                 .Where("code",code)
                 .Get();
             MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            Console.WriteLine(request[0]);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            Console.WriteLine(request);
             long id;
             while (rdr.Read())
             {

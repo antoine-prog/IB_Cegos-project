@@ -43,6 +43,38 @@ namespace apiFilRougeIb.Repositories
             return obj;
         }
 
+        internal dynamic Results(long idArchivage,long idUser,long idQuiz)
+        {
+            this.OpenConnection();
+            string secondRequest = "(" + _queryBuilder
+                .Select("question_idquestion")
+                .From("quizz_has_questions")
+                .Where("quizz_idquizz", idQuiz)
+                .Get()
+                + ")";
+            string request = _queryBuilder
+                .Select("Sum(result), Count(*)")
+                .From("answer")
+                .Join("useranswer", "useranswer.answer_idanswer", "answer.idanswer")
+                .Join("archivage","archivage.user_iduser","useranswer.user_iduser")
+                .Where("useranswer.user_iduser", idUser)
+                .And()
+                .Where("question_idquestion", $"{secondRequest}", "IN", false)
+                .And()
+                .Where("archivage.idarchivage",idArchivage,"=",false)
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            Models.Resultat resultat = new Models.Resultat();
+            while (rdr.Read())
+            {
+                resultat.resultat = rdr.GetInt64(0);
+                resultat.total = rdr.GetInt64(1);
+            }
+            connectionSql.Close();
+            return resultat;
+        }
+
         internal dynamic Results(long iduser, long idquiz)
         {
             this.OpenConnection();
@@ -53,7 +85,7 @@ namespace apiFilRougeIb.Repositories
                 .Get()
                 +")";
             string request = _queryBuilder
-                .Select("Count(result), Count(*)")
+                .Select("Sum(result), Count(*)")
                 .From("answer")
                 .Join("useranswer","useranswer.answer_idanswer","answer.idanswer")
                 .Where("user_iduser",iduser)

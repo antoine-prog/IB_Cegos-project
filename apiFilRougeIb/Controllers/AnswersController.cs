@@ -33,6 +33,12 @@ namespace apiFilRougeIb.Controllers
         {
             return answerServices.GetAnswer(id);
         }
+        [HttpGet("/results/{idArchivage}/{idUser}/{idQuiz}")]
+        public dynamic Results(long idArchivage,long idUser,long idQuiz)
+        {
+            Console.WriteLine("oi");
+            return this.answerServices.Results(idArchivage,idUser,idQuiz);
+        }
 
         [HttpGet("{iduser},{idquiz}")]
         public dynamic Results(long iduser,long idquiz)
