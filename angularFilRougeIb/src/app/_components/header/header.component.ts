@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
+import { SharedService } from 'src/app/_services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private shared :SharedService
     ) {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
@@ -23,6 +25,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  navtoeditprofil(){
+    this.shared.UpdateEditId(this.authService.currentUserValue.idUser)
+    this.router.navigate(["/modifier-profil"])
+
+  }
   seDeconnecter(){
     this.authService.disconnect();
     this.router.navigateByUrl('/home');

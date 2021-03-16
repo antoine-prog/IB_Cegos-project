@@ -31,8 +31,8 @@ export class UserService {
     return this.http.post<User>(`${environment.apiUrl}/api/users`, user)
   }
 
-  update(user: User): Observable<User> {
-        return this.http.put<User>(`${environment.apiUrl}/api/users`, user);
+  update(user: User,idUser:number): Observable<User> {
+        return this.http.put<User>(`${environment.apiUrl}/api/users/${idUser}`, user);
       }
 
   delete(idUser : number){

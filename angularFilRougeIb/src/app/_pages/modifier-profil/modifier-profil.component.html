@@ -1,1 +1,79 @@
 <p>modifier-profil works!</p>
+<main *ngIf="user">
+    <H1>Editer le profil</H1>
+    <form id="forminscription" [formGroup]="userForm" (ngSubmit)="onSubmit()" >
+      <div class="form-case">
+        <mat-form-field appearance="fill" class="case">
+          <mat-label>Nom * :</mat-label>
+          <input matInput type="text" formControlName="lastName" id="nomtxt"  placeholder="Entrer votre nom" >
+          <mat-error *ngIf="f.lastName.hasError('required')">Nom requis</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-case">
+        <mat-form-field appearance="fill" class="case">
+          <mat-label>Prénom * :</mat-label>
+          <input matInput type="text" formControlName="firstName" id="prenomtxt" placeholder="Entrer votre prénom">
+          <mat-error *ngIf="f.firstName.hasError('required')">Prénom requis</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-case">
+        <mat-form-field appearance="fill" class="case">
+          <mat-label>Identifiant * :</mat-label>
+          <input matInput type="text" formControlName="username" id="identifianttxt" placeholder="Entrer un nom d'utilisateur">
+          <mat-error *ngIf="f.username.hasError('required')">Identifiant requis</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-case">
+        <mat-form-field appearance="fill" class="case">
+          <mat-label>Adresse e-mail * :</mat-label>
+          <input matInput type="text" formControlName="mail" id="mailtxt" placeholder="Entrer votre adresse mail">
+          <mat-error *ngIf="f.mail.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field >
+      </div>
+
+      <div class="form-case">
+        <mat-form-field appearance="fill" class="case">
+          <mat-label>Adresse postale : </mat-label>
+          <input matInput type="text" formControlName="adress" id="adressetxt" placeholder="Entrer votre adresse postale">
+        </mat-form-field>
+      </div>
+
+        <div class="form-case">
+          <mat-form-field appearance="fill" class="case">
+            <mat-label >Mot de passe * :</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" id="passwordtxt" placeholder="Entrer mot de passe">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="f.password.hasError('required')">Mot de passe requis</mat-error>
+            <mat-error *ngIf="f.password.hasError('minlength')">6 caractères minimum</mat-error>
+            <mat-error *ngIf="f.password.hasError('maxlength')">30 caractères maximum</mat-error>
+            <mat-error *ngIf="f.password.hasError('pattern')">Le mot de passe doit au moin contenir : une majuscule, une minuscule, un chiffre</mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div class="form-case">
+          <mat-form-field appearance="fill" class="case">
+            <mat-label> Confirmer mot de passe * :</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword" id="passwordtxt" placeholder="Entrer mot de passe">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <!-- <mat-error *ngIf="f.password.hasError('required')">Mot de passe requis</mat-error> -->
+            <!-- <mat-error *ngIf="f.confirmPassword.hasError('notSame')">Les mot de passes ne correspondent pas</mat-error> -->
+          </mat-form-field>
+        </div>
+
+
+    <div class="form-button">
+      <button mat-stroked-button type="submit">Valider</button>
+    </div>
+
+        <p>* : champs requis</p>
+    </form>
+</main>
+
