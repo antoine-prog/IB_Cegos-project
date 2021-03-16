@@ -74,7 +74,20 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
       console.clear
       let q = question as any
       q.solution.forEach(sol => {
-        if(sol.idSolution==this.listReponses.get(q.idQuestion)){
+        if(this.listReponses.get(q.idQuestion)==undefined){
+          alert("non répondu")
+          sol.solution="(vide)"
+          sol.isTrue=false 
+          this.answerService.postAnswer({"answer":"(vide)","result":false}as Answer).subscribe(returnAnswer =>{
+            this.shared.currentUser.subscribe(user =>{        
+              let oi= {"idUser":user.idUser,"answer_idAnswer":returnAnswer.idAnswer,"question_idQuestion":q.idQuestion}    
+              console.log(user)
+              console.log(oi)
+              this.answerService.postUserAnswer(oi).subscribe(e=>{console.log("postuseranswer",e)})
+          
+        })
+       })
+       } else if(sol.idSolution==this.listReponses.get(q.idQuestion)){
           
           this.answerService.postAnswer({"answer":sol.solution,"result":sol.isTrue}as Answer).subscribe(returnAnswer =>{
             this.shared.currentUser.subscribe(user =>{        
