@@ -1,5 +1,5 @@
-<p>validation-quiz-candidat works! (?)</p>
-<p *ngIf="user.mail!=''">Donc pour vérifier, l'utilisateur {{user.firstName}} {{user.lastName}} a fait </p>
-<p *ngIf="resultat!=undefined"> un score de {{resultat.resultat}}/{{resultat.total}}. </p>
-<p>au quiz nommé {{quiz.name}}</p>
-<p>C'est bien ça ?</p>
+<div id="messagevalidation">
+    <p id="msg">Le questionnaire est maintenant terminé. Les résultats ont été transmis au créateur pour correction.</p>
+    
+    <button mat-button color="warn" routerLink ="">Retour à l'Accueil</button>
+</div>

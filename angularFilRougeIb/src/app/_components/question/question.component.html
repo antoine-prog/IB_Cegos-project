@@ -1,7 +1,7 @@
- <li>
+<mat-card> <li>
     <p>{{question.title}}</p>
     <ul>
         <app-solution *ngFor="let solution of question.solution; let i =index" [solution]="solution" (repSend)="relai($event)"></app-solution>
     </ul>
 </li>
-
+</mat-card>
