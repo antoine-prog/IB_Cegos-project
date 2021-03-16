@@ -23,6 +23,7 @@ export class ModifierProfilComponent implements OnInit {
   hide = true;
   matcher = new MyErrorStateMatcher();
   user:User;
+  currentUser :User;
   idUser:number;
 
   constructor(
@@ -35,7 +36,8 @@ export class ModifierProfilComponent implements OnInit {
     private shared : SharedService
     
     ){
-      if(!this.authService.currentUserValue.isAdmin)
+      this.currentUser=this.authService.currentUserValue
+      if(!this.currentUser.isAdmin)
       {
         this.user=this.authService.currentUserValue
         this.formage()
