@@ -1,3 +1,5 @@
+import { Question } from "./question";
+
 export class Quiz{
 
   private _idQuizz : number;
@@ -8,11 +10,11 @@ export class Quiz{
   private _dateClosed : Date;
   private _timer : number;
   private _level_idLevel : number;
-  private _listquestionsolution : Quiz[] = [];
+  private _listquestions : Question[] = [];
 
-  constructor(name : string, user_idUser : number, theme_idTheme : number, code : string, level_idLevel : number, listquestionsolution? : Quiz[], dateClosed? : Date, timer? : number, idQuiz? : number){
+  constructor(name : string, user_idUser : number, theme_idTheme : number, code : string, level_idLevel : number, listquestions? : Question[], dateClosed? : Date, timer? : number, idQuiz? : number){
     this._idQuizz = idQuiz;
-    this._listquestionsolution=listquestionsolution;
+    this._listquestions = listquestions;
     this._name = name;
     this._user_idUser = user_idUser;
     this._theme_idTheme = theme_idTheme;
@@ -26,12 +28,12 @@ export class Quiz{
     return this._idQuizz;
   }
 
-  get listquestionsolution() : Quiz[] {
-    return this._listquestionsolution;
+  get listquestions() : Question[] {
+    return this._listquestions;
   }
 
-  set listquestionsolution(listquestionsolution : Quiz[]){
-    this._listquestionsolution = listquestionsolution;
+  set listquestions(listquestions : Question[]){
+    this._listquestions = listquestions;
   }
   get name() : string {
     return this._name;

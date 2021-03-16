@@ -22,18 +22,18 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./quiz-candidat.component.css']
 })
 
-@Input() 
+@Input()
 export class QuizCandidatComponent implements OnInit {
 
   quiz : Quiz
   listReponses =new Map<number,number>();
   user : User
   private http : HttpClient
-  
+
 constructor(private shared : SharedService,private homeService : HomeService,private answerService : AnswerService,
   private authService : AuthService, private archivageService : ArchivageService ,private route:Router) {}
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     this.shared.quiz.subscribe(quiz=>
     {
@@ -59,29 +59,29 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
     this.listReponses.set(event[0],event[1])
     console.clear()
 
-    this.quiz.listquestionsolution.forEach(question =>{
+    this.quiz.listquestions.forEach(question =>{
       let q = question as any
       console.log([q.idQuestion,this.listReponses.get(q.idQuestion)])
     })
-    
+
     console.log(this.listReponses)
   }
 
 
   valider() {
-    this.quiz.listquestionsolution.forEach(question =>{
+    this.quiz.listquestions.forEach(question =>{
       console.clear
       let q = question as any
       q.solution.forEach(sol => {
         if(sol.idSolution==this.listReponses.get(q.idQuestion)){
-          
+
           this.answerService.postAnswer({"answer":sol.solution,"result":sol.isTrue}as Answer).subscribe(returnAnswer =>{
-            this.shared.currentUser.subscribe(user =>{        
-              let oi= {"idUser":user.idUser,"answer_idAnswer":returnAnswer.idAnswer,"question_idQuestion":q.idQuestion}    
+            this.shared.currentUser.subscribe(user =>{
+              let oi= {"idUser":user.idUser,"answer_idAnswer":returnAnswer.idAnswer,"question_idQuestion":q.idQuestion}
               console.log(user)
               console.log(oi)
               this.answerService.postUserAnswer(oi).subscribe()
-              
+
             // constructor(dateCompleted : Date, isValidated : boolean, quizz_idQuizz : number, user_idUser : number, idArchivage? : number){
             })
           })
@@ -92,5 +92,5 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
       .subscribe(e=>console.log("archivage!"))
     this.route.navigate(["validation_quiz_candidat"]);
   }
-  
+
 }

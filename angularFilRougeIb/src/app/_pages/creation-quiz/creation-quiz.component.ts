@@ -6,7 +6,9 @@ import { Theme } from 'src/app/_models/theme';
 import { User } from 'src/app/_models/user';
 import { AlertService } from 'src/app/_services/alert.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { HomeService } from 'src/app/_services/home.service';
 import { QuizService } from 'src/app/_services/quiz.service';
+import { SharedService } from 'src/app/_services/shared.service';
 import { ThemesService } from 'src/app/_services/themes.service';
 
 @Component({
@@ -30,7 +32,9 @@ export class CreationQuizComponent implements OnInit {
     private quizService : QuizService,
     private alertService: AlertService,
     private fb : FormBuilder,
-    private authService : AuthService
+    private authService : AuthService,
+    private homeService : HomeService,
+    private sharedService : SharedService,
     ) {
       this.authService.currentUser.subscribe(x => this.currentUser = x);
       this.quizForm = this.fb.group({
@@ -73,7 +77,8 @@ export class CreationQuizComponent implements OnInit {
       .subscribe(
         {
         next:() =>{
-          this.router.navigate(['/creation-questions'], { relativeTo: this.route });
+          this.continue(this.quizForm.value.code);
+          console.log(this.quizForm.value.code);
         },
         error: error => {
           this.alertService.error(error);
@@ -82,6 +87,19 @@ export class CreationQuizComponent implements OnInit {
     }
     );
   }
+
+  continue = (code :string) =>{
+    this.homeService.getByCode(code).subscribe(
+      (data) => {
+          this.sharedService.UpdateQuiz(data)
+          this.sharedService.UpdateCode(code)
+          this.router.navigate(['/creation-questions'], { relativeTo: this.route });
+          })
+  }
+
+
+
+
 
    getRandomString(length) : string {
     this.quizService.getAll().subscribe(data => ( quiz => this.listCode.push(quiz.code)));

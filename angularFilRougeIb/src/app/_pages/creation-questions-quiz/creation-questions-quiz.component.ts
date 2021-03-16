@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { Survey, Option } from '../../_models/option';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Quiz } from 'src/app/_models/quiz';
+import { Solution } from 'src/app/_models/solution';
+import { AuthService } from 'src/app/_services/auth.service';
+import { SharedService } from 'src/app/_services/shared.service';
 
 export interface QuestionType {
   value: string;
@@ -16,85 +19,63 @@ export interface QuestionType {
 export class CreationQuestionsQuizComponent implements OnInit {
 
   questionnaireForm: FormGroup;
+  quiz : Quiz ;
+  index : number = 1;
 
   selectedOption = [];
   editMode = false;
-  surveyTypes = [
-    { id: 0, value: 'Training' },
-    { id: 1, value: 'HR' }
-  ];
-
-  questions: QuestionType[] = [
-    { value: 'Single choice', viewValue: 'Single choice' },
-    { value: 'Multi choice', viewValue: 'Multi choice' },
-    { value: 'Text', viewValue: 'Text' },
-    { value: 'Rating', viewValue: 'Rating' }
-  ];
+  hiddenComment = new FormControl(false);
 
   constructor(
-    // private surveyService: SurveyService,
+    private shared : SharedService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder,
   ) {
   }
 
   ngOnInit(): void {
+    this.shared.quiz.subscribe((result)=> {
+      this.quiz=result
+    })
     this.initForm();
   }
 
   private initForm() {
-    let surveyTitle = '';
-    let surveyType = '';
     let surveyQuestions = new FormArray([]);
-
     this.questionnaireForm = new FormGroup({
-      'surveyTitle': new FormControl(surveyTitle, [Validators.required]),
-      'surveyType': new FormControl(surveyType, [Validators.required]),
       'surveyQuestions': surveyQuestions,
-      'IsAnonymous': new FormControl(false, [Validators.required])
     });
 
-    this.onAddQuestion();
-
+    this.onAddQuestion(0);
   }
 
-  onAddQuestion() {
+  onAddQuestion(index) {
     console.log(this.questionnaireForm);
-
     const surveyQuestionItem = new FormGroup({
       'questionTitle': new FormControl('', Validators.required),
-      'questionType': new FormControl('', Validators.required),
       'questionGroup': new FormGroup({})
     });
-
     (<FormArray>this.questionnaireForm.get('surveyQuestions')).push(surveyQuestionItem);
-
+    this.addOptionControls(index);
+    this.index = index + 1 ;
   }
 
   onRemoveQuestion(index) {
     this.questionnaireForm.controls.surveyQuestions['controls'][index].controls.questionGroup = new FormGroup({});
-    this.questionnaireForm.controls.surveyQuestions['controls'][index].controls.questionType = new FormControl({});
-
     (<FormArray>this.questionnaireForm.get('surveyQuestions')).removeAt(index);
     this.selectedOption.splice(index,1)
     console.log(this.questionnaireForm);
   }
 
-  onSeletQuestionType(questionType, index) {
-    if (questionType === 'Single choice' || questionType === 'Multi choice') {
-      this.addOptionControls(questionType, index)
-    }
-  }
-
-  addOptionControls(questionType, index) {
+  addOptionControls(index) {
 
     let options = new FormArray([]);
     let showRemarksBox = new FormControl(false);
-
-
     (this.questionnaireForm.controls.surveyQuestions['controls'][index].controls.questionGroup).addControl('options', options);
     (this.questionnaireForm.controls.surveyQuestions['controls'][index].controls.questionGroup).addControl('showRemarksBox', showRemarksBox);
-
     this.clearFormArray((<FormArray>this.questionnaireForm.controls.surveyQuestions['controls'][index].controls.questionGroup.controls.options));
-
     this.addOption(index);
     this.addOption(index);
   }
@@ -119,46 +100,43 @@ export class CreationQuestionsQuizComponent implements OnInit {
   postSurvey() {
 
     let formData = this.questionnaireForm.value;
-    console.log(formData);
 
+    console.log(formData);
     console.log();
-    let ID = 0;
-    let Type = formData.surveyType;
-    let Title = formData.surveyTitle;
-    let IsDeleted = false;
-    let IsAnonymous = formData.IsAnonymous;
-    //  let Question: Question[] = [];
-    let Questions = [];
+
+    let idQuizz = this.quiz.idQuizz ;
+    let name = this.quiz.name;
+    let user_idUser = this.quiz.user_idUser;
+    let theme_idTheme = this.quiz.theme_idTheme;
+    let code = this.quiz.code;
+    let dateClosed = this.quiz.dateClosed;
+    let timer = this.quiz.timer;
+    let level_idLevel = this.quiz.level_idLevel;
+    let listquestions = [];
 
     let surveyQuestions = formData.surveyQuestions;
     let optionArray = formData.surveyQuestions[0].questionGroup.options[0].optionText
-    let survey = new Survey(ID, Type, Title, IsDeleted, IsAnonymous, Questions);
+    let survey = new Quiz( name, user_idUser, theme_idTheme, code, level_idLevel, listquestions, dateClosed, timer, idQuizz,);
 
     surveyQuestions.forEach((question, index, array) => {
       let questionItem = {
-        'ID': 0,
-        "Type": question.questionType,
-        "Text": question.questionTitle,
-        "options": [],
-        "Required": false,
-        "Remarks": "",
-        "hasRemarks": false
-      }
-      if (question.questionGroup.hasOwnProperty('showRemarksBox')) {
-        questionItem.hasRemarks = question.questionGroup.showRemarksBox;
+        "title": question.questionTitle,
+        "level_idLevel": 2,
+        "comment": question.commentaireText,
+        "listSolution": [],
       }
       if (question.questionGroup.hasOwnProperty('options')) {
         question.questionGroup.options.forEach(option => {
-          let optionItem: Option = {
-            "ID": 0,
-            "OptionText": option.optionText,
-            "OptionColor": "",
-            "hasRemarks": false
+          let optionItem: Solution = {
+
+            "solution": option.optionText,
+            "question_idQuestion": 0,
+            "isTrue": false,
           }
-          questionItem.options.push(optionItem)
+          questionItem.listSolution.push(optionItem)
         });
       }
-      survey.Question.push(questionItem)
+      survey.listquestions.push(questionItem)
     });
     console.log(survey);
     console.log('posting survey');
@@ -166,8 +144,6 @@ export class CreationQuestionsQuizComponent implements OnInit {
 
 
   onSubmit() {
-
     this.postSurvey();
-
   }
 }
