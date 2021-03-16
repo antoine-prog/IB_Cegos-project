@@ -4,7 +4,14 @@ section{
     align-items: center;
     margin-bottom: 1rem;
   }
-  
+  #descHeader {
+    font-size: 20;
+  }
+
+  #descQuest {
+    display : flex;
+    flex-direction: column;
+  }
   mat-accordion {
     width: 80%;
   }

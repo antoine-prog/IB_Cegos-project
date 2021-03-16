@@ -13,14 +13,19 @@
                             </div> 
                         </div>
                         <ng-template #stillLoading><p>Loading...</p></ng-template>
-                        <div>{{quiz.name}}</div> 
+                        <div *ngIf="quiz">{{quiz.name}}</div> 
                         <div *ngIf="actualite.isValidated,then valid else notValid"></div>
                         <ng-template #valid><span id="status-valid">Vu</span></ng-template>
                         <ng-template #notValid><span id="status-notValid">Non vu</span></ng-template>
 
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+                <mat-panel-description id="descQuest">
+                    <p *ngIf="resultat">Resultat : {{resultat.resultat}} / {{resultat.total}}</p>
+                    <button mat-button color="warn" routerLink ="/quiz-candidat-details">Détails</button>
+                </mat-panel-description>
             </mat-expansion-panel>
+
         </mat-accordion>
 </section>
 <!-- <section *ngIf="user.isAdmin == true || user.isCreator == true">

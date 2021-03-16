@@ -25,5 +25,8 @@ export class AnswerService {
   get(idCandidat,idQuiz): Observable<any>{
     return this.http.get<Answer[]>(`${environment.apiUrl}/api/answers/${idCandidat},${idQuiz}`)
   }
+  resultat(idArchivage,idUser,idQuiz) : Observable<any>{
+    return this.http.get<Answer[]>(`${environment.apiUrl}/results/${idArchivage}/${idUser}/${idQuiz}`)
+  }
 
 }
