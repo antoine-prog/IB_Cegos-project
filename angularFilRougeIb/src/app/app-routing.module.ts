@@ -17,6 +17,7 @@ import { ValidationQuizCandidatComponent } from './_pages/validation-quiz-candid
 import { VoirUnQuestionnaireComponent } from './_pages/voir-un-questionnaire/voir-un-questionnaire.component';
 import { ModifierUnQuestionnaireComponent } from './_pages/modifier-un-questionnaire/modifier-un-questionnaire.component';
 import { CreationQuestionsQuizComponent } from './_pages/creation-questions-quiz/creation-questions-quiz.component';
+import { QuizCandidatDetailsComponent } from './_pages/quiz-candidat-details/quiz-candidat-details.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,7 @@ const routes: Routes = [
   {path:"modifier-questionnaire", component : ModifierUnQuestionnaireComponent, canActivate:[AuthGuardGuard]},
   {path:"nouveau", component : CreationQuizComponent, canActivate:[AuthGuardGuard]},
   {path:"creation-questions", component : CreationQuestionsQuizComponent, canActivate:[AuthGuardGuard]},
-
+  {path:"quiz-candidat-details",component:QuizCandidatDetailsComponent},
   {path:"validation_quiz_candidat",component:ValidationQuizCandidatComponent},
   {path:"404", component : NotfoundComponent},
   {path:"users", component : UsersComponent, canActivate:[AuthGuardGuard]},
