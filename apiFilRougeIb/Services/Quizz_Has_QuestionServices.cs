@@ -23,11 +23,10 @@ namespace apiFilRougeIb.Services
             return this._quizzHasQuestionRepository.Delete(id);
         }
 
-        internal List<Quizz_Has_Question> Post(CreateQuizzHasQuestionDto qhq)
+        internal Quizz_Has_Question Post(Quizz_Has_Question qhq)
         {
-            Models.Quizz_Has_Question qhqModel = TransformDtoToModel(qhq);
-            Models.Quizz_Has_Question qhqModelCreated = this._quizzHasQuestionRepository.Create(qhqModel);
-            return TransformModelToAfterCreateDto(qhqModelCreated, true);
+            Models.Quizz_Has_Question qhqModelCreated = this._quizzHasQuestionRepository.Create(qhq);
+            return qhq;
         }
 
         private List<Quizz_Has_Question> TransformModelToAfterCreateDto(object solutionModelCreated, bool v)

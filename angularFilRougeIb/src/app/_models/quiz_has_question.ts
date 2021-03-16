@@ -12,6 +12,10 @@ export class Quiz_has_Question{
     return this._quizz_idQuizz;
   }
 
+  set quizz_idQuizz(quizz_idQuizz : number){
+    this._quizz_idQuizz = quizz_idQuizz;
+  }
+
   get question_idQuestion() : number {
     return this._question_idQuestion;
   }

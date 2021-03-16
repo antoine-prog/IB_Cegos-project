@@ -33,6 +33,7 @@ const routes: Routes = [
   {path:"modifier-questionnaire", component : ModifierUnQuestionnaireComponent, canActivate:[AuthGuardGuard]},
   {path:"nouveau", component : CreationQuizComponent, canActivate:[AuthGuardGuard]},
   {path:"creation-questions", component : CreationQuestionsQuizComponent, canActivate:[AuthGuardGuard]},
+  {path:"quiz-cree", component : QuizCreeCodeComponent, canActivate:[AuthGuardGuard]},
 
   {path:"validation_quiz_candidat",component:ValidationQuizCandidatComponent},
   {path:"404", component : NotfoundComponent},

@@ -28,7 +28,7 @@ namespace apiFilRougeIb.Repositories
                 //}
             }
             string request = _queryBuilder
-                .Insert("quizz_Has_Question")
+                .Insert("quizz_Has_Questions")
                 .Values(quizz_Has_QuestionDictionnary);
 
             Console.WriteLine(request);

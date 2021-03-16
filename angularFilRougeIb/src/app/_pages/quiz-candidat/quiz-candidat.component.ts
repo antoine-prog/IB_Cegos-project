@@ -45,10 +45,10 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
           console.log("quiz not found, query by localstored code",code)
           this.homeService.getByCode(code).subscribe((quiz)=>{
             this.quiz=quiz;
+      console.log(this.quiz)
           })
         })
       }
-      console.log(this.quiz)
     })
     this.shared.currentUser.subscribe(us=>{
       this.user=us

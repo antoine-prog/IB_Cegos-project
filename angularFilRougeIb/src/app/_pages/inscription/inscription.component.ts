@@ -24,7 +24,7 @@ export class InscriptionComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb : FormBuilder,
-    private service : UserService,
+    private userService : UserService,
     private alertService: AlertService
     ){
       this.userForm = this.fb.group({
@@ -73,7 +73,7 @@ export class InscriptionComponent implements OnInit {
     }
 
     this.loading = true;
-    this.service
+    this.userService
       .create(this.userForm.value)
       .subscribe(
         {

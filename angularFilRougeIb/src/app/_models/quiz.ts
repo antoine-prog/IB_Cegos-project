@@ -10,9 +10,9 @@ export class Quiz{
   private _dateClosed : Date;
   private _timer : number;
   private _level_idLevel : number;
-  private _listquestions : Question[] = [];
+  private _listquestionsolution : Quiz[] = [];
 
-  constructor(name : string, user_idUser : number, theme_idTheme : number, code : string, level_idLevel : number, listquestions? : Question[], dateClosed? : Date, timer? : number, idQuiz? : number){
+  constructor(name : string, user_idUser : number, theme_idTheme : number, code : string, level_idLevel : number, listquestions? : Quiz[], dateClosed? : Date, timer? : number, idQuiz? : number){
     this._idQuizz = idQuiz;
     this._listquestions = listquestions;
     this._name = name;
@@ -28,12 +28,12 @@ export class Quiz{
     return this._idQuizz;
   }
 
-  get listquestions() : Question[] {
-    return this._listquestions;
+  get listquestionsolution() : Quiz[] {
+    return this._listquestionsolution;
   }
 
-  set listquestions(listquestions : Question[]){
-    this._listquestions = listquestions;
+  set listquestionsolution(listquestions : Quiz[]){
+    this._listquestionsolution = listquestions;
   }
   get name() : string {
     return this._name;
