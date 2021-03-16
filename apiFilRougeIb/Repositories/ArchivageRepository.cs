@@ -24,7 +24,7 @@ namespace apiFilRougeIb.Repositories
 
             foreach (PropertyInfo pr in obj.GetType().GetProperties())
             {
-                if (pr.Name.ToLower() != "idarchivage")
+                if (pr.Name.ToLower() != "idarchivage" && pr.Name.ToLower() != "datecompleted")
                 {
                     archivageDictionnary.Add(pr.Name.ToLower(), pr.GetValue(obj));
                 }
@@ -42,6 +42,27 @@ namespace apiFilRougeIb.Repositories
             obj.IdArchivage = idArchivage;
             connectionSql.Close();
             return obj;
+        }
+
+        internal List<long> FindByCreatorId(long idCreator)
+        {
+            List<long> listIds = new List<long>();
+            this.OpenConnection();
+            string request = _queryBuilder
+                .Select("archivage.idarchivage")
+                .From("Archivage")
+                .Join("quizz","quizz.idquizz","archivage.quizz_idquizz")
+                .Where("quizz.user_iduser",idCreator)
+                .Get();
+            MySqlCommand cmd = new MySqlCommand(request, connectionSql);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                listIds.Add(rdr.GetInt64(0));
+            }
+            this.CloseConnection(rdr);
+            listIds.Reverse();
+            return listIds;
         }
 
         public override int Delete(long id)
@@ -67,8 +88,12 @@ namespace apiFilRougeIb.Repositories
             Models.Archivage archivage = new Models.Archivage();
             while (rdr.Read())
             {
-                archivage.IdArchivage = rdr.GetInt64(0);
-                archivage.DateCompleted = rdr.GetDateTime(1);
+                archivage.IdArchivage = rdr.GetInt64(0); try
+                {
+
+                    archivage.DateCompleted = rdr.GetDateTime(1);
+                }
+                catch { }
                 archivage.IsValidated = rdr.GetBoolean(2);
                 archivage.Quizz_idQuizz = rdr.GetInt64(3);
                 archivage.User_idUser = rdr.GetInt64(4);
@@ -92,7 +117,12 @@ namespace apiFilRougeIb.Repositories
             {
                 Models.Archivage archivage = new Models.Archivage();
                 archivage.IdArchivage = rdr.GetInt64(0);
+                try
+                {
+
                 archivage.DateCompleted = rdr.GetDateTime(1);
+                }
+                catch { }
                 archivage.IsValidated = rdr.GetBoolean(2);
                 archivage.Quizz_idQuizz = rdr.GetInt64(3);
                 archivage.User_idUser = rdr.GetInt64(4);

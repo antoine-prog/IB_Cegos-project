@@ -27,6 +27,7 @@ export class QuizCandidatComponent implements OnInit {
 
   quiz : Quiz
   listReponses =new Map<number,number>();
+
   user : User
   private http : HttpClient
 
@@ -59,7 +60,7 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
     this.listReponses.set(event[0],event[1])
     console.clear()
 
-    this.quiz.listquestions.forEach(question =>{
+    this.quiz.listquestionsolution.forEach(question =>{
       let q = question as any
       console.log([q.idQuestion,this.listReponses.get(q.idQuestion)])
     })
@@ -69,7 +70,7 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
 
 
   valider() {
-    this.quiz.listquestions.forEach(question =>{
+    this.quiz.listquestionsolution.forEach(question =>{
       console.clear
       let q = question as any
       q.solution.forEach(sol => {

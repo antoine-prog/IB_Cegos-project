@@ -32,6 +32,11 @@ namespace apiFilRougeIb.Controllers
         {
             return archivageServices.GetArchivages(id);
         }
+        [HttpGet("ArchivagesCreator/{idCreator}")]
+        public List<Dto.FindAll.FindAllArchivagesDto> Get2(long idCreator)
+        {
+            return archivageServices.GetArchivagesByIdCreator(idCreator);
+        }
 
         // POST api/<TodosController>
         [HttpPost]

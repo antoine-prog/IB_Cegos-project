@@ -1,12 +1,18 @@
-<main>
-    <p>{{quiz.name}}</p>
-    <div class="container">
-        <ol>
-            <app-question *ngFor="let question of quiz.listquestionsolution" [question]="question"(questionUpdate)="updateReponse($event)">aie</app-question>
-        </ol>
-    </div>
-    <div>
-        <input type="button" value="Valider" (click)="valider()">
-    </div>
-
-</main>
+<section>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                {{quiz.name}}
+            </mat-card-title>   
+        </mat-card-header>
+        <mat-card-content>
+            <ol>
+                <app-question *ngFor="let question of quiz.listquestionsolution" [question]="question"(questionUpdate)="updateReponse($event)">aie</app-question>
+            </ol>
+        </mat-card-content>
+        <div class="btndiv">
+            
+            <button  mat-raised-button color="warn" type="button" value="Valider" (click)="valider()">Valider</button>
+        </div>
+    </mat-card>
+</section>

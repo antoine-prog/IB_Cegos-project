@@ -1,4 +1,5 @@
-﻿using System;
+﻿using apiFilRougeIb.Dto.FindAll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,6 +29,18 @@ namespace apiFilRougeIb.Services
                 archivageDto.Add(TransformModelToDto(archivage));
             });
             return archivageDto;
+        }
+
+        internal List<Dto.FindAll.FindAllArchivagesDto> GetArchivagesByIdCreator(long idCreator)
+        {
+            List<long> ids = this._archivageRepository.FindByCreatorId(idCreator);
+            List<FindAllArchivagesDto> list=new List<FindAllArchivagesDto>();
+            foreach(long id in ids)
+            {
+                list.Add( TransformModelToDto(this._archivageRepository.Find(id)));
+            }
+            return list;
+            
         }
 
         /// <summary>

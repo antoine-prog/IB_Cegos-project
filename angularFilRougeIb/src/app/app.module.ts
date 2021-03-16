@@ -71,6 +71,7 @@ import { QuestionnaireComponent } from './_components/questionnaire/questionnair
 import { DialogComponent } from './_components/dialog/dialog.component';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ErrorInterceptor } from './_helper/error-interceptor';
+import { QuizCandidatDetailsComponent } from './_pages/quiz-candidat-details/quiz-candidat-details.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { ErrorInterceptor } from './_helper/error-interceptor';
     SolutionComponent,
     AlertComponent,
     QuestionnaireComponent,
-    DialogComponent
+    DialogComponent,
+    QuizCandidatDetailsComponent
   ],
   imports: [
     BrowserModule,
