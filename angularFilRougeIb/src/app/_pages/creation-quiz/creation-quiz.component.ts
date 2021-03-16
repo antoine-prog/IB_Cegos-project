@@ -21,6 +21,7 @@ export class CreationQuizComponent implements OnInit {
   quizForm : FormGroup;
   loading = false;
   isSubmitted = false;
+  listCode = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,15 +36,13 @@ export class CreationQuizComponent implements OnInit {
       this.quizForm = this.fb.group({
         name : ['', Validators.required],
         user_idUser : [this.currentUser.idUser],
-        theme_idTheme: [''],
-        code : [''],
-        dateClosed : [''],
-        timer : [''],
-        level_idLevel : [''],
+        theme_idTheme: ['', Validators.required],
+        code : [this.getRandomString(10)],
+        dateClosed : ['9999-12-31'],
+        level_idLevel : ['', Validators.required],
         listquestionsolution : [[]]
     })
   }
-
 
   ngOnInit(): void {
     this.getThemesQuiz();
@@ -55,12 +54,6 @@ export class CreationQuizComponent implements OnInit {
     this.themesService.getAll().subscribe(response => {
       this.themes = response;
     })
-  }
-
-  getErrorMessage() {
-    if (this.f.name.hasError('required')) {
-      return 'You must enter a value';
-    }
   }
 
   onSubmit = () =>{
@@ -80,7 +73,6 @@ export class CreationQuizComponent implements OnInit {
       .subscribe(
         {
         next:() =>{
-          this.alertService.success('Registration successful', { keepAfterRouteChange: true });
           this.router.navigate(['/creation-questions'], { relativeTo: this.route });
         },
         error: error => {
@@ -90,4 +82,23 @@ export class CreationQuizComponent implements OnInit {
     }
     );
   }
+
+   getRandomString(length) : string {
+    this.quizService.getAll().subscribe(data => ( quiz => this.listCode.push(quiz.code)));
+
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+
+    for ( var i = 0; i < length; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+
+    while(this.listCode.includes(result)){
+      for ( var i = 0; i < length; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+      }
+    }
+
+    return result;
+}
 }

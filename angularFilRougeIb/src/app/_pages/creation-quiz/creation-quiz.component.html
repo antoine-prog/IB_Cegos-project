@@ -1,10 +1,10 @@
 <section>
 <h1>Création d'un nouveau Questionnaire</h1>
-<div class="quizAttribute" [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+<form class="quizAttribute" [formGroup]="quizForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill"  id="name">
     <mat-label>Nom</mat-label>
     <input matInput type="text" formControlName="name" required>
-    <mat-error *ngIf="f.name.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="f.name.hasError('required')">Nom requis</mat-error>
   </mat-form-field>
   <div class="second-line">
     <mat-form-field appearance="fill">
@@ -14,14 +14,18 @@
         <mat-option value="2">Confirmé</mat-option>
         <mat-option value="3">Expérimenté</mat-option>
       </mat-select>
+      <!-- <mat-error *ngIf="f.level_idLeve.hasError('required')">Niveau requis</mat-error> -->
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Thème</mat-label>
       <mat-select  formControlName="theme_idTheme" required>
         <mat-option *ngFor="let theme of themes" value="{{theme.idTheme}}" >{{theme.theme}}</mat-option>
       </mat-select>
+      <!-- <mat-error *ngIf="f.theme_idTheme.hasError('required')">Thème requis</mat-error> -->
     </mat-form-field>
   </div>
-  <button type="submit">Continuer</button>
-</div>
+  <div>
+    <button mat-raised-button type="submit" color="primary">Continuer</button>
+  </div>
+</form>
 </section>
