@@ -40,7 +40,8 @@ export class QuestionnaireComponent implements OnInit {
   ouvertDate() : boolean {
     //variable closedate = this.questionaire.dateClosed en format Date TS
     var closedate = new Date(this.questionnaire.dateClosed);
-    if(this.currentDate < closedate)  {
+    console.log(closedate);
+    if(this.currentDate < closedate || closedate == null)  {
       return true;
     }
     else{
