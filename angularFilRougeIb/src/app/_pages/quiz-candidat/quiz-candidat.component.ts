@@ -6,6 +6,7 @@ import { time } from 'node:console';
 import { AnyCnameRecord } from 'node:dns';
 import { Answer } from 'src/app/_models/answer';
 import { Archivage } from 'src/app/_models/archivage';
+import { PostArchivage } from 'src/app/_models/postarchivage';
 import { Quiz } from 'src/app/_models/quiz';
 import { Solution } from 'src/app/_models/solution';
 import { User } from 'src/app/_models/user';
@@ -97,7 +98,8 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
         }
       })
     })
-    this.archivageService.postArchivage({    "isValidated": false,"quizz_idQuizz": this.quiz.idQuizz,"user_idUser": this.user.idUser} as PostArchivage)
+    this.archivageService.postArchivage(
+      {"isValidated": false,"quizz_idQuizz": this.quiz.idQuizz,"user_idUser": this.user.idUser} as PostArchivage)
       .subscribe()
     this.route.navigate(["validation_quiz_candidat"]);
   }
