@@ -15,37 +15,49 @@
             <li *ngFor="let questionCtrl of questionnaireForm.get('surveyQuestions')['controls']; let i = index">
               <div [formGroupName]="i">
                 <div>
+                  <!-- intitulé de la question -->
                   <mat-form-field class="full-width">
                     <input #message formControlName="questionTitle" maxlength="300" matInput placeholder="Titre de la question"
                       [required]="true">
                       <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
                   </mat-form-field>
+
+
                   <div formGroupName="questionGroup" class="questionGroup">
                     <div>
                       <div *ngIf="questionCtrl.controls.questionGroup.controls.options">
                         <ul class="question-type" formArrayName="options">
                           <li *ngFor="let optionCtrl of questionCtrl.controls.questionGroup.controls.options.controls let j = index">
-                            <div [formGroupName]="j" >
+                            <div [formGroupName]="j" class="aflex">
+                              <!-- checkbox pour dire bonne réponse (isTrue = true) -->
+                              <mat-checkbox class="example-margin" formControlName="isTrue"></mat-checkbox>
+                              <!-- Intitulé de la proposition -->
                               <mat-form-field>
                                 <input formControlName="optionText" matInput placeholder="texte" maxlength="200">
                                 <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
                               </mat-form-field>
-                                <button mat-raised-button *ngIf="j>=2" (click)="removeOption(i,j)" color="warn">
-                                X
-                                </button>
+                              <!-- Bouton supression de la proposition (seulement si 2+) -->
+                              <button mat-raised-button *ngIf="j>=2" (click)="removeOption(i,j)" color="warn">
+                              X
+                              </button>
                             </div>
                           </li>
                         </ul>
+                        <!-- bouton ajouter une proposition -->
                         <button mat-raised-button type="button" (click)="addOption(i)" class="mat-sm-button add-option-btn" color="accent"> Ajouter une proposition</button>
                       </div>
                       <div *ngIf="questionCtrl.controls.questionGroup.controls.showRemarksBox">
-                        <mat-checkbox [formControl]="hiddenComment">Ajouter un commentaire</mat-checkbox>
-                        <mat-form-field class="full-width" *ngIf="hiddenComment.value">
-                            <textarea  formControlName="commentaireText" style="resize: none;" matInput placeholder="Commentaire"></textarea>
-                          </mat-form-field>
                       </div>
                     </div>
                   </div>
+
+                  <!-- checkbox pour ajouter un commentaire a la question -->
+                  <mat-checkbox [formControl]="hiddenComment">Ajouter un commentaire</mat-checkbox>
+                  <!-- commentaire de la question -->
+                  <mat-form-field class="full-width" *ngIf="hiddenComment.value">
+                    <textarea  formControlName="questionComment" style="resize: none;" matInput placeholder="Commentaire"></textarea>
+                  </mat-form-field>
+
                 </div>
                 <button *ngIf="i>0" mat-mini-fab color="warn" type="button" (click)="onRemoveQuestion(i)" class="poll-remove-btn">
                 X

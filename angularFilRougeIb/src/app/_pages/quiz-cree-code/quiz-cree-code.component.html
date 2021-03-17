@@ -1,29 +1,35 @@
-<mat-card >
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>Saisissez un nom : </mat-label>
-          <input matInput placeholder="Nom du quiz">
-        </mat-form-field>
-      
-        <mat-form-field class="example-full-width">
-          <mat-label>Sélectionnez un thème : </mat-label>
-          <input matInput placeholder="Thème du quiz">
-          <mat-select>
-            <mat-option value="option1">""</mat-option>
-            <mat-option value="option2">""</mat-option>
-            <mat-option value="option3">""</mat-option>
-        </mat-select>
-        </mat-form-field>
-    
-        <mat-form-field class="example-full-width">
-            <mat-label>Sélectionnez un niveau : </mat-label>
-            <input matInput placeholder="Niveau du quiz">
-            <mat-select>
-                <mat-option value="option1">Junior</mat-option>
-                <mat-option value="option2">Intermediaire</mat-option>
-                <mat-option value="option3">Confirmé</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button mat-raised-button>Valider</button>
-      </form>
-</mat-card>
+<section>
+  <h1>Feliciation votre questionnaire à été crée</h1>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{this.quiz.name}}</mat-card-title>
+      <mat-card-subtitle>{{currentUser.username}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button>Ajouter date de fin</button>
+      <button mat-button>Ajouter timer</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <form class="example-form" autocomplete="off" [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Entrer une date de fin</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateClosed">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Timer (minutes)</mat-label>
+      <input matInput type="number" formControlName="timer">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button>Mettre à jour</button>
+    </div>
+  </form>
+</section>

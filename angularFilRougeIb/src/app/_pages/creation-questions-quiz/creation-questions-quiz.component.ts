@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Question } from 'src/app/_models/question';
 import { Quiz } from 'src/app/_models/quiz';
 import { Quiz_has_Question } from 'src/app/_models/quiz_has_question';
 import { Solution } from 'src/app/_models/solution';
+
 import { AuthService } from 'src/app/_services/auth.service';
 import { QuestionsService } from 'src/app/_services/questions.service';
+import { QuizService } from 'src/app/_services/quiz.service';
 import { SharedService } from 'src/app/_services/shared.service';
 import { SolutionsService } from 'src/app/_services/solutions.service';
 
@@ -38,6 +41,8 @@ export class CreationQuestionsQuizComponent implements OnInit {
     private formBuilder: FormBuilder,
     private questionsService: QuestionsService,
     private solutionsService: SolutionsService,
+    private quizService: QuizService,
+    private sharedService: SharedService,
   ) {
   }
 
@@ -61,6 +66,7 @@ export class CreationQuestionsQuizComponent implements OnInit {
     console.log(this.questionnaireForm);
     const surveyQuestionItem = new FormGroup({
       'questionTitle': new FormControl('', Validators.required),
+      'questionComment' : new FormControl(''),
       'questionGroup': new FormGroup({})
     });
     (<FormArray>this.questionnaireForm.get('surveyQuestions')).push(surveyQuestionItem);
@@ -95,6 +101,7 @@ export class CreationQuestionsQuizComponent implements OnInit {
   addOption(index) {
     const optionGroup = new FormGroup({
       'optionText': new FormControl('', Validators.required),
+      'isTrue' : new FormControl(''),
     });
     (<FormArray>this.questionnaireForm.controls.surveyQuestions['controls'][index].controls.questionGroup.controls.options).push(optionGroup);
   }
@@ -109,7 +116,6 @@ export class CreationQuestionsQuizComponent implements OnInit {
 
     console.log(formData);
     console.log();
-
 
     //Donnee du quizz en cour de creation
     let idQuizz : number  = this.quiz.idQuizz ;
@@ -126,21 +132,13 @@ export class CreationQuestionsQuizComponent implements OnInit {
     //on instancie ses données
     let survey = new Quiz(name, user_idUser, theme_idTheme, code, level_idLevel);
     console.log(survey);
-    console.log("SurveyQuestions",surveyQuestions)
-    console.log('posting survey');
 
     //pour chaque question...
     surveyQuestions.forEach((question) => {
 
-      let questionItem = {
-        "title": question.questionTitle,
-        "level_idLevel": 2,
-        "comment": question.commentaireText,
-        // "listSolution": [],
-      }
       //... on instancie une nouvelle question
-      let questionQuiz = new Question(question.questionTitle, 2,question.commentaireText)
-      console.log("ICI QUESTION QUIZZ" , questionQuiz);
+      let questionQuiz = new Question(question.questionTitle, 2, question.questionComment)
+
       //...on ajoute cette question dans la bdd
       this.questionsService
       .create(questionQuiz)
@@ -158,19 +156,25 @@ export class CreationQuestionsQuizComponent implements OnInit {
                 question.questionGroup.options.forEach(option => {
                   let optionItem = {
                     "solution": option.optionText ,
-                    "question_idQuestion": 0,
-                    "isTrue": false,
+                    "question_idQuestion": callbackquestion.idQuestion,
+                    "isTrue": option.isTrue,
                   }
-                //on instancie cette proposition
-                let propositionQuestion = new Solution(option.optionText, callbackquestion.idQuestion, false)
 
+                  let SolutionIsTrue = false;
+                  //if réponse vrai en set istrue a vrai
+                  if(option.isTrue == true){
+                    SolutionIsTrue = option.isTrue;
+                  }
+
+                //on instancie cette proposition
+                let propositionQuestion = new Solution(option.optionText, callbackquestion.idQuestion, SolutionIsTrue)
                 //...on ajoute cette proposition dans la bdd
                 this.solutionsService
                 .create(propositionQuestion)
                 .subscribe(
                   {
                     next:() =>{
-                      this.router.navigate(['/quiz-cree'], { relativeTo: this.route });
+                      this.continue(idQuizz);
                     }
                   }
                 );
@@ -187,8 +191,17 @@ export class CreationQuestionsQuizComponent implements OnInit {
 
   }
 
-
   onSubmit() {
     this.postSurvey();
   }
+
+  continue = (idQuiz :number) =>{
+    this.quizService.getById(idQuiz).subscribe(
+      (data) => {
+          this.sharedService.UpdateQuiz(data)
+          this.sharedService.UpdateCode(idQuiz)
+          this.router.navigate(['/quiz-cree'], { relativeTo: this.route });
+          })
+  }
+
 }

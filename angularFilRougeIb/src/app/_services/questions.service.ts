@@ -21,7 +21,7 @@ export class QuestionsService {
   }
 
   create(question: Question) : Observable<Question>{
-    let testpostquestion ={title:question.title,level_idlevel:question.level_idLevel,comment:question.comment }
+    let testpostquestion ={title:question.title, level_idlevel:question.level_idLevel, comment:question.comment }
     console.log("ICI SERVICE FRONT CREATE QUESITON" , question)
     return this.http.post<Question>(`${environment.apiUrl}/api/questions`, testpostquestion)
   }

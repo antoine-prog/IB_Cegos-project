@@ -72,6 +72,8 @@ import { DialogComponent } from './_components/dialog/dialog.component';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ErrorInterceptor } from './_helper/error-interceptor';
 import { QuizCandidatDetailsComponent } from './_pages/quiz-candidat-details/quiz-candidat-details.component';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -120,6 +122,7 @@ import { QuizCandidatDetailsComponent } from './_pages/quiz-candidat-details/qui
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,
@@ -154,6 +157,7 @@ import { QuizCandidatDetailsComponent } from './_pages/quiz-candidat-details/qui
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
   ],
   bootstrap: [AppComponent]
 })
