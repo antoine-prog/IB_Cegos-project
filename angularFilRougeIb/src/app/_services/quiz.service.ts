@@ -30,8 +30,13 @@ export class QuizService {
     return this.http.post<Quiz>(`${environment.apiUrl}/api/quiz`, quiz)
   }
 
+  // update(quiz: Quiz): Observable<Quiz> {
+  //       return this.http.put<Quiz>(`${environment.apiUrl}/api/quiz`,quiz);
+  //     }
+
   update(quiz: Quiz): Observable<Quiz> {
-        return this.http.put<Quiz>(`${environment.apiUrl}/api/quiz`,quiz);
+    console.log("idQuiz", quiz.idQuizz);
+        return this.http.put<Quiz>(`${environment.apiUrl}/api/quiz/${quiz.idQuizz}`, quiz);
       }
 
   delete(idQuiz : number){

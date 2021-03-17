@@ -114,7 +114,7 @@ export class CreationQuestionsQuizComponent implements OnInit {
 
     let formData = this.questionnaireForm.value;
 
-    console.log(formData);
+    console.log("formdata",formData);
     console.log();
 
     //Donnee du quizz en cour de creation
@@ -174,6 +174,8 @@ export class CreationQuestionsQuizComponent implements OnInit {
                 .subscribe(
                   {
                     next:() =>{
+                      console.log("idQuizz", idQuizz);
+                      console.log("thisQuizz.idQuizz", this.quiz.idQuizz);
                       this.continue(idQuizz);
                     }
                   }
@@ -198,6 +200,7 @@ export class CreationQuestionsQuizComponent implements OnInit {
   continue = (idQuiz :number) =>{
     this.quizService.getById(idQuiz).subscribe(
       (data) => {
+          console.log("data",data);
           this.sharedService.UpdateQuiz(data)
           this.sharedService.UpdateCode(idQuiz)
           this.router.navigate(['/quiz-cree'], { relativeTo: this.route });

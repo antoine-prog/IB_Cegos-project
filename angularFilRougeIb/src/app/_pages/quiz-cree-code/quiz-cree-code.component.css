@@ -5,12 +5,54 @@ html {
     font-size: 62.5%;
 }
 
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
   .example-full-width {
     width: 100%;
+  }
+
+  section{
+  margin : 1re;
+  padding: 1rem;
+  }
+
+  h1{
+    text-align: center;
+  }
+
+  mat-card{
+    text-align: center;
+    align-items: center;
+  }
+
+  mat-card-header{
+    text-align: center;
+    justify-content: center
+  }
+
+  mat-card-content{
+    justify-content: center
+  }
+
+  form{
+    margin-top: 3rem;
+  }
+  div.form-update{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  div.button-maj{
+    text-align: center;
+    margin-right: 2rem;
+    border-radius: 1rem;
+  }
+
+  button.maj-buton{
+    background-color: green;
+    color : white;
+  }
+
+  div.form-button{
+    display: flex;
+    justify-content: center;
+    margin : 2rem;
   }

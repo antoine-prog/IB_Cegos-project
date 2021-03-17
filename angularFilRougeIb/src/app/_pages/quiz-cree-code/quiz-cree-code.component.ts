@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from 'src/app/_models/question';
 import { Quiz } from 'src/app/_models/quiz';
 import { User } from 'src/app/_models/user';
@@ -24,35 +25,46 @@ export class QuizCreeCodeComponent implements OnInit {
   currentUser : User;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private shared: SharedService,
     private quizService: QuizService,
     private alertService: AlertService,
     private fb : FormBuilder,
     private authService: AuthService,
   ) {
-      this.quizForm = this.fb.group({
-        idQuizz: [this.quiz.idQuizz],
-        name : [this.quiz.name],
-        user_idUser : [this.quiz.user_idUser],
-        theme_idTheme: [this.quiz.theme_idTheme],
-        code : [''],
-        timer :[''],
-        dateClosed : ['9999-12-31'],
-        level_idLevel : [this.quiz.level_idLevel],
-        listquestionsolution : [[]]
-      });
-      this.authService.currentUser.subscribe(x => this.currentUser = x);
+
    }
 
   ngOnInit(): void {
     this.shared.quiz.subscribe((result)=> {
-      this.quiz=result
+      this.quiz=result;
     })
-    console.log(this.quiz);
+    console.log("icii", this.quiz);
+
+    this.quizForm = this.fb.group({
+      idQuizz: [this.quiz.idQuizz],
+      name : [this.quiz.name],
+      user_idUser : [this.quiz.user_idUser],
+      theme_idTheme: [this.quiz.theme_idTheme],
+      code : [this.quiz.code],
+      timer :[''],
+      dateClosed : [''],
+      level_idLevel : [this.quiz.level_idLevel],
+      listquestionsolution : [[]]
+    });
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
+
+  get f() { return this.quizForm.controls; }
 
   onSubmit() : void {
     this.isSubmitted = true;
+    this.quizForm.value.dateClosed
+
+    if (this.quizForm.value.dateClosed == ''){
+      this.quizForm.value.dateClosed = '9999-12-31'
+    }
 
     //reset alert on submit
     this.alertService.clear();
@@ -77,6 +89,10 @@ export class QuizCreeCodeComponent implements OnInit {
       }
     }
     );
+  }
+
+  onHome() : void{
+    this.router.navigate(['/home-connecte'], { relativeTo: this.route });
   }
 
 }
