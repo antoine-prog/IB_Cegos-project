@@ -6,6 +6,8 @@ import { UserService } from 'src/app/_services/user.service';
 import { switchMap } from 'rxjs/operators';
 import * as EventEmitter from 'events';
 import { QuizService } from 'src/app/_services/quiz.service';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/app/_services/shared.service';
 
 @Component({
   selector: 'app-user',
@@ -23,12 +25,17 @@ export class UserComponent implements OnInit {
 
   constructor(private userService : UserService,
     private users:UsersComponent,
-    private quizService : QuizService) { }
+    private quizService : QuizService,
+    private shared : SharedService,
+    private router : Router) { }
 
   ngOnInit(): void {
     this.getUserQuiz();
   }
-
+  navtoedit = () =>{
+    this.shared.UpdateEditId(this.user.idUser)
+    this.router.navigate(["/modifier-profil"])
+  }
   getUserQuiz(){
     this.userService.getUserQuizbtId(this.user.idUser).subscribe(data => {
       this.user.listQuizz = data.listQuizz;

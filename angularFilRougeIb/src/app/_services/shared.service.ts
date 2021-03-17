@@ -12,6 +12,8 @@ export class SharedService {
   code = this.codeSource.asObservable();
   private quizSource = new BehaviorSubject<Quiz>(new Quiz('',0,0,'',0,[]));
   quiz= this.quizSource.asObservable();
+  private editIdSource =  new BehaviorSubject<number>(0)
+  editId= this.editIdSource.asObservable();
 
   private currentUserSource = new BehaviorSubject<User>(new User('','','','','','',false,false));
   currentUser = this.currentUserSource.asObservable();
@@ -26,6 +28,10 @@ export class SharedService {
   })
   DeleteCode=() =>{
     localStorage.removeItem('currentCode')
+  }
+
+  UpdateEditId =(id:number) =>{
+    this.editIdSource.next(id)
   }
   UpdateQuiz =(quiz) => {
     this.quizSource.next(quiz);

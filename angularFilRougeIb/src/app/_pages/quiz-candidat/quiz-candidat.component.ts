@@ -39,11 +39,9 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
     this.shared.quiz.subscribe(quiz=>
     {
       if(quiz.idQuizz>0){
-        console.log("found by service")
         this.quiz=quiz
       } else {
         this.shared.code.subscribe((code)=>{
-          console.log("quiz not found, query by localstored code",code)
           this.homeService.getByCode(code).subscribe((quiz)=>{
             this.quiz=quiz;
       console.log(this.quiz)
@@ -74,23 +72,33 @@ constructor(private shared : SharedService,private homeService : HomeService,pri
       console.clear
       let q = question as any
       q.solution.forEach(sol => {
-        if(sol.idSolution==this.listReponses.get(q.idQuestion)){
+        if(this.listReponses.get(q.idQuestion)==undefined){
+          sol.solution="(vide)"
+          sol.isTrue=false
+          this.answerService.postAnswer({"answer":"(vide)","result":false}as Answer).subscribe(returnAnswer =>{
+            this.shared.currentUser.subscribe(user =>{
+              let oi= {"idUser":user.idUser,"answer_idAnswer":returnAnswer.idAnswer,"question_idQuestion":q.idQuestion}
+              this.answerService.postUserAnswer(oi).subscribe(e=>{})
+
+        })
+       })
+       } else if(sol.idSolution==this.listReponses.get(q.idQuestion)){
 
           this.answerService.postAnswer({"answer":sol.solution,"result":sol.isTrue}as Answer).subscribe(returnAnswer =>{
             this.shared.currentUser.subscribe(user =>{
               let oi= {"idUser":user.idUser,"answer_idAnswer":returnAnswer.idAnswer,"question_idQuestion":q.idQuestion}
-              console.log(user)
-              console.log(oi)
               this.answerService.postUserAnswer(oi).subscribe()
+            })
 
             // constructor(dateCompleted : Date, isValidated : boolean, quizz_idQuizz : number, user_idUser : number, idArchivage? : number){
             })
-          })
+
+
         }
       })
     })
-    this.archivageService.postArchivage({    "isValidated": false,"quizz_idQuizz": this.quiz.idQuizz,"user_idUser": this.user.idUser} as Archivage)
-      .subscribe(e=>console.log("archivage!"))
+    this.archivageService.postArchivage({    "isValidated": false,"quizz_idQuizz": this.quiz.idQuizz,"user_idUser": this.user.idUser} as PostArchivage)
+      .subscribe()
     this.route.navigate(["validation_quiz_candidat"]);
   }
 

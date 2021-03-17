@@ -36,9 +36,7 @@ export class InscriptionCandidatComponent implements OnInit {
     this.checkExists(doe.mail).subscribe((retour) => {
       if(retour>=1){
         this.service.getById(retour).subscribe((anon) => {
-          console.log(anon)
           if(confirm(`Adresse déjà utilisée ! Continuer en tant que ${anon.firstName } ${anon.lastName}*/ ?`)){
-            alert("On continue !!")
             this.shared.UpdateCurrentUser(anon)
             this.router.navigateByUrl("quiz_candidat")
           } else {}
@@ -46,12 +44,9 @@ export class InscriptionCandidatComponent implements OnInit {
       }
       else {
         if(confirm(`Continuer en tant que ${doe.firstName} ${doe.lastName} ?`)){
-          alert("Nous allons commencer !!")
           this.service.create(doe).subscribe(e=>{
-            console.log("created user",e)
             doe.idUser=e.idUser
             this.shared.UpdateCurrentUser(doe)
-
             this.router.navigateByUrl("quiz_candidat")
           })
           

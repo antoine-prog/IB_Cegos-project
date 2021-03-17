@@ -14,22 +14,15 @@ import { SharedService } from 'src/app/_services/shared.service';
 export class ValidationQuizCandidatComponent implements OnInit {
 
   constructor(private shared : SharedService,private answerService : AnswerService) {
-    console.clear()
-    
     this.shared.currentUser
     .subscribe((user)=>{
       this.user=user
-      console.log("user",this.user)
     })
     this.shared.quiz.subscribe((quiz)=>{
       this.quiz=quiz
-      console.log("quiz",this.quiz)
-    }    )
-    
+    })
     this.answerService.get(this.user.idUser,this.quiz.idQuizz).subscribe(res=>{
       this.resultat=res
-      
-      console.log("resultat",this.resultat)
     })
    }
 
@@ -37,8 +30,6 @@ export class ValidationQuizCandidatComponent implements OnInit {
   user : User
   quiz : Quiz
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
 }

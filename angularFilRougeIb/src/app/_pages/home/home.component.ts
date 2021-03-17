@@ -26,9 +26,15 @@ export class HomeComponent implements OnInit {
     } )
   }
 
+  start =() =>{
+    if(!this.att(this.Code)){
+      this.lancement()
+    } else {
+      alert("Merci d'éviter les apostrophes !")
+    }
+  }
 
-
-  start = () =>{
+  lancement = () =>{
     this.service.getByCode(this.Code).subscribe(
       (data) => {
         this.IsNotOk=(data.idQuizz==null);
@@ -43,5 +49,12 @@ export class HomeComponent implements OnInit {
         }
           })
   }
-
+  att(str: string) :boolean{
+    if(str.includes('\'')){
+      return true
+    } else {
+      return false
+    }
+    
+  }
 }

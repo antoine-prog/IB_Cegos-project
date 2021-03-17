@@ -43,7 +43,7 @@
                 </button>
                 <mat-menu #menu="matMenu" class="menu-volet">
                   <div class="dark-hover profil-button">
-                    <a mat-stroked-button  routerLink="/modifier-profil">Voir profil</a>
+                    <a mat-stroked-button  (click)="navtoeditprofil()">Voir profil</a>
                   </div>
                   <div class="dark-hover profil-button">
                     <button mat-stroked-button  (click)="seDeconnecter()">Déconnexion</button>
